@@ -75,6 +75,14 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
   Frase longa = 2 a 4 cenas, cortando nas **palavras de peso** (nome, número, verbo forte,
   CAIXA ALTA). Flash de 0,35–0,5 s numa palavra é ok.
 - **Gancho**: sempre 2 ou 3 cenas; a 1ª mostra quem a frase cita, a mais forte possível.
+  Cada cena do gancho tem que ser **bonita, fácil de entender sozinha e bater com a palavra**;
+  pode vir de qualquer ponto do episódio (não precisa ser sequência). Julgar **no recorte 9:16**,
+  nunca pela miniatura 16:9: close extremo vira só olho, perfil vira meia cara, plano aberto vira
+  gente minúscula. Variar ângulo/assunto entre cenas seguidas (nada de duas Maomao de frente
+  iguais). Exemplo aprovado (S03E07, 16/11): "MANO!" Maomao de perfil virando o copo (0263) →
+  "apostou ELA MESMA" ela de mão levantada (0175) → "COMPETIÇÃO" homens rindo de copo erguido +
+  o proprietário (0188, fx 0,3) → "DE BEBIDA" saquê sendo servido em close (0258). Ele recusou:
+  close extremo (0209), cara a cara em perfil (0214), corpo no chão sem contexto (0248).
 - Só a cena do **gancho** pode repetir — de preferência como fecho no fim ("voltar a beber").
 - Coerência: a imagem bate com a palavra (moedas em "300 moedas", corpo caindo em "APAGA",
   arrozal em "arroz"). Preferir rosto expressivo, plano médio/close, impacto.
@@ -92,9 +100,18 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
 - **SFX**: os da Edição rápida (pop abre, riser metálico no gancho, riser+impacto na troca de
   música) + no máximo alguns **ligados a uma ação visível**, baixos. Nada de meme (sus, among us,
   "wow") — ele chamou de "aleatórios".
+- **Transições**: a Edição rápida põe `transitionIn: "zoom-in"` no começo de cada parte —
+  **ele não gosta**. Deixar todas `"cut"`.
+- **Revisar o vertical de TODAS as cenas** (`recortes.py`) antes de entregar — ele achou ~14
+  ruins no S03E07 mesmo com o rosto do motor certo: nuca/costas em primeiro plano, janela vazia,
+  manga/braço, gente minúscula em plano aberto, borrão de alguém passando no começo. Corrigir com
+  `focusX` (para onde está a ação), `sourceStart` (pular o borrão) ou trocar a cena.
+  `scripts/janela-cena.py` mostra o quadro inteiro com a janela 9:16 + o resto do clipe.
 - **Legenda**: o preset dele é **Kiumaz v1** (Bangers, amarelo, escala 2,1, y 0,45, elástica
   7 quadros, curva 0,45→1,11→1, marcar tudo, pontuação "Só ? ! %", contorno 11). A Edição
-  rápida usa o "estilo salvo", que pode estar com outra fonte/curva.
+  rápida usa o "estilo salvo", que pode estar com outra fonte/curva. Atalho: copiar
+  `captionFont`, `captionAnimationFrames`, `captionPontuacao`, `captionAnimationCurve` de um
+  projeto que ele aprovou (ex.: `...S03E07 - edicao do Claude`).
 - **Câmera**: pelo conteúdo — zoom-in em rosto, pan em plano aberto, zoom-out pra revelar.
   Intensidade ≤ 0,14 (0,2 empurra o rosto pra borda).
 - **Enquadramento 9:16**: nunca "no olho". Pegue o centro do rosto que o motor achou e calcule
@@ -124,7 +141,23 @@ Y, Animation, AnimationFrames, AnimationCurve, Mark, Pontuacao, Shadow, Stroke);
 (id→caminho em `episodios/indices.json`; recap externo em `<Biblioteca>/_indices/<id>/`).
 Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot_bounds.json`.
 
-## 6. Armadilhas já vistas (S03E07, 13–14/11)
+## 6. Armadilhas já vistas (S03E07, 13–16/11)
+
+- **Trocar uma cena direto no `.dangai`** (app fechado): mude `images[i].path/fileName/focusX`
+  (`focusAuto:false` se o foco é escolha sua) e `scenes[k].sourceStart`. Uma entrada de
+  `images` pode ser **dividida por duas cenas** (o 0192 do gancho e do fim) — duplique antes de
+  mexer. No fim tire as entradas sem uso e renumere `imageIndex`: a faixa "Cenas N" do topo
+  conta `images`, não blocos. Guarde backup em `G:/tmp-medida\` antes de cada rodada.
+- Mantenha a aba Cenas do recap igual ao projeto: `salvarCenas` pela ponte (app aberto) com a
+  troca (`inSec` = início do plano + `sourceStart`). Não gravar o rascunho em disco pelo Claude:
+  o `%APPDATA%` dele (MSIX) é virtual e o Dangai não vê.
+- `Start-Process` do Dangai às vezes não sobe (porta recusada): confira
+  `http://127.0.0.1:9354/json/version` e abra de novo. O Levi pode fechar o app entre os pedidos.
+- A escala da régua muda entre aberturas: depois de clicar na agulha, **leia o tempo** na tela
+  antes de afirmar qual cena está no preview.
+- Refazer com áudio novo e quase o mesmo roteiro: *Meu roteiro* → importar voz → levar as
+  escolhas antigas por LCS das palavras da frase (`G:\ClaudeEditor\_capturas\e2e-apo\levar-escolhas.js`,
+  com sinônimos tava/estava) → `salvarCenas` → *Abrir no editor*.
 
 - **Recortar o episódio** deixa as escolhas antigas do rascunho apontando pra outras cenas
   (guardadas por número). Destravar e sugerir de novo.
@@ -161,6 +194,7 @@ dentro de `modulos/recap/motor` (com `PYTHONDONTWRITEBYTECODE=1`).
 | `dados-das-folhas.js <rascunho> <episodio> [take]` → `folhas.py` | folhas de candidatas por frase |
 | `recortes.py <projeto.dangai> <saida>` | recorte 9:16 no começo/fim de cada cena |
 | `janela.py <projeto.dangai> <saida>` | quadro inteiro com a janela 9:16 desenhada |
+| `janela-cena.py <projeto.dangai> <saida> 3,10,26` | cenas escolhidas: 3 quadros com a janela + 3 do resto do clipe (achar `focusX`/`sourceStart`) |
 
 No repo do Dangai (fora da skill, `_medida/`, ignorado pelo git): `rostos-diag.ts` (decisão de
 rosto da Edição rápida contra um foco de referência) e o estudo do corte em
