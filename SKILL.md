@@ -134,7 +134,16 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
   `captionFont`, `captionAnimationFrames`, `captionPontuacao`, `captionAnimationCurve` de um
   projeto que ele aprovou (ex.: `...S03E07 - edicao do Claude`).
 - **Câmera**: pelo conteúdo — zoom-in em rosto, pan em plano aberto, zoom-out pra revelar.
-  Intensidade ≤ 0,14 (0,2 empurra o rosto pra borda).
+  Intensidade ≤ 0,14 (0,2 empurra o rosto pra borda). A Edição rápida põe os efeitos em
+  **rodízio** (zoom-in, zoom-out, pan-left, pan-right, pan-up, pan-down) sem olhar a cena: o
+  deslize tira o rosto do centro no 9:16 (Levi 17/11). Regra: **zoom em tudo que tem rosto ou
+  objeto**; deslize só em plano aberto (arena, multidão).
+- **Escolha da imagem no 9:16** (Levi 17/11, Nia S01E07): **corpo inteiro > plano médio > close**
+  ("quanto mais perto, piorzinhas"); close extremo vira só olho/nariz. **Movimento do personagem**
+  (andar, virar, gesto, golpe) é melhor que cena parada, desde que fique dentro do recorte.
+  Medir: `_capturas/e2e-nia/movimento.py <projeto>` (diferença entre quadros dentro do recorte,
+  < 1 = parada) e `mov-todos.py` (movimento de todo plano do episódio + melhor janela).
+  Personagem vistoso de corpo inteiro (a atendente coelhinha) "dá view": pôr onde a fala cita.
 - **Enquadramento 9:16**: nunca "no olho". Pegue o centro do rosto que o motor achou e calcule
   `focusX = (cx − 0,158) / 0,684` (janela 9:16 = 0,316 da largura de um 16:9). Ferramenta:
   `_medida/rostos-diag.ts` no repo (refaz a decisão de rosto pelo cache, mostra os rostos por
@@ -180,6 +189,13 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
   escolhas antigas por LCS das palavras da frase (`G:\ClaudeEditor\_capturas\e2e-apo\levar-escolhas.js`, *só no PC do Levi*,
   com sinônimos tava/estava) → `salvarCenas` → *Abrir no editor*.
 
+- **Biblioteca sem o episódio**: com "Enviar sempre para o AnCut" o episódio é cortado na pasta do
+  AnCut (`G:\App Corte Cenas\Output`); a Biblioteca só lê a `libraryDir` + a raiz do recap
+  (`G:\Dangai Recap\Biblioteca`). No PC do Levi a `libraryDir` estava vazia → E07 sumia. Corrigido
+  apontando pra pasta do AnCut (17/11) e no núcleo: vazia = pasta do AnCut (commit local, a publicar).
+- `cdp.mjs` embrulha o JS num template do Node: **`\` some** (`"G:\App"` vira `G:App`). Caminho no JS
+  enviado por CDP sempre com `/`.
+- `window.dangai.getSettings()/saveSettings()` devolvem `{ok, value}`.
 - **Recortar o episódio** deixa as escolhas antigas do rascunho apontando pra outras cenas
   (guardadas por número). Destravar e sugerir de novo.
 - A Edição rápida errava o rosto quando o reconhecimento troca nomes (Maomao como "Fuyou") e
