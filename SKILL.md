@@ -77,6 +77,9 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
 2. **Roteiro**: *Meu roteiro* cola o texto dele. O gancho "vira 2 ou 3 cenas no passo Cenas".
    A imagem de cada frase é só o MOMENTO, não a cena final.
 3. **Voz**: *Importar áudio* (pode soltar 2: gancho + resto, emenda pela ordem do nome).
+   **Quando EU edito para o Levi: Acelerar = 1,10x** antes de soltar o áudio (pedido dele 17/11:
+   "110% sendo o normal"; o padrão do app nas Configurações pode estar em 100% — não confie nele,
+   ponha o controle em 1,10x na tela). Fresh Air desligado, salvo pedido.
    Cortar pausas **Justo** (padrão novo) > *Aplicar* > *Aprovar voz*. ElevenLabs quase não
    tem pausa longa (89,5 → 89,1 s).
 4. **Cenas**: 26 frases, cada uma com cenas + "palavraInicio" (em que palavra a cena entra).
@@ -116,6 +119,22 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
   aproxima ancorado no canto onde está a ação.
 - **Câmera livre**: na Nia de perfil (0302) fez a câmera **deslizar** (x −11 → −26) em vez de
   parada com zoom.
+
+### Vídeo de CURIOSIDADE: cenas de vários episódios (Levi 17/11)
+
+Recap = um episódio. **Curiosidade** ("Por que…?", "Você sabia…?", personagem, poder, história)
+fala de coisas espalhadas pela série: a cena certa pode estar em OUTRO episódio. Então:
+- A **Biblioteca** do Dangai (desde a 2.10.1 = a pasta do AnCut, `G:\App Corte Cenas\Output`, +
+  a raiz do recap `G:\Dangai Recap\Biblioteca`) tem todos os episódios já cortados da série:
+  busque por personagem/episódio (Ctrl+B, filtro de personagem) e use cena de qualquer um.
+- No `.dangai`, uma cena de outro episódio é só o `path` do shot dele em `images[]`
+  (`<saida do AnCut>\<anime>\SxxEyy\shots\<numero>.mp4`); os planos de cada episódio estão no
+  `metadata/shots.json` do AnCut (personagem, tempo) ou no `episodio.json` do recap.
+- Faltou o episódio que tem o momento? Corte ele (Gerar recap > Analisar, ou o AnCut) — ele entra
+  na Biblioteca — e pegue a cena de lá.
+- O Gerar recap trabalha com UM episódio por rascunho: para curiosidade com vários, monte pelo
+  recap do principal e troque/insira as cenas dos outros no editor (*Trocar cena* abre a
+  Biblioteca inteira) ou direto no `.dangai`.
 
 ### CHECKLIST DA SELEÇÃO — toda cena passa por aqui ANTES de gravar (Levi, 16–17/11)
 
