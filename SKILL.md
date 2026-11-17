@@ -88,6 +88,27 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
 
 ## 3. Escolher cenas (o que o Levi espera)
 
+### O que o Levi corrigiu à mão no Nia S01E07 (diff 17/11 — aprender com isso)
+
+- **SFX ligado ao que se vê/ouve na fala**, tirando os genéricos: removeu os 2 whooshes de troca
+  de parte; pôs `MONEY SOUND EFFECT` (−5 dB) em "ganhar uma FORTUNA" (0:01), `Ping` (−10 dB)
+  junto com a seta na tatuagem, `Cartoon Bounce (OPPAI)` bem baixo (−26 dB) na atendente com as
+  fichas (gag). Ou seja: som de dinheiro no dinheiro, ping na seta, efeito cômico na piada.
+- **Seta**: trocou a minha pela **dele**, da biblioteca Eagle `I:\Meu Drive	fpn.library`
+  (pasta Levi > Channels > **Kiumaz > PNG**; `—Pngtree—red thick line stroke arrow`), parada
+  (sem efeito), girada (105°), escala 0,32, apontando de cima pra tatuagem. Use os PNGs/SFX da
+  pasta **Kiumaz** dessa biblioteca (PNG, efeitos sonoros, Music, Ambient, Emojis):
+  `images/<id>.info/` com `metadata.json` (nome, pasta); pastas no `metadata.json` da raiz.
+- **Música**: manteve a troca no começo da parte (0:24,9), mas voltou o 1º trecho pra parte da
+  faixa que ele gosta (56,4 s) e pôs **ducking** na 2ª (abaixa 6 dB sob a voz); a 2ª entra
+  pulando o silêncio (1,5 s).
+- **Enquadramento fino**: empurrou o focusX +0,05…+0,2 rumo ao centro do assunto (soco do
+  tatuado, coelhinha, Nia no fim) e na torre de fichas foi pra 0,65 pra mostrar o Gandolf junto.
+- **Zoom fixo do bloco** (`escala` 1,3 + `escalaOrigem` {x:0,y:1}) na Nia entregando as fichas:
+  aproxima ancorado no canto onde está a ação.
+- **Câmera livre**: na Nia de perfil (0302) fez a câmera **deslizar** (x −11 → −26) em vez de
+  parada com zoom.
+
 ### CHECKLIST DA SELEÇÃO — toda cena passa por aqui ANTES de gravar (Levi, 16–17/11)
 
 Ele achou cada um destes erros no Nia S01E07 e pediu: "isso tudo já deveria ser critério na
@@ -115,9 +136,11 @@ seleção de cenas". Não deixe para corrigir depois.
    (mesmo personagem, mesmo ângulo).
 10. **Não congela**: `sourceStart` + duração ≤ clipe.
 11. **Close parado longo vira dupla** (plano médio, depois o close na palavra).
-12. **Recursos**: grid em "um x outro" (dois personagens diferentes e legíveis); seta no detalhe
+12. **Som que conta a cena**: SFX só onde a imagem/fala pede (dinheiro, seta = ping, piada =
+    efeito cômico baixo), não whoosh genérico; música com ducking.
+13. **Recursos**: grid em "um x outro" (dois personagens diferentes e legíveis); seta no detalhe
     que a fala cita; personagem vistoso de corpo inteiro "dá view" — encaixe onde a fala cita.
-13. **Sem sangue/violência gráfica em destaque** (corpo ensanguentado no chão) e nada que fira a
+14. **Sem sangue/violência gráfica em destaque** (corpo ensanguentado no chão) e nada que fira a
     regra da plataforma.
 
 **Conferência final obrigatória**: `scripts/folha-final.py <projeto.dangai> <saida>` — as cenas
