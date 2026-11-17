@@ -144,6 +144,26 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
   Medir: `_capturas/e2e-nia/movimento.py <projeto>` (diferença entre quadros dentro do recorte,
   < 1 = parada) e `mov-todos.py` (movimento de todo plano do episódio + melhor janela).
   Personagem vistoso de corpo inteiro (a atendente coelhinha) "dá view": pôr onde a fala cita.
+- **Seguir o movimento** (Levi 17/11): personagem que anda/vira pela tela sai do centro com zoom
+  OU com deslize fixo. Use a **Câmera livre > "Seguir o rosto"** do bloco
+  (`scripts/seguir-rostos.mjs <lista [n,id,x]>` faz em lote: clica na parte de BAIXO do bloco —
+  em cima fica o **x que APAGA o bloco**, Ctrl+Z desfaz: `scripts/ctrlz.mjs`). Depois **confira
+  cada câmera** (simular início/fim): sem rosto de frente ela liga no CENTRO e apaga o seu
+  focusX; às vezes pega o rosto errado (Nia pequena no canto em vez do Gandolf). Desligue
+  (`camera: null`) nessas. Câmera ligada ignora o efeito: dê `from.scale 1 → to.scale 1.08` pra
+  não ficar parada.
+- **Ponto de entrada pelo melhor ângulo**: o clipe muda de ângulo dentro dele (a tatuagem: ombro
+  de perto no começo, lutador inteiro do meio pro fim). Olhe a tira do clipe inteiro, não só o
+  começo.
+- **Grid** (tela dividida, `imageIndexB` + `sourceStartB`/`effectB`/`intensityB`; no rascunho
+  `cena.baixo`): use em "um x outro" — dois personagens diferentes e legíveis (Nia de braços
+  cruzados x Gandolf; tatuado socando x o outro lutador). Cada metade é 1080x960 = 63% da largura
+  do 16:9.
+- **Seta** (`sobreposicoes`, tipo `image`, faixa nova, `x`/`y` em % do quadro, `escala` sobre o
+  arquivo inteiro no quadro): `modulos/thumb/assets/setas/seta-ajk.png`, escala ~0,3, efeito
+  zoom-out 0,25 + fade 0,06 s, apontando o detalhe ("cara tatuado"). Simule com PIL antes.
+- **Close longo vira dupla**: uma cena de close parada por 3 s → plano médio primeiro, close
+  na palavra ("reconhecer a força" Nia olhando → "só de olhar" o olho).
 - **Enquadramento 9:16**: nunca "no olho". Pegue o centro do rosto que o motor achou e calcule
   `focusX = (cx − 0,158) / 0,684` (janela 9:16 = 0,316 da largura de um 16:9). Ferramenta:
   `_medida/rostos-diag.ts` no repo (refaz a decisão de rosto pelo cache, mostra os rostos por
@@ -196,6 +216,11 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
 - `cdp.mjs` embrulha o JS num template do Node: **`\` some** (`"G:\App"` vira `G:App`). Caminho no JS
   enviado por CDP sempre com `/`.
 - `window.dangai.getSettings()/saveSettings()` devolvem `{ok, value}`.
+- **Antes de reabrir um `.dangai` editado à mão, valide** (`projectFileSchema.safeParse`, ver
+  `_capturas/e2e-nia/rodada3.js`): um `focusX` undefined fez o Dangai dizer "está corrompido".
+- **Música que some**: a Edição rápida pode começar a faixa tarde e o trecho cair no fim que
+  some (S01E07: 57,8 s → fim em 90 s, vazio de 0:20 a 0:32). Medir o RMS por segundo da música
+  e mover `inicioSec` pra o trecho não passar do fade.
 - **Recortar o episódio** deixa as escolhas antigas do rascunho apontando pra outras cenas
   (guardadas por número). Destravar e sugerir de novo.
 - A Edição rápida errava o rosto quando o reconhecimento troca nomes (Maomao como "Fuyou") e
