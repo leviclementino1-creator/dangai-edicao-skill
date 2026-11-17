@@ -1,11 +1,22 @@
 ---
 name: dangai-edicao
-description: Editar um short de recap de anime no Dangai do Levi do começo ao fim, como se fosse ele — cortar o episódio no Gerar recap, roteiro, voz, escolher as cenas (ritmo, gancho, coerência), abrir no editor com a Edição rápida e ajustar enquadramento, ponto de entrada, câmera, legenda e som. Também cobre como controlar o Dangai instalado ou o de dev (CDP), o formato do .dangai e do rascunho, as medidas offline (rosto, corte) e as armadilhas já vistas. Use em QUALQUER pedido de "edita no Dangai", "faz o processo todo", "compara com a sugestão do app", "ajusta enquadramento/legenda/cenas do projeto", ou para entender por que a Edição rápida errou.
+description: Editar um short de recap de anime no Dangai do começo ao fim, do jeito de quem pediu — o Levi (Gerar recap) ou o Fabinho/Faah (editor normal, sem Gerar recap). Do Levi — cortar o episódio no Gerar recap, roteiro, voz, escolher as cenas (ritmo, gancho, coerência), abrir no editor com a Edição rápida e ajustar enquadramento, ponto de entrada, câmera, legenda e som. Também cobre como controlar o Dangai instalado ou o de dev (CDP), o formato do .dangai e do rascunho, as medidas offline (rosto, corte) e as armadilhas já vistas. Use em QUALQUER pedido de "edita no Dangai", "faz o processo todo", "compara com a sugestão do app", "ajusta enquadramento/legenda/cenas do projeto", ou para entender por que a Edição rápida errou. Do Fabinho — soltar narração + roteiro .txt, marcar as cenas na Biblioteca e acertar a timeline (foco, entrada, efeito, transição, legenda, sons nas faixas A1–A4) como ele faz — "edita do meu jeito", "monta como eu monto", "o que eu sempre corrijo".
 ---
 
-# Editar no Dangai (o fluxo do Levi)
+# Editar no Dangai (o fluxo do Levi e o do Fabinho)
 
-Dangai = Electron + Remotion, repo `faahpla/dangai` (clone em `G:\ClaudeEditor\dangai`).
+**Quem pediu?** São dois jeitos de editar no mesmo app:
+
+| quem | como edita | seções |
+|---|---|---|
+| **Levi** (leviclementino1-creator) | *Gerar recap*: episódio → roteiro com IA → voz → aba Cenas → *Abrir no editor* com a Edição rápida | 2, 3, 4 (e 5, 6) |
+| **Fabinho** (Faah, dono do núcleo) | **editor normal**: solta a narração, o roteiro `.txt`, marca as cenas na Biblioteca e acerta na timeline | **8 e 9** |
+
+Não misture: o gosto de um não vale para o outro (ex.: o Levi não quer transição; o Fabinho põe
+~6 por vídeo). Na dúvida, veja de onde vem o projeto (`modulos.recap` no `.dangai` = Gerar recap).
+
+Dangai = Electron + Remotion, repo `faahpla/dangai` (clone em `G:\ClaudeEditor\dangai` *só no PC do
+Levi*; no PC do Fabinho, `E:\Projetos\dangai`).
 `modulos/recap` e `modulos/thumb` são do Levi; o resto (núcleo) é do Faah — mudança no
 núcleo entra pequena, um assunto por commit, e o Levi avisa o Faah. Responder ao Levi em
 português, curto e simples.
@@ -16,8 +27,11 @@ português, curto e simples.
 - Biblioteca e projetos reais do Levi: **só leitura**, salvo pedido explícito. Apagar = Lixeira
   (nunca de vez). Recortar um episódio muda os ids das cenas (ver Armadilhas).
 - Nada pago sem confirmar. Nunca imprimir/copiar chave de API (não dar `cat` no settings).
-- Teste de UI em perfil temporário (`G:\tmp-thumbui\abrir.cmd`, porta 9353) — a não ser que
-  ele peça "no meu Dangai".
+- Teste de UI em perfil temporário (`G:\tmp-thumbui\abrir.cmd`, porta 9353, *só no PC do Levi*) —
+  a não ser que ele peça "no meu Dangai". No PC do Fabinho: `DANGAI_DADOS=<pasta>` + `npm run dev`
+  em `E:\Projetos\dangai` (outra pasta de dados; não grava por cima das configurações dele).
+- **Nunca mostrar o `settings.json`** (tem chaves de API). Para achar os projetos, leia SÓ o campo
+  `recentes` (um `node -e` que imprime o `path` de cada item) e as pastas onde eles estão.
 - Quando o Levi estiver jogando: não abrir janela nem usar GPU sem avisar.
 - Antes de editar um `.dangai` em disco: **feche o projeto no app** (o auto save grava por cima).
   Fechar com calma: `(Get-Process Dangai | ? MainWindowTitle).CloseMainWindow()`.
@@ -35,7 +49,8 @@ Se o Dangai já está aberto, a 2ª instância morre (instância única): feche 
 O empacotado **não** deixa importar o store; use DOM, eventos de entrada e a ponte
 `window.dangai...` (ex.: `window.dangai.modulos.recap.salvarCenas(rascunhoId, escolhas)`).
 
-**Dev** (`G:\tmp-thumbui\abrir.cmd`, porta 9353, perfil `G:\tmp-thumbui\p`): o store importa
+**Dev** (*só no PC do Levi*: `G:\tmp-thumbui\abrir.cmd`, porta 9353, perfil `G:\tmp-thumbui\p`;
+no do Fabinho: `npm run dev` com `DANGAI_DADOS`): o store importa
 por `await import('/store/project.ts')` (NÃO `/@fs/...`, que cria outra instância). Para ver a
 Biblioteca no perfil de teste: `window.dangai.saveSettings({ libraryDir: 'G:/Dangai Recap/Biblioteca' })`
 + reload. Matar: processos com `tmp-thumbui` na linha de comando.
@@ -51,7 +66,7 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
 - Caminhos com `\` dentro de heredoc/`-e` do Bash perdem a barra: use `/` ou escreva o script
   num arquivo com a ferramenta Write.
 
-## 2. O Gerar recap, passo a passo
+## 2. O Gerar recap, passo a passo *(só para quem usa o Gerar recap)*
 
 1. **Episódio**: tela inicial > Módulos > *Gerar recap* > soltar o `.mkv` em *Novo recap*
    (o mesmo episódio retoma o rascunho que já existe). *Analisar* (motor do recap) ou
@@ -67,9 +82,12 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
      com title `Travada: ...`.
    - *Sugerir de novo* (rodapé) refaz as não travadas.
    - *Abrir no editor* (com *Edição rápida* marcada) monta o projeto numa pasta nova em
-     `G:\Dangai Recap\Biblioteca\_projetos\<anime SxxEyy - data>`.
+     `G:\Dangai Recap\Biblioteca\_projetos\<anime SxxEyy - data>` (*só no PC do Levi*).
 
 ## 3. Escolher cenas (o que o Levi espera)
+
+*Gosto do Levi. Folha de candidatas, `salvarCenas`, frase travada e "Sugerir de novo" são da aba
+Cenas: só para quem usa o Gerar recap. O gosto do Fabinho está na seção 9.*
 
 - **Ritmo**: ~1,5 s por cena (ele fez 55 cenas em 89 s; o app sugere ~32 = lento demais).
   Frase longa = 2 a 4 cenas, cortando nas **palavras de peso** (nome, número, verbo forte,
@@ -94,7 +112,7 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
 - Gravar as escolhas pela ponte (`salvarCenas`, origem `usuario`, `travada: true`) e recarregar
   a tela (`location.reload()` → Gerar recap → Continuar).
 
-## 4. Depois de abrir no editor
+## 4. Depois de abrir no editor (gosto do Levi, com a Edição rápida)
 
 - **Música**: a da Edição rápida é melhor que a minha (feedback dele 13/11) — não trocar por gosto.
 - **SFX**: os da Edição rápida (pop abre, riser metálico no gancho, riser+impacto na troca de
@@ -130,10 +148,10 @@ curve, sourceStart, transitionIn}`; `images[] {path, fileName, focusX, focusY, f
 `trilhas[] {faixa, at, durationSec, inicioSec, usarSec, gainDb, fadeInSec, fadeOutSec, ducking,
 modulos.recap.papel}` (peaks/rms podem ir vazios); `captions` + `caption*` (Color, Font, Scale,
 Y, Animation, AnimationFrames, AnimationCurve, Mark, Pontuacao, Shadow, Stroke);
-`transcript.words[] {text,start,end}`; `biblioteca` (a aba Cenas: `blocos`, `porBloco`,
-`unioes`); `modulos.recap` (rascunhoId, secoes). `audio.path` absoluto + `rel`.
+`transcript.words[] {text,start,end}`; `biblioteca` (no editor normal, a Biblioteca: `blocos` = trechos do roteiro, `porBloco` = cenas
+marcadas por trecho, `pesos`, `unioes` = tela dividida, `cortes` = fronteira puxada, em índice de palavra); `modulos.recap` (rascunhoId, secoes). `audio.path` absoluto + `rel`.
 
-**Rascunho** `%APPDATA%\Dangai\modulos\recap\recaps\<id>.json`: `roteiros[]`, `atual`,
+**Rascunho** *(só para quem usa o Gerar recap)* `%APPDATA%\Dangai\modulos\recap\recaps\<id>.json`: `roteiros[]`, `atual`,
 `voz.takes[] {id, palavras[{texto,start,end,fraseId}], trechos[{fraseId,offset,duracao}]}`,
 `cenas.escolhas[] {fraseId, cenas[{candidato{planoIds,inSec,outSec,origem,keyframe}, palavraInicio}], fita, travada}`, `eventos`.
 
@@ -141,13 +159,13 @@ Y, Animation, AnimationFrames, AnimationCurve, Mark, Pontuacao, Shadow, Stroke);
 (id→caminho em `episodios/indices.json`; recap externo em `<Biblioteca>/_indices/<id>/`).
 Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot_bounds.json`.
 
-## 6. Armadilhas já vistas (S03E07, 13–16/11)
+## 6. Armadilhas já vistas (S03E07, 13–16/11 — projetos do Gerar recap)
 
 - **Trocar uma cena direto no `.dangai`** (app fechado): mude `images[i].path/fileName/focusX`
   (`focusAuto:false` se o foco é escolha sua) e `scenes[k].sourceStart`. Uma entrada de
   `images` pode ser **dividida por duas cenas** (o 0192 do gancho e do fim) — duplique antes de
   mexer. No fim tire as entradas sem uso e renumere `imageIndex`: a faixa "Cenas N" do topo
-  conta `images`, não blocos. Guarde backup em `G:/tmp-medida\` antes de cada rodada.
+  conta `images`, não blocos. Guarde backup em `G:/tmp-medida\` (*só no PC do Levi*; em outro PC, uma pasta temporária) antes de cada rodada.
 - Mantenha a aba Cenas do recap igual ao projeto: `salvarCenas` pela ponte (app aberto) com a
   troca (`inSec` = início do plano + `sourceStart`). Não gravar o rascunho em disco pelo Claude:
   o `%APPDATA%` dele (MSIX) é virtual e o Dangai não vê.
@@ -156,7 +174,7 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
 - A escala da régua muda entre aberturas: depois de clicar na agulha, **leia o tempo** na tela
   antes de afirmar qual cena está no preview.
 - Refazer com áudio novo e quase o mesmo roteiro: *Meu roteiro* → importar voz → levar as
-  escolhas antigas por LCS das palavras da frase (`G:\ClaudeEditor\_capturas\e2e-apo\levar-escolhas.js`,
+  escolhas antigas por LCS das palavras da frase (`G:\ClaudeEditor\_capturas\e2e-apo\levar-escolhas.js`, *só no PC do Levi*,
   com sinônimos tava/estava) → `salvarCenas` → *Abrir no editor*.
 
 - **Recortar o episódio** deixa as escolhas antigas do rascunho apontando pra outras cenas
@@ -183,7 +201,182 @@ Testes: `npm run typecheck`, `npm test`; testes do módulo com esbuild
 Motor (Python): `%LOCALAPPDATA%\Dangai\recap\motor-runtime\venv\Scripts\python.exe -m unittest tests.test_X`
 dentro de `modulos/recap/motor` (com `PYTHONDONTWRITEBYTECODE=1`).
 
+## 8. Editor normal (sem Gerar recap) — o fluxo do Fabinho
+
+Medido em 46 projetos dele (09–11/2026, `recentes` + pastas `%USERPROFILE%\Documents\Dangai\Projetos`
+e `D:\Dopanimes\Projects`). Clipes = shots que o AnCut cortou, em `D:\Animes\<anime>\SxxEyy\shots\NNNN.mp4`
+(às vezes quadro de mangá; filme em `D:\Filmes\Corte de Filmes\<filme>`); SFX em `%USERPROFILE%\Music\Sfx's`, músicas em `%USERPROFILE%\Music\Song's`.
+
+1. **Narração**: soltar o `.mp3` bruto na tela inicial → pede o nome (o `.dangai` nasce e o auto save
+   grava nele) → **Etapa de Áudio**: isolar voz (100), nivelar, EQ, compressor, normalizar e
+   **velocidade 110–115%**. *Pronto* grava `<nome> (editado).wav` ao lado e segue.
+2. **Roteiro**: o `.txt` dele na etapa Roteiro; sincroniza com a voz (o texto é a fonte, a voz só dá os tempos).
+3. **Cenas = Biblioteca**: o roteiro vira **trechos** (cortados na vírgula e no ponto). Em cada trecho ele
+   marca **1 a 3 cenas** na ordem; quando quer, puxa a fronteira para uma palavra (`cortes`), dá peso ou
+   une duas em tela dividida (raro: 14 cenas em 2.285). *Aplicar* monta a timeline: cada trecho se
+   divide entre as cenas dele, emenda no começo da fala, efeito em rodízio, intensidade 0,1, corte seco.
+4. **Timeline** (o que ele acerta à mão, medido contra o que a Biblioteca monta — mesmas contas do
+   `shared/trecho.ts`, script `comparar-com-a-biblioteca.mts`):
+   - **Cortes: quase não mexe.** 95% dos cortes ficam onde a Biblioteca pôs (1.764 de 1.853); 4% andam
+     (mediana 0,17 s, mais vezes para antes); 17 cortes novos e 9 tirados em 39 projetos. **O ritmo é
+     decidido na Biblioteca** (quantas cenas por trecho), não na timeline.
+   - **Enquadramento (`focusX`)**: arrasta à mão ~40% das cenas (900 de 2.285), deixa o rosto
+     automático em ~19% e o centro no resto. O valor vai de 0 a 1 — puxa para onde está o rosto/ação.
+   - **Ponto de entrada (`sourceStart`)**: muda em 22% das cenas, mediana ~1,3 s (pula o começo morto).
+   - **Efeito**: troca ~18% do rodízio (230 de 1.287). Mais comum: `pan-up` → `pan-down` (46),
+     `pan-left` → `zoom-out` (17), `pan-left`↔`pan-right` (25). No fim: zoom-out 451, pan-down 436,
+     pan-right 372, pan-left 370, zoom-in 368, **pan-up só 281**. Intensidade **nunca** muda (0,1, curva linear).
+   - **Transição**: ver seção 9.
+   - **Giro** 90°/270° em ~1,5% das cenas (quadro em pé); tela dividida quase nunca.
+5. **Som** nas faixas A1–A4 (o painel *Do meu jeito*, `shared/meu-jeito.ts`, já aprendeu isso dos
+   projetos dele), **camada de ajuste de cor** no vídeo todo, **sobreposições** (foto, SETA.mov), legenda,
+   thumb (módulo thumb) e render.
+
+Para estudar um projeto dele: `scripts/fabinho/folhas-do-projeto.cjs` (tabela frase a frase + folha de
+quadros no recorte 9:16, só ffmpeg) e `scripts/fabinho/medir-projetos.cjs`. Tabelas dos 46 projetos em
+`referencia/fabinho/` (duas com o que aparece em cada cena).
+
+## 9. Gosto do Fabinho
+
+### Ritmo
+
+- **1,23 s por cena** (mediana de 2.285 cenas; média 1,30, desvio 0,50; 80% entre 0,72 e 1,92 s).
+  Por vídeo a mediana fica entre 0,97 e 1,78 s; **~46 cenas por minuto**. Mais curta ~0,3–0,5 s
+  (flash numa palavra), mais longa ~2,5–3,5 s (frase que não tem o que cortar).
+- **3 a 6 palavras por cena** (mediana 4). Corta **na vírgula** sempre; dentro da vírgula, na palavra de
+  peso (nome, número, verbo). Ex.: *A Noelle é SUPERestimada* — "Ela sai de 'não consigo / acertar um
+  alvo com água' / pra armadura de valquíria." (3 cenas); *Por que Grimmjow MORDEU Yhwach* — "Uryu, /
+  Shunsui e Grimmjow / contra" (0,38 / 0,59 / 0,57 s: **um corte por nome** numa lista).
+- Duração do vídeo: 61–78 s (até 05/11) ou 34–38 s (os curtos, desde 06/11).
+
+### Gancho (a 1ª frase)
+
+- **2 a 4 cenas** (mediana 3) de ~1,0–1,2 s; o gancho inteiro dura 2,7–4 s. Sempre clipe do anime
+  (nunca foto). Efeito no gancho: zoom (95 de 148) ou pan lateral; quase nunca pan vertical.
+- **1ª cena = quem a frase cita, na forma mais icônica**; a última cena do gancho mostra **literalmente a
+  palavra de impacto**. Exemplos:
+  - *A Noelle é SUPERestimada* (0–2): Noelle de armadura Valquíria de frente → voando com a armadura
+    → armadura de longe, asas contra a luz; "Calma," = Noelle em close olhando brava pra câmera.
+  - *O D foi feito Bonitão só pra SOFRER* (0–2): "O D foi desenhado bonito" D em close calmo →
+    "por um único motivo..." D plano médio → "pra apanhar." **D com o rosto machucado**.
+  - *Por que NINGUÉM Estranha o Grimório* (2): "cinco folhas do Asta?" = **o trevo de 5 folhas**.
+  - *Por que Grimmjow MORDEU Yhwach* (0–2): as 3 cenas são **o Grimmjow mordendo** (a ação do título).
+  - *Ninguém é Especial em Cyberpunk* (0–3): "David e Adam / Smasher não / eram especiais / em
+    Cyberpunk?" = David, Smasher, David, Smasher (~0,7 s cada, alterna os dois nomes).
+  - *A Maomao NÃO É Imune a Veneno* (0–1): Maomao com cara de nada → Maomao cortando o próprio braço.
+- Seta (`SETA.mov` na V2) apontando o personagem do gancho quando ele não é óbvio (Lilia @0,3 s,
+  Kiwi @1,1 s, Adam Smasher @0,1 s).
+
+### Que imagem para cada tipo de palavra
+
+- **Nome de personagem** → close/plano médio do rosto dele, trocando **na palavra do nome**
+  (*Noelle SUPERestimada*: "o Nozel com cara de tanso" = Nozel em close sério; *COMO O AIZEN ENGANOU O
+  ALMIGHTY*: "Só que não era o Renji. / Era o Aizen." troca do Renji pro Aizen no nome).
+- **Pessoa real** (diretor, autor, animador, boxeador) → a cena continua um personagem fazendo a ação, e a
+  **foto real entra por cima** (sobreposição na V2) na hora do nome: Kai Ikarashi (*O D foi feito
+  Bonitão* @6,7 s), Glen Keane (*O quarto da Rapunzel* @4,6 s), Mike Pondsmith (*Adam Smasher* @16,5 s),
+  Bartosz Sztybor (*Final Alternativo* @13 s), os boxeadores (*Magna* @13,1 s). Objeto real idem
+  (a câmera Sony VX2000 @57,3 s no *D*).
+- **Número / quantidade** → o objeto que mostra o número: *Grimório* "três folhas" = trevo de 3, "os de
+  quatro" = trevo de 4 brilhando, "CINCO folhas" = trevo de 5 escuro; *Ram AMASSOU o Lye* "50% do poder"
+  = Ram com o chifre brilhando; *Rapunzel* "18 anos presa numa torre" = Rapunzel lendo na cama com o
+  cabelo enorme; *Adam Smasher* "96% do corpo" = Smasher de corpo inteiro.
+- **Ação** → o plano exato da ação: *Noelle SUPERestimada* "O Asta quebra / os dois braços" = Asta caindo
+  no fogo → Asta de braços pretos feridos; "solta uma lágrima" = Noelle chorando; *Rapunzel* "pintar as
+  paredes" = pincel na parede; *Ram* "apanhou igual cachorro" = Lye levando a surra.
+- **Emoção, gíria, reação** ("Mano,", "É sério isso mano?!", "Respeito.", "Nem fudeno.", "caraio") →
+  close de **reação exagerada**: *Noelle censura* "É sério isso mano?!" = Asta chocado; *Noelle
+  SUPERestimada* "Respeito." = Noelle olhando brava pra câmera, "Mano," = Noelle de boca aberta corada,
+  "Nem fudeno." = Noelle em close furiosa.
+- **Coisa concreta** → close do objeto: *Maomao Imune a Veneno* "comida envenenada" = frutas e bolinhos,
+  "trigo-sarraceno" = campo de grãos, "marcas no braço" = braço enfaixado; *O D* "A trança / é o rabo"
+  = a trança da Talia em movimento.
+- **"No mangá" / "capítulo N"** → página ou quadro do mangá (*Grimório* cena 39; *Noelle vai PERDER*:
+  5 quadros; *luta da Noelle criticada*: 3).
+- **"Os fãs", "teve gente", "viralizou"** → print do post por cima (*Magna* @39,7 s), ou a cena citada
+  (*Magna* "um frame com um desenho esquisitíssimo" = o próprio frame torto).
+- **"Repara", "aquela ...", "Era o X"** → `SETA.mov` apontando o detalhe (*Talia* @14,9 s "Repara no
+  estado", *Quem destruiu a família de D* @54,3 s "Era o Tanaka.", *Ciberpsicose* @17,3 s "aquela coroa
+  na jaqueta").
+- **Explicação abstrata** ("O problema é que", "Ou seja", "Outro problema também") → o personagem do
+  assunto em plano médio/close neutro, ou o poder dele (magia, aura). Nunca tela vazia.
+- O assunto do vídeo domina: em *Magna* a fala é sobre créditos, notas e IMDb, mas a imagem é sempre a
+  **luta** (os melhores socos e caras), nada de print de site.
+
+### Fechamento
+
+- Última frase curta e opinativa, ou CTA, e a **imagem volta ao gancho** ou mostra o alvo da piada:
+  *Noelle SUPERestimada* "Boa? Sim." = a mesma cena 0 do gancho (armadura) → "Nem fudeno." Noelle furiosa;
+  *O D* "se prepara." = D sorrindo sinistro na chuva (a mesma da cena 12); *Rapunzel* "Me segue aí" =
+  Rapunzel acenando (a mesma da cena 11); *Maomao Imune a Veneno* "Não sendo o charlatão ta valendo." =
+  o Guen (o "charlatão"); *Grimmjow* "o golpe que o Almighty não conseguiu desfazer" = o golpe final do Ichigo.
+- Repetir clipe é normal (~3,5 por vídeo), de preferência pra fechar ou para quem volta na fala.
+
+### Enquadramento, entrada, efeito, transição
+
+- Julgar **no recorte 9:16** (`folhas-do-projeto.cjs`). Rosto ou ação dentro da janela; ele arrasta
+  `focusX` até o rosto — não aceita o centro quando o personagem está no canto.
+- `sourceStart`: pular o começo morto do shot (mediana ~1,3 s) para a cena começar já no movimento.
+- Efeito: rodízio do app com intensidade **0,1** (não mexer), mas **sem pan-up**: prefira pan-down ou
+  zoom-out. No gancho, zoom ou pan lateral.
+- **Transição: ele usa** (o contrário do Levi). Desde 08/10, ~6 por vídeo (4–12), quase sempre **no
+  começo de uma frase nova** (depois do ponto), mais na 1ª metade do vídeo: `light` e `pan-down`
+  (~30% cada), `pan-left`, às vezes `pan-right`/`pan-up`; `crossfade` raríssimo; nunca `zoom-in`. O resto é corte seco.
+
+### Legenda (estável desde 07/10)
+
+Fonte padrão (Komika Axis: `captionFont` vazio), **amarelo `#FFDD00`**, escala **1,3**, y **0,38**,
+**elástica 6 quadros**, curva `0,741 → 1,084 → 0,97 → 1`, marcar **palavra**, contorno **7**,
+sombra distância 3 / desfoque 0 / opacidade 1 / ângulo 71, pontuação **manter** (desde 13/11).
+~1,3 palavras por bloco (uma palavra por vez). Cor muda com o tema: *Rapunzel* (Disney) vermelho,
+*A Joka* (Apotecária) rosa, escala 1,4, contorno 5.
+
+### Som (faixas e volumes)
+
+| faixa | o que vai | volumes |
+|---|---|---|
+| **A1** | SFX de corte: `Flash Whoosh Swoosh`/`Flash Swoosh` (troca de cena forte), `Camera Shutter 7` (corte/flash), `Stinger Camera Shut`, `Sharp Riser`; som de abertura no 0 s | whoosh −5, shutter 0, stinger 0, riser −3 |
+| **A2** | 2ª camada de SFX (shutter, stinger, riser) e trechos curtos de tema (Death Note, Sharingan) | 0 / −15 |
+| **A3** | **música de fundo** | −15 a −20 dB |
+| A4 | sobra: meme de abertura ou outra música | — |
+
+- **Abertura (0 s)**: `Re Zero - Return By Death` (0 dB), `Illuminati Meme` (−5), `Cartoon Pop Up`
+  (−3/−5), `Sharingan` (−15) ou `Teleport DBZ` (−5).
+- **Música**: era `GONE TOO FAR` a −15/−20 embaixo de tudo; em nov/2026 `Death Note Kyrie` (−15) no
+  gancho e depois `Naruto Sasuke Theme` ou `Homelander Theme` (−20); por clima `Pensando`, `Comedy`,
+  `HATE ME NOW` (−20); Disney com a trilha do filme (*Rapunzel*: `Kingdom Dance`, −25).
+- `Sharp Riser` com fade-in ~0,7–1,2 s **terminando num corte**: no fim do gancho e perto do fim do vídeo.
+- 15–30 sons num vídeo de 60–75 s, ~10 num de 35 s. Sem ducking. Os 13 projetos de setembro não têm
+  nenhum som gravado no `.dangai`.
+
+### Cor
+
+Uma **camada de ajuste** no vídeo inteiro (nos projetos de out–nov/2026, sempre a mesma): exposição +0,05, contraste +0,1,
+brancos +0,1, pretos −0,1, saturação +0,2, vibrance +0,2, curva mestre em S leve.
+
+### Roteiro (quando for escrever ou revisar)
+
+- **Tamanho**: 230–290 palavras (61–78 s) ou, desde 06/11, 110–125 palavras (34–38 s).
+- **Frases**: ficaram mais longas — set/2026 7–10 palavras por frase, cheias de "…"; out–nov 11–17.
+  Cada linha do `.txt` = uma ideia; 7–20 linhas.
+- **Gancho**, em três fases: set/2026 **"MANO…" + pergunta TODA EM CAIXA ALTA** ("MANO… A RUI TÁ COM
+  MEDO DO SUBARU?!"); até 23/10 **"POR QUE …?" em caixa alta** ("POR QUE A KIWI USA AQUELA MÁSCARA
+  VERMELHA EM CYBERPUNK?"); depois **sem caixa alta**: "Por que …?", "Você sabia que …?" ou afirmação
+  polêmica + "e eu vou explicar por quê." ("A Noelle é a personagem mais superestimada de Black Clover,
+  e eu vou explicar por quê.").
+- **CAIXA ALTA no corpo**: quase nunca; uma palavra de ênfase ("tem CINCO folhas", "LITERALMENTE A
+  METADE IRMÃO"). No **nome do arquivo** sim, na palavra-chave (NINGUÉM, SUPERestimada, SOFRER, PERDER).
+- **Fechamento**: frase curta de efeito ("Nem fudeno.", "Se o diretor gosta de você, se prepara.",
+  "Aí você se entrega sozinho."), CTA ("Me segue aí, porque até as paredes da Disney escondem
+  histórias!") ou a revelação do porquê.
+- **Tom**: falado, com gíria ("mano", "caraio", "tanso", "foi de arrasta", "estressadinha", "nem
+  fudeno") e conversa com quem assiste ("lembra?", "repara", "pensa nisso", "antes de me tacarem pedra").
+
 ## Scripts desta skill (`scripts/`)
+
+Os `.py` (`folhas.py`, `recortes.py`, `janela*.py`) precisam de Python com `numpy` e `pillow` e o
+`janela-cena.py` lê `G:/ClaudeEditor/...` por padrão: **só no PC do Levi** (ou instale `numpy pillow`).
+Os `.mjs`/`.js` de CDP rodam em qualquer PC com o Dangai aberto na porta.
 
 | script | o que faz |
 |---|---|
@@ -191,11 +384,16 @@ dentro de `modulos/recap/motor` (com `PYTHONDONTWRITEBYTECODE=1`).
 | `soltar.mjs x y <arq...>` | solta arquivos na janela |
 | `clicarxy.mjs x y`, `tecla.mjs <tecla> [n]` | clique e teclas |
 | `c.sh "<texto>"` (+ `clicar.js`) | clica no botão com o texto |
-| `dados-das-folhas.js <rascunho> <episodio> [take]` → `folhas.py` | folhas de candidatas por frase |
-| `recortes.py <projeto.dangai> <saida>` | recorte 9:16 no começo/fim de cada cena |
-| `janela.py <projeto.dangai> <saida>` | quadro inteiro com a janela 9:16 desenhada |
-| `janela-cena.py <projeto.dangai> <saida> 3,10,26` | cenas escolhidas: 3 quadros com a janela + 3 do resto do clipe (achar `focusX`/`sourceStart`) |
+| `dados-das-folhas.js <rascunho> <episodio> [take]` → `folhas.py` | folhas de candidatas por frase (*Gerar recap; só no PC do Levi*) |
+| `recortes.py <projeto.dangai> <saida>` | recorte 9:16 no começo/fim de cada cena (*só no PC do Levi*) |
+| `janela.py <projeto.dangai> <saida>` | quadro inteiro com a janela 9:16 desenhada (*só no PC do Levi*) |
+| `janela-cena.py <projeto.dangai> <saida> 3,10,26` | cenas escolhidas: 3 quadros com a janela + 3 do resto do clipe (achar `focusX`/`sourceStart`) (*só no PC do Levi*) |
+| `fabinho/folhas-do-projeto.cjs <lista.txt> <saida>` | **qualquer PC (Node + ffmpeg)**: tabela frase a frase (fala, clipe, foco, entrada, efeito, transição) + folha com 1 quadro de cada cena no recorte 9:16 |
+| `fabinho/medir-projetos.cjs <lista.txt> <saida.json>` | números de cada projeto: ritmo, gancho, foco, entrada, efeitos, legenda, faixas de som, cor |
+| `fabinho/comparar-com-a-biblioteca.mts <lista.txt>` | o que a Biblioteca montaria (contas do `shared/trecho.ts`) × o que ficou: cortes iguais/movidos, efeitos trocados (`npx tsx`, `DANGAI_REPO` = clone do Dangai) |
+
+`lista.txt` = um caminho de `.dangai` por linha. Tudo só **lê** os projetos.
 
 No repo do Dangai (fora da skill, `_medida/`, ignorado pelo git): `rostos-diag.ts` (decisão de
 rosto da Edição rápida contra um foco de referência) e o estudo do corte em
-`G:\ClaudeEditor\_capturas\corte-v3\cont` (`regra.py`, régua do gabarito).
+`G:\ClaudeEditor\_capturas\corte-v3\cont` (`regra.py`, régua do gabarito) — *só no PC do Levi*.
