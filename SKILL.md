@@ -152,6 +152,10 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
   focusX; às vezes pega o rosto errado (Nia pequena no canto em vez do Gandolf). Desligue
   (`camera: null`) nessas. Câmera ligada ignora o efeito: dê `from.scale 1 → to.scale 1.08` pra
   não ficar parada.
+- **Ponto de entrada de TODAS as cenas** (Levi 17/11: "quanto mais no final da cena melhor, pra
+  ver o rosto"): cena curta de clipe longo → olhar a tira do clipe inteiro no recorte 9:16 (8
+  quadros, marcando o trecho usado) e mover `sourceStart` pro pedaço com o rosto/a ação. No S01E07
+  8 de 36 pediam outro trecho (olho fechado no começo, personagem ainda levantando, cabeça cortada).
 - **Ponto de entrada pelo melhor ângulo**: o clipe muda de ângulo dentro dele (a tatuagem: ombro
   de perto no começo, lutador inteiro do meio pro fim). Olhe a tira do clipe inteiro, não só o
   começo.
@@ -218,6 +222,10 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
 - `window.dangai.getSettings()/saveSettings()` devolvem `{ok, value}`.
 - **Antes de reabrir um `.dangai` editado à mão, valide** (`projectFileSchema.safeParse`, ver
   `_capturas/e2e-nia/rodada3.js`): um `focusX` undefined fez o Dangai dizer "está corrompido".
+- **Troca de música** da Edição rápida cai onde a 1ª faixa ACABA (S01E07: 0:32, no meio da frase,
+  e a faixa nova começa com 1 s mudo = buraco). Pôr a troca no começo de uma parte do roteiro, onde
+  já tem o whoosh (`usarSec` da 1ª = início da parte; `at` da 2ª = esse tempo, `inicioSec` pulando
+  o silêncio do começo da faixa — medir o RMS).
 - **Música que some**: a Edição rápida pode começar a faixa tarde e o trecho cair no fim que
   some (S01E07: 57,8 s → fim em 90 s, vazio de 0:20 a 0:32). Medir o RMS por segundo da música
   e mover `inicioSec` pra o trecho não passar do fade.
