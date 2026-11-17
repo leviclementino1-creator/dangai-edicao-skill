@@ -92,8 +92,16 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
 
 - **SFX ligado ao que se vê/ouve na fala**, tirando os genéricos: removeu os 2 whooshes de troca
   de parte; pôs `MONEY SOUND EFFECT` (−5 dB) em "ganhar uma FORTUNA" (0:01), `Ping` (−10 dB)
-  junto com a seta na tatuagem, `Cartoon Bounce (OPPAI)` bem baixo (−26 dB) na atendente com as
-  fichas (gag). Ou seja: som de dinheiro no dinheiro, ping na seta, efeito cômico na piada.
+  junto com a seta na tatuagem, `Cartoon Bounce Sound Effect(OPPAI)` bem baixo (−26 dB) na
+  atendente pondo as fichas no peito. Som de dinheiro no dinheiro.
+- **REGRAS FIXAS (Levi 17/11)**:
+  - **Toda seta leva o `Ping`** (`I:\Meu Drive	fpn.library\images\MG9JN2W3P9XE3.info\Ping sound
+    effect.mp3`, −10 dB, no começo da seta). Sempre.
+  - **A seta é a DELE**: `I:\Meu Drive	fpn.library\images\MG9JNBOML9R8M.info\—Pngtree—red thick
+    line stroke arrow_5569080.png` (1200x1200, `aspecto` 1). **Nunca** a `seta-ajk.png` do módulo
+    thumb. Dele: escala ~0,32, girada pra apontar o detalhe, sem efeito.
+  - **`Cartoon Bounce (OPPAI)`** (`...MGSBW03VG6K3B.info\`) é ESPECÍFICO: só com peito bem
+    próximo na tela ou balançando muito. Fora disso, não.
 - **Seta**: trocou a minha pela **dele**, da biblioteca Eagle `I:\Meu Drive	fpn.library`
   (pasta Levi > Channels > **Kiumaz > PNG**; `—Pngtree—red thick line stroke arrow`), parada
   (sem efeito), girada (105°), escala 0,32, apontando de cima pra tatuagem. Use os PNGs/SFX da
@@ -136,8 +144,8 @@ seleção de cenas". Não deixe para corrigir depois.
    (mesmo personagem, mesmo ângulo).
 10. **Não congela**: `sourceStart` + duração ≤ clipe.
 11. **Close parado longo vira dupla** (plano médio, depois o close na palavra).
-12. **Som que conta a cena**: SFX só onde a imagem/fala pede (dinheiro, seta = ping, piada =
-    efeito cômico baixo), não whoosh genérico; música com ducking.
+12. **Som que conta a cena**: SFX só onde a imagem/fala pede (dinheiro = MONEY; **seta = Ping,
+    sempre**; OPPAI só com peito bem próximo/balançando), não whoosh genérico; música com ducking.
 13. **Recursos**: grid em "um x outro" (dois personagens diferentes e legíveis); seta no detalhe
     que a fala cita; personagem vistoso de corpo inteiro "dá view" — encaixe onde a fala cita.
 14. **Sem sangue/violência gráfica em destaque** (corpo ensanguentado no chão) e nada que fira a
@@ -223,8 +231,8 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
   cruzados x Gandolf; tatuado socando x o outro lutador). Cada metade é 1080x960 = 63% da largura
   do 16:9.
 - **Seta** (`sobreposicoes`, tipo `image`, faixa nova, `x`/`y` em % do quadro, `escala` sobre o
-  arquivo inteiro no quadro): `modulos/thumb/assets/setas/seta-ajk.png`, escala ~0,3, efeito
-  zoom-out 0,25 + fade 0,06 s, apontando o detalhe ("cara tatuado"). Simule com PIL antes.
+  arquivo inteiro no quadro): a seta do Levi (Pngtree red thick line stroke, ver "REGRAS FIXAS"),
+  **nunca** a `seta-ajk.png`; sempre com o `Ping`. Simule com PIL antes.
 - **Close longo vira dupla**: uma cena de close parada por 3 s → plano médio primeiro, close
   na palavra ("reconhecer a força" Nia olhando → "só de olhar" o olho).
 - **Enquadramento 9:16**: nunca "no olho". Pegue o centro do rosto que o motor achou e calcule
