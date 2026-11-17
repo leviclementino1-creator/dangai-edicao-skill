@@ -1,19 +1,21 @@
 ---
 name: dangai-edicao
-description: Editar um short de recap de anime no Dangai do começo ao fim, do jeito de quem pediu — o Levi (Gerar recap) ou o Fabinho/Faah (editor normal, sem Gerar recap). Do Levi — cortar o episódio no Gerar recap, roteiro, voz, escolher as cenas (ritmo, gancho, coerência), abrir no editor com a Edição rápida e ajustar enquadramento, ponto de entrada, câmera, legenda e som. Também cobre como controlar o Dangai instalado ou o de dev (CDP), o formato do .dangai e do rascunho, as medidas offline (rosto, corte) e as armadilhas já vistas. Use em QUALQUER pedido de "edita no Dangai", "faz o processo todo", "compara com a sugestão do app", "ajusta enquadramento/legenda/cenas do projeto", ou para entender por que a Edição rápida errou. Do Fabinho — soltar narração + roteiro .txt, marcar as cenas na Biblioteca e acertar a timeline (foco, entrada, efeito, transição, legenda, sons nas faixas A1–A4) como ele faz — "edita do meu jeito", "monta como eu monto", "o que eu sempre corrijo".
+description: Editar um short de recap de anime no Dangai do começo ao fim, no estilo do Levi e do Fabinho/Faah (o mesmo estilo; só a legenda muda) — pelo Gerar recap (Levi: episódio, roteiro, voz, aba Cenas, Edição rápida) ou pelo editor normal (Fabinho: narração + roteiro .txt, cenas na Biblioteca, timeline). Cobre ritmo, gancho, imagem por palavra, enquadramento 9:16, ponto de entrada, efeito, transição, legenda, som, cor e roteiro; controlar o Dangai por CDP; o formato do .dangai e do rascunho; medidas offline e armadilhas. Use em QUALQUER pedido de "edita no Dangai", "faz o processo todo", "edita do meu jeito", "compara com a sugestão do app", "ajusta enquadramento/legenda/cenas do projeto", ou para entender por que a Edição rápida errou.
 ---
 
 # Editar no Dangai (o fluxo do Levi e o do Fabinho)
 
-**Quem pediu?** São dois jeitos de editar no mesmo app:
+**O estilo de edição é UM só** (Levi e Fabinho editam igual — confirmado pelo Levi 17/11): ritmo,
+gancho, imagem por palavra, enquadramento, entrada, efeito, transição, som, cor e roteiro estão na
+**seção 9** e valem para os dois. **Só a legenda muda** (Levi: preset Kiumaz v1, seção 4; Fabinho:
+amarelo `#FFDD00`, seção 9). O que muda também é o **caminho** dentro do app:
 
 | quem | como edita | seções |
 |---|---|---|
 | **Levi** (leviclementino1-creator) | *Gerar recap*: episódio → roteiro com IA → voz → aba Cenas → *Abrir no editor* com a Edição rápida | 2, 3, 4 (e 5, 6) |
 | **Fabinho** (Faah, dono do núcleo) | **editor normal**: solta a narração, o roteiro `.txt`, marca as cenas na Biblioteca e acerta na timeline | **8 e 9** |
 
-Não misture: o gosto de um não vale para o outro (ex.: o Levi não quer transição; o Fabinho põe
-~6 por vídeo). Na dúvida, veja de onde vem o projeto (`modulos.recap` no `.dangai` = Gerar recap).
+Na dúvida de quem é o projeto (para a legenda e o fluxo): `modulos.recap` no `.dangai` = Gerar recap (Levi).
 
 Dangai = Electron + Remotion, repo `faahpla/dangai` (clone em `G:\ClaudeEditor\dangai` *só no PC do
 Levi*; no PC do Fabinho, `E:\Projetos\dangai`).
@@ -86,8 +88,9 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
 
 ## 3. Escolher cenas (o que o Levi espera)
 
-*Gosto do Levi. Folha de candidatas, `salvarCenas`, frase travada e "Sugerir de novo" são da aba
-Cenas: só para quem usa o Gerar recap. O gosto do Fabinho está na seção 9.*
+*Como aplicar o estilo na aba Cenas do Gerar recap. O estilo completo (dos dois) está na seção 9 —
+use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folha de candidatas,
+`salvarCenas`, frase travada e "Sugerir de novo" são só para quem usa o Gerar recap.*
 
 - **Ritmo**: ~1,5 s por cena (ele fez 55 cenas em 89 s; o app sugere ~32 = lento demais).
   Frase longa = 2 a 4 cenas, cortando nas **palavras de peso** (nome, número, verbo forte,
@@ -236,7 +239,10 @@ Para estudar um projeto dele: `scripts/fabinho/folhas-do-projeto.cjs` (tabela fr
 quadros no recorte 9:16, só ffmpeg) e `scripts/fabinho/medir-projetos.cjs`. Tabelas dos 46 projetos em
 `referencia/fabinho/` (duas com o que aparece em cada cena).
 
-## 9. Gosto do Fabinho
+## 9. O estilo de edição (dos dois)
+
+Medido nos 46 projetos do Fabinho e confirmado pelo Levi como o estilo dele também (17/11). Os exemplos
+são do Fabinho; vale o mesmo para os recaps do Levi. **Exceção: a legenda** (ver "Legenda" abaixo).
 
 ### Ritmo
 
@@ -319,11 +325,14 @@ quadros no recorte 9:16, só ffmpeg) e `scripts/fabinho/medir-projetos.cjs`. Tab
 - `sourceStart`: pular o começo morto do shot (mediana ~1,3 s) para a cena começar já no movimento.
 - Efeito: rodízio do app com intensidade **0,1** (não mexer), mas **sem pan-up**: prefira pan-down ou
   zoom-out. No gancho, zoom ou pan lateral.
-- **Transição: ele usa** (o contrário do Levi). Desde 08/10, ~6 por vídeo (4–12), quase sempre **no
+- **Transição**: nunca `zoom-in` (é a que a Edição rápida põe no começo de cada parte e o Levi tirou
+  no S03E07). As que eles usam: desde 08/10, ~6 por vídeo (4–12), quase sempre **no
   começo de uma frase nova** (depois do ponto), mais na 1ª metade do vídeo: `light` e `pan-down`
   (~30% cada), `pan-left`, às vezes `pan-right`/`pan-up`; `crossfade` raríssimo; nunca `zoom-in`. O resto é corte seco.
 
-### Legenda (estável desde 07/10)
+### Legenda — a ÚNICA diferença entre os dois
+
+**Levi**: preset **Kiumaz v1** (seção 4). **Fabinho** (estável desde 07/10):
 
 Fonte padrão (Komika Axis: `captionFont` vazio), **amarelo `#FFDD00`**, escala **1,3**, y **0,38**,
 **elástica 6 quadros**, curva `0,741 → 1,084 → 0,97 → 1`, marcar **palavra**, contorno **7**,
