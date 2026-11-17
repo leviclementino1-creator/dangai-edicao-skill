@@ -88,6 +88,42 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
 
 ## 3. Escolher cenas (o que o Levi espera)
 
+### CHECKLIST DA SELEÇÃO — toda cena passa por aqui ANTES de gravar (Levi, 16–17/11)
+
+Ele achou cada um destes erros no Nia S01E07 e pediu: "isso tudo já deveria ser critério na
+seleção de cenas". Não deixe para corrigir depois.
+
+1. **Bate com a palavra** e se entende sozinha (nome → rosto dele na palavra; número → o objeto;
+   ação → o momento exato; reação → close de reação). Bonita no gancho; pode vir de qualquer
+   ponto do episódio.
+2. **Julgue no recorte 9:16**, nunca na miniatura 16:9.
+3. **Corpo inteiro > plano médio > close.** Close extremo vira só olho/nariz/boca ("quanto mais
+   perto, piorzinhas"). Close só quando a palavra pede o detalhe ("olhar", "tatuado").
+4. **Movimento > cena parada**, desde que fique no centro (andar, virar, gesto, golpe). Meça:
+   `movimento.py` (< 1 = parada).
+5. **O MELHOR MOMENTO do clipe**: olhe o clipe INTEIRO (tira de 8 quadros no recorte) e ponha o
+   `sourceStart` onde o rosto/a ação está melhor — não o começo por padrão (Gandolf comemorando:
+   o fim; Nia: olho aberto, não piscando; tatuado vencedor: braços erguidos com a cabeça).
+6. **Nada cortado nem borrado**: cabeça/olhos não colados na borda (lembre do zoom-in: ele aperta
+   mais no fim — com rosto no topo, use zoom-out); sem borrão de alguém passando no começo; sem
+   o borrão/transição do fim do clipe; sem tela vazia (janela, manga, nuca, costas).
+7. **Enquadramento** `focusX` no rosto/ação (motor de rostos, fx=(cx−0,158)/0,684). Se o
+   personagem anda: Câmera livre > Seguir o rosto — e confira (seção 4).
+8. **Efeito pelo conteúdo**: zoom em rosto/objeto; deslize só em plano aberto; nunca o rodízio da
+   Edição rápida.
+9. **Sem repetir** clipe (só o do gancho volta); nada de duas cenas parecidas seguidas
+   (mesmo personagem, mesmo ângulo).
+10. **Não congela**: `sourceStart` + duração ≤ clipe.
+11. **Close parado longo vira dupla** (plano médio, depois o close na palavra).
+12. **Recursos**: grid em "um x outro" (dois personagens diferentes e legíveis); seta no detalhe
+    que a fala cita; personagem vistoso de corpo inteiro "dá view" — encaixe onde a fala cita.
+13. **Sem sangue/violência gráfica em destaque** (corpo ensanguentado no chão) e nada que fira a
+    regra da plataforma.
+
+**Conferência final obrigatória**: `scripts/folha-final.py <projeto.dangai> <saida>` — as cenas
+como o Dangai mostra (recorte do focusX ou da câmera + zoom do efeito, 1º e último quadro).
+Olhe as 49 antes de entregar; o Levi não pode ser quem acha.
+
 *Como aplicar o estilo na aba Cenas do Gerar recap. O estilo completo (dos dois) está na seção 9 —
 use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folha de candidatas,
 `salvarCenas`, frase travada e "Sugerir de novo" são só para quem usa o Gerar recap.*
@@ -445,6 +481,8 @@ Os `.mjs`/`.js` de CDP rodam em qualquer PC com o Dangai aberto na porta.
 | `dados-das-folhas.js <rascunho> <episodio> [take]` → `folhas.py` | folhas de candidatas por frase (*Gerar recap; só no PC do Levi*) |
 | `recortes.py <projeto.dangai> <saida>` | recorte 9:16 no começo/fim de cada cena (*só no PC do Levi*) |
 | `janela.py <projeto.dangai> <saida>` | quadro inteiro com a janela 9:16 desenhada (*só no PC do Levi*) |
+| `folha-final.py <projeto.dangai> <saida>` | **conferência final**: todas as cenas como o Dangai mostra (focusX/câmera + zoom do efeito), 1º e último quadro |
+| `seguir-rostos.mjs <lista>` / `ctrlz.mjs` | Seguir o rosto em lote (clica embaixo do bloco) / desfazer |
 | `janela-cena.py <projeto.dangai> <saida> 3,10,26` | cenas escolhidas: 3 quadros com a janela + 3 do resto do clipe (achar `focusX`/`sourceStart`) (*só no PC do Levi*) |
 | `fabinho/folhas-do-projeto.cjs <lista.txt> <saida>` | **qualquer PC (Node + ffmpeg)**: tabela frase a frase (fala, clipe, foco, entrada, efeito, transição) + folha com 1 quadro de cada cena no recorte 9:16 |
 | `fabinho/medir-projetos.cjs <lista.txt> <saida.json>` | números de cada projeto: ritmo, gancho, foco, entrada, efeitos, legenda, faixas de som, cor |
