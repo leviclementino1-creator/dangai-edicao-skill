@@ -289,6 +289,10 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
 - `window.dangai.getSettings()/saveSettings()` devolvem `{ok, value}`.
 - **Antes de reabrir um `.dangai` editado à mão, valide** (`projectFileSchema.safeParse`, ver
   `_capturas/e2e-nia/rodada3.js`): um `focusX` undefined fez o Dangai dizer "está corrompido".
+- **Corrigido na 2.10.2** (17/11): a Edição rápida usa zoom (2 zoom-in, 1 zoom-out) em vez do
+  rodízio com pan, corte seco na virada de parte, e a música respeita o fim que some
+  (`fimUtilDaMusica`, 9 LU abaixo do integrado) e recomeça no começo do som. Projetos montados
+  antes disso ainda têm o problema abaixo. A 2.10.1 pôs a pasta do AnCut como Biblioteca padrão.
 - **Troca de música** da Edição rápida cai onde a 1ª faixa ACABA (S01E07: 0:32, no meio da frase,
   e a faixa nova começa com 1 s mudo = buraco). Pôr a troca no começo de uma parte do roteiro, onde
   já tem o whoosh (`usarSec` da 1ª = início da parte; `at` da 2ª = esse tempo, `inicioSec` pulando
