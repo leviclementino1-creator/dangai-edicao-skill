@@ -43,6 +43,41 @@ português, curto e simples.
 
 ## 1. Controlar o Dangai
 
+### 1a. PRIMEIRO: o MCP do Dangai (desde a 2.10.4) — use isto para editar
+
+O módulo **Claude (MCP)** (Configurações > Módulos > ligar; a seção "Claude (MCP)" mostra o
+comando) põe um servidor MCP dentro do Dangai. Conectado uma vez com
+`claude mcp add --transport http dangai http://127.0.0.1:47321/mcp --header "Authorization: Bearer <senha>"`,
+as ferramentas aparecem como `mcp__dangai__*`. **Editar o projeto aberto é por elas** — sem fechar o
+app, sem mexer no `.dangai` em disco, sem clicar por coordenada, sem print da tela:
+
+| ferramenta | o que faz |
+|---|---|
+| `estado` | projeto aberto, duração, nº de cenas/sons/imagens, Biblioteca |
+| `listar_cenas` (de, ate) | cena n (1 = a 1ª): início/fim, clipe, entrada, focoX, efeito, câmera, grid, zoom fixo |
+| `ver_cenas` (cenas[]) | **IMAGEM** do 1º e do último quadro de cada cena no recorte 9:16 (o folha-final, em ~1 s) |
+| `ver_clipe` (caminho, focoX) | 8 quadros do clipe inteiro no 9:16 → escolher o **melhor momento** (entrada) |
+| `editar` (lote) | TUDO num pedido: `cenas[]` {cena, clipe, entrada, focoX, efeito, intensidade, zoomFixo, origemDoZoom, camera:"desligar", grid:{clipe,entrada,focoX}\|"desligar"}, `sons.adicionar/remover`, `imagens.adicionar/remover` (seta: x/y em % do quadro, escala, rotacao), `legenda` (campos caption*), `textos` {titulos, descricao, hashtags} |
+| `listar_faixas` | sons e imagens por cima com id (para remover) |
+| `desfazer` | volta o último `editar` |
+| `buscar_na_biblioteca` | clipes de qualquer episódio por texto/personagem/episódio/anime |
+| `abrir_projeto` (caminho) | abre um `.dangai` |
+
+Regras de uso:
+- **Um lote por rodada** (cada `editar` valida, grava e REABRE o projeto: ~8–10 s). Junte todas as
+  mudanças; depois `ver_cenas` das cenas mexidas para conferir. Lote com erro (cena que não existe,
+  arquivo que não existe, campo inválido) não grava nada.
+- O checklist da seção 3 continua valendo: `ver_clipe` para achar o melhor momento, `ver_cenas`
+  para conferir rosto/centro, `buscar_na_biblioteca` para curiosidade (cenas de outros episódios).
+- **Seta + Ping juntos** no mesmo lote (seta do Levi + Ping −10 dB, ver seção 3).
+- **Título, descrição e hashtags: escreva você** no `textos` do `editar` ao terminar (não precisa do
+  Gemini). A thumbnail ainda é pelo módulo Thumbnail.
+- O MCP **não** cobre o Gerar recap (roteiro/voz/aba Cenas): esses passos continuam pela ponte
+  `window.dangai.modulos.recap` por CDP (abaixo). O MCP entra depois do *Abrir no editor*.
+- Sem o MCP conectado (módulo desligado, versão < 2.10.4): use o caminho antigo abaixo.
+
+### 1b. CDP (o caminho antigo, e para o Gerar recap)
+
 **Instalado** (o dele): abrir com porta de depuração e dirigir por CDP.
 ```powershell
 Start-Process "$env:LOCALAPPDATA\Programs\Dangai\Dangai.exe" -ArgumentList "--remote-debugging-port=9354"
