@@ -66,6 +66,33 @@ Fixo, sem perguntar: nada pago sem confirmar (Gemini, ElevenLabs, Fish), nunca i
   entra junto quando um episódio vai/volta do AnCut. Para usar, peça à pessoa que favorite também
   na Biblioteca do Dangai.
 
+## 01. Projeto novo: o que pedir (TODO projeto)
+
+Todo vídeo novo precisa de três coisas. Se a pessoa não mandou tudo numa mensagem, peça **só o
+que falta, numa mensagem curta** (com a lista abaixo) antes de começar:
+
+1. **O anime e o episódio**: o arquivo (`.mkv`/`.mp4`) ou o nome + episódio. Só o nome? Procure
+   primeiro no PC: Biblioteca (`buscar_na_biblioteca {anime, episodio}`), pastas do AnCut, Downloads.
+   Não achou: peça o arquivo. **Nunca baixe episódio** por conta própria.
+2. **O roteiro** (o texto que a voz fala). É a fonte da verdade da legenda e das cenas.
+3. **O áudio** da narração (`.mp3`/`.wav`; pode vir em 2: gancho + resto). Sem áudio e quer voz
+   gerada (ElevenLabs/Fish)? É pago: confirme antes.
+
+**Opcional, mas sempre ofereça:** cenas extras que a pessoa já sabe ("isso acontece no ep 1",
+"usa a cena da expulsão", um clipe ou print). Diga que ela pode mandar junto.
+
+**Antes de escolher as cenas, leia o roteiro procurando o que é de OUTRO episódio** (flashback,
+"depois de ser expulso", "lembra quando…", poder/personagem que não aparece no ep atual). Para
+cada um:
+- já está cortado na Biblioteca? Use (`buscar_na_biblioteca` pelo anime/episódio);
+- não está: diga qual episódio é (se você sabe a história; se não, ofereça pesquisar — wiki/guia
+  de episódios) e **peça o arquivo daquele episódio**, ou pergunte se ela prefere seguir só com o
+  episódio atual. Não improvise com uma cena parecida do ep atual sem avisar (Laid-Off S01E07:
+  "expulso da antiga guilda" é o ep 1; usei uma cena do ep 7 e o Levi notou).
+
+Pode começar a **analisar o episódio** assim que ele chegar (o corte leva ~3–4 min, por trás)
+enquanto espera o roteiro e o áudio.
+
 ## 0. Regras antes de tudo
 
 - **O roteiro é a fonte da verdade**; o áudio só dá os tempos.
