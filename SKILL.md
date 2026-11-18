@@ -75,6 +75,12 @@ Regras de uso:
 - O MCP **não** cobre o Gerar recap (roteiro/voz/aba Cenas): esses passos continuam pela ponte
   `window.dangai.modulos.recap` por CDP (abaixo). O MCP entra depois do *Abrir no editor*.
 - Sem o MCP conectado (módulo desligado, versão < 2.10.4): use o caminho antigo abaixo.
+- Conectou o MCP no meio da conversa? As ferramentas só aparecem numa conversa nova. Até lá:
+  `scripts/mcp.py <ferramenta> '<json>' [prefixo]` (senha em `DANGAI_MCP_SENHA`). Nunca montar o
+  JSON-RPC em bash com `${2:-{}}`: o `}` quebra os argumentos e a ferramenta recebe `{}` CALADA
+  (`listar_cenas` devolve tudo, `editar` diz "Nada para mudar").
+- **`ver_cenas` não desenha a metade de baixo do grid** (só a de cima): grid se confere no preview
+  do app.
 
 ### 1b. CDP (o caminho antigo, e para o Gerar recap)
 
@@ -109,7 +115,10 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
    (o mesmo episódio retoma o rascunho que já existe). *Analisar* (motor do recap) ou
    *Analisar com o AnCut*. Confirmar Abertura/Encerramento sugeridos e **Salvar**.
    Pronto ≈ 4 min (395 cenas no S03E07). Com "Enviar sempre para o AnCut" o episódio vai pro AnCut.
-2. **Roteiro**: *Meu roteiro* cola o texto dele. O gancho "vira 2 ou 3 cenas no passo Cenas".
+2. **Roteiro**: *Meu roteiro* cola o texto dele (linha em branco = parte; agrupe pelas seções dele).
+   Depois de colar, o app chama o Gemini pra "Ler" o episódio e "Ligar" as frases (5+ min no
+   Laid-Off S01E07, 17/11). Quando EU escolho as cenas, **Cancelar** na hora: o texto já está
+   gravado, *Aprovar roteiro* funciona e a sugestão de cenas é local. O gancho "vira 2 ou 3 cenas no passo Cenas".
    A imagem de cada frase é só o MOMENTO, não a cena final.
 3. **Voz**: *Importar áudio* (pode soltar 2: gancho + resto, emenda pela ordem do nome).
    **Quando EU edito para o Levi: Acelerar = 1,10x** antes de soltar o áudio (pedido dele 17/11:
@@ -205,9 +214,27 @@ seleção de cenas". Não deixe para corrigir depois.
 14. **Sem sangue/violência gráfica em destaque** (corpo ensanguentado no chão) e nada que fira a
     regra da plataforma.
 
-**Conferência final obrigatória**: `scripts/folha-final.py <projeto.dangai> <saida>` — as cenas
-como o Dangai mostra (recorte do focusX ou da câmera + zoom do efeito, 1º e último quadro).
-Olhe as 49 antes de entregar; o Levi não pode ser quem acha.
+**Conferência final obrigatória**: `scripts/folha-final.py <projeto.dangai> <saida>` (ou o
+`ver_cenas` do MCP) — as cenas como o Dangai mostra (recorte do focusX ou da câmera + zoom do
+efeito, 1º e último quadro). Olhe TODAS antes de entregar; o Levi não pode ser quem acha.
+
+**E as 3 medidas, com número, não a olho** (Laid-Off S01E07, 17/11: o Levi achou olho gigante,
+Nina no canto, boca sem olhos, rosto no copo e um começo borrado — tudo que a folha pequena
+deixou passar porque eu medi o foco a olho numa miniatura):
+1. **Rosto no centro**: `scripts/rostos-cenas.py` (detector do motor, 3 instantes por cena) →
+   `focusX = (cx − 0,158)/0,684` do rosto de **quem a frase cita** (não o maior: o maior pode ser
+   um queixo cortado na borda — foi o que jogou a Nina pro canto). Confira nas folhas `fc_N.jpg`
+   (rostos em verde, janela em rosa). Rosto colado na borda (a janela não alcança): zoom fixo 1,3
+   com `origemDoZoom.x` puxado pro lado dele.
+2. **Close extremo = TROCAR ou GRID, nunca tela cheia** (Levi: "nunca mais usa assim"). Medida:
+   altura do rosto > 0,75 do quadro 16:9, ou só olho/boca/pedaço de rosto (o detector nem acha).
+   No grid, o close vai em cima e embaixo **outra pessoa** (nunca a mesma — "pessoa em comum").
+   Exemplos que ficaram bons: Elsie close / Rein; Lily gritando / Elsie; Elsie "trabalhar pra
+   ele" / os funcionários da guilda dele.
+3. **Nada borrado**: `scripts/nitidez.py <projeto>` lista cena com trecho < 45% da nitidez do
+   clipe (foco mudando no começo, fade, pan). Conserto: `entrada` depois do borrão (o 0199 do
+   Laid-Off só fica nítido em ~1,5 s).
+Também: cena que começa no peito/casaco e sobe pro rosto (tilt) → `entrada` já no rosto.
 
 *Como aplicar o estilo na aba Cenas do Gerar recap. O estilo completo (dos dois) está na seção 9 —
 use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folha de candidatas,
@@ -317,6 +344,18 @@ marcadas por trecho, `pesos`, `unioes` = tela dividida, `cortes` = fronteira pux
 Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot_bounds.json`.
 
 ## 6. Armadilhas já vistas (S03E07, 13–16/11 — projetos do Gerar recap)
+
+**No app instalado (Laid-Off S01E07, 17/11):**
+- O botão **"Legendas"** da barra do editor é um interruptor: **DESLIGA a legenda** (não abre
+  painel). O painel de estilo é o **"Estilo"**.
+- Com o painel **Estilo aberto**, clique na régua da timeline cai nos controles dele (mudou o
+  tamanho da legenda pra 290% sem querer). Feche o painel (clicar "Estilo" de novo) antes de
+  clicar na timeline; depois confira os `caption*` no `.dangai`.
+- Legenda do Levi = preset **Kiumaz v1** (está em `captionPresets` do settings; a Edição rápida
+  já aplica). Confirmar campo a campo no `.dangai`: Bangers, amarelo, escala 2,1, y 0,45,
+  elástica 7 quadros, marcar tudo, pontuação `limpar` ("Só ? ! %"), contorno 11, sombra 3 px.
+  Ele cobra se parecer diferente: mostre que bate, e reaplique clicando no chip "Kiumaz v1".
+- Mediu e ficou ruim? Ele quer a cena trocada **na hora**, sem perguntar ("sim ué").
 
 - **Trocar uma cena direto no `.dangai`** (app fechado): mude `images[i].path/fileName/focusX`
   (`focusAuto:false` se o foco é escolha sua) e `scenes[k].sourceStart`. Uma entrada de
@@ -571,6 +610,9 @@ Os `.mjs`/`.js` de CDP rodam em qualquer PC com o Dangai aberto na porta.
 | `recortes.py <projeto.dangai> <saida>` | recorte 9:16 no começo/fim de cada cena (*só no PC do Levi*) |
 | `janela.py <projeto.dangai> <saida>` | quadro inteiro com a janela 9:16 desenhada (*só no PC do Levi*) |
 | `folha-final.py <projeto.dangai> <saida>` | **conferência final**: todas as cenas como o Dangai mostra (focusX/câmera + zoom do efeito), 1º e último quadro |
+| `rostos-cenas.py <projeto.dangai> <pasta>` | **rosto no centro**: detector do motor em 3 instantes por cena → `faces.json` + folhas `fc_N.jpg` (rostos verdes, janela rosa). Rodar com o python do `motor-runtime`, de dentro de `modulos/recap/motor` (*só no PC do Levi*) |
+| `nitidez.py <projeto.dangai>` | **borrão**: cenas com trecho < 45% da nitidez do clipe (foco mudando, fade) |
+| `mcp.py <ferramenta> '<json>' [prefixo]` | chama o MCP do Dangai direto (senha em `DANGAI_MCP_SENHA`); salva as imagens do `ver_cenas`/`ver_clipe` |
 | `seguir-rostos.mjs <lista>` / `ctrlz.mjs` | Seguir o rosto em lote (clica embaixo do bloco) / desfazer |
 | `janela-cena.py <projeto.dangai> <saida> 3,10,26` | cenas escolhidas: 3 quadros com a janela + 3 do resto do clipe (achar `focusX`/`sourceStart`) (*só no PC do Levi*) |
 | `fabinho/folhas-do-projeto.cjs <lista.txt> <saida>` | **qualquer PC (Node + ffmpeg)**: tabela frase a frase (fala, clipe, foco, entrada, efeito, transição) + folha com 1 quadro de cada cena no recorte 9:16 |
