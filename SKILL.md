@@ -266,6 +266,10 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
 ## 4. Depois de abrir no editor (gosto do Levi, com a Edição rápida)
 
 - **Música**: a da Edição rápida é melhor que a minha (feedback dele 13/11) — não trocar por gosto.
+  O que ele cobra: **o clímax (drop) da música entra junto com o fim do riser** da saída do gancho.
+  Conferir na trilha: a 1ª música tem `inicioSec` = (drop do arquivo − saída do gancho), não o
+  começo do arquivo. Entre 17/11 (e7e2dfc) e 18/11 (8c42e64) a Edição rápida tirava o drop
+  quando a faixa mal cobria o trecho; projeto montado nessa janela precisa de conserto.
 - **SFX**: os da Edição rápida (pop abre, riser metálico no gancho, riser+impacto na troca de
   música) + no máximo alguns **ligados a uma ação visível**, baixos. Nada de meme (sus, among us,
   "wow") — ele chamou de "aleatórios".
