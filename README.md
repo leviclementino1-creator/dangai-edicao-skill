@@ -54,11 +54,14 @@ Depois **abra uma conversa nova** (com o Dangai aberto). Pronto.
 
 | | o quê | exemplo |
 |---|---|---|
-| 1 | **anime + episódio** | o `.mkv` ou "Nia Liston S01E07" |
+| 1 | **anime** (+ episódio, se for recap) | recap: o `.mkv` ou "Nia Liston S01E07" · curiosidade: só "Black Clover" |
 | 2 | **roteiro** | o texto que a voz fala |
 | 3 | **áudio** | a narração `.mp3`/`.wav` |
 
-> 💡 Cena de outro episódio ("isso acontece no ep 1")? Avise ou mande o arquivo desse ep. Se o Claude precisar de outro episódio, ele pede.
+- **Recap de um episódio:** o Claude usa o *Gerar recap* com o episódio que você mandou.
+- **Curiosidade** (vários episódios): só o nome do anime basta. Ele pega as cenas da **Biblioteca** (os episódios que você já cortou) e monta no editor normal.
+
+> 💡 Cena de um episódio que não está na Biblioteca ("isso acontece no ep 1")? Avise ou mande o arquivo desse ep. Se o Claude precisar de outro episódio, ele pede.
 
 Ele monta tudo no seu Dangai:
 

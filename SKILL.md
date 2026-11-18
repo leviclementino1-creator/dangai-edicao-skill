@@ -69,11 +69,18 @@ Fixo, sem perguntar: nada pago sem confirmar (Gemini, ElevenLabs, Fish), nunca i
 ## 01. Projeto novo: o que pedir (TODO projeto)
 
 Todo vídeo novo precisa de três coisas. Se a pessoa não mandou tudo numa mensagem, peça **só o
-que falta, numa mensagem curta** (com a lista abaixo) antes de começar:
+que falta, numa mensagem curta** (com a lista abaixo) antes de começar. **Primeiro descubra o
+tipo** (pelo roteiro, ou pergunte):
+- **Recap de um episódio** ("o que aconteceu no ep 7") → Gerar recap: precisa do **episódio**.
+- **Curiosidade / vários episódios** ("por que a Maomao…", "o poder da Shion") → **editor normal
+  + Biblioteca** (seções 3 "Vídeo de CURIOSIDADE" e 8): basta o **nome do anime**; as cenas saem
+  dos episódios já cortados na Biblioteca. Peça episódio só se o que o roteiro cita não estiver
+  cortado lá (`buscar_na_biblioteca {anime}` mostra quais episódios existem).
 
-1. **O anime e o episódio**: o arquivo (`.mkv`/`.mp4`) ou o nome + episódio. Só o nome? Procure
-   primeiro no PC: Biblioteca (`buscar_na_biblioteca {anime, episodio}`), pastas do AnCut, Downloads.
-   Não achou: peça o arquivo. **Nunca baixe episódio** por conta própria.
+1. **O anime** (curiosidade) **ou o anime + episódio** (recap): o arquivo (`.mkv`/`.mp4`) ou o
+   nome + episódio. Só o nome? Procure primeiro no PC: Biblioteca (`buscar_na_biblioteca
+   {anime, episodio}`), pastas do AnCut, Downloads. Não achou: peça o arquivo. **Nunca baixe
+   episódio** por conta própria.
 2. **O roteiro** (o texto que a voz fala). É a fonte da verdade da legenda e das cenas.
 3. **O áudio** da narração (`.mp3`/`.wav`; pode vir em 2: gancho + resto). Sem áudio e quer voz
    gerada (ElevenLabs/Fish)? É pago: confirme antes.
