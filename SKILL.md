@@ -356,6 +356,12 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
   elástica 7 quadros, marcar tudo, pontuação `limpar` ("Só ? ! %"), contorno 11, sombra 3 px.
   Ele cobra se parecer diferente: mostre que bate, e reaplique clicando no chip "Kiumaz v1".
 - Mediu e ficou ruim? Ele quer a cena trocada **na hora**, sem perguntar ("sim ué").
+- **Frase que cita outro episódio** ("depois de ser expulso da antiga guilda" = a expulsão do
+  ep 1): a cena certa é a DAQUELE episódio. Procure com `buscar_na_biblioteca` (anime/episódio);
+  se o episódio não está cortado, **peça o arquivo ao Levi** antes de improvisar com o que o ep
+  atual tem (no Laid-Off S01E07 usei o Rein gritando "você me expulsou?!" do ep 7 e ele notou).
+- Cena que não mostra QUEM a frase cita é cena errada, mesmo bonita ("a própria mestre tava
+  tentando acabar com ela" com a Lily chocada → errado; é a Elsie sorrindo no "Essa guilda acabou!").
 
 - **Trocar uma cena direto no `.dangai`** (app fechado): mude `images[i].path/fileName/focusX`
   (`focusAuto:false` se o foco é escolha sua) e `scenes[k].sourceStart`. Uma entrada de
