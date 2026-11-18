@@ -23,6 +23,49 @@ Levi*; no PC do Fabinho, `E:\Projetos\dangai`).
 núcleo entra pequena, um assunto por commit, e o Levi avisa o Faah. Responder ao Levi em
 português, curto e simples.
 
+## 00. PRIMEIRO: o perfil de quem edita (perguntar na 1ª vez)
+
+Antes de editar, leia `perfil.local.md` (nesta pasta da skill; é de cada PC e não vai pro git).
+**Não existe?** É a primeira vez neste PC: faça as perguntas abaixo, grave as respostas nele e
+só então comece. Existe? Use sem perguntar de novo (pergunte só o que faltar, ou se a pessoa
+disser que mudou).
+
+Antes das perguntas, colete o que dá para MOSTRAR como opção (nada de pedir para digitar o que
+o Dangai já sabe):
+- `estado` do MCP (se não conectar: o módulo **Claude (MCP)** em Configurações > Módulos e o
+  comando da seção dele — seção 1a);
+- `presets_de_legenda` → os nomes dos presets que a pessoa já salvou no Dangai;
+- `buscar_na_biblioteca {favoritas: true}` → quantas cenas favoritas ela tem;
+- `recentes` do settings (SÓ esse campo) → se os projetos têm `modulos.recap` (usa o Gerar recap).
+
+Perguntas (AskUserQuestion, no máximo 4 por vez, a recomendada primeiro):
+1. **Como você edita?** Gerar recap (episódio → roteiro → voz → cenas, seções 2–4) ou editor
+   normal (narração + roteiro `.txt` + Biblioteca, seção 8).
+2. **Qual legenda?** Um dos presets salvos (liste os nomes), "o estilo que já está no projeto" ou
+   "nenhuma". Aplicar com `presets_de_legenda {aplicar: "<nome>"}` e conferir `diferencas`
+   (fontNome diferente = a fonte do preset não está instalada neste PC: avise).
+3. **Cenas favoritas** (a estrela da Biblioteca — tem N): usar primeiro quando servirem / só no
+   gancho / não usar.
+4. **Música e efeitos:** os da Edição rápida (padrão) / uma pasta sua / sem música.
+5. **Seta e outros overlays:** arquivo da seta + o som dela (o Levi: seta Pngtree + Ping), ou não usar.
+6. **Cena ruim que eu achar na conferência:** troco direto (padrão do Levi: "sim ué") ou pergunto antes.
+7. **Título, descrição e hashtags:** eu escrevo no fim (`editar.textos`) ou você faz.
+
+Formato do `perfil.local.md` (curto, uma linha por item):
+```
+quem: Levi | fluxo: gerar-recap | legenda: Kiumaz v1 | favoritas: primeiro
+musica: edicao-rapida | seta: <caminho> + Ping | cena-ruim: trocar-direto | textos: eu
+```
+Fixo, sem perguntar: nada pago sem confirmar (Gemini, ElevenLabs, Fish), nunca imprimir chave.
+
+**As duas favoritas que existem** (não confundir):
+- **Dangai** (a estrela na Biblioteca): `favoritos.json` no userData, ids `<serie>/<SxxExx>/<shot>`.
+  É esta que o MCP lê (`buscar_na_biblioteca {favoritas: true}`; cada clipe traz `favorita`).
+  São as cenas que a pessoa gosta: quando uma serve para a palavra, ela ganha das outras.
+- **AnCut** (Favs → anime → personagem, na tabela `favorite` do banco do AnCut): o Dangai não lê;
+  entra junto quando um episódio vai/volta do AnCut. Para usar, peça à pessoa que favorite também
+  na Biblioteca do Dangai.
+
 ## 0. Regras antes de tudo
 
 - **O roteiro é a fonte da verdade**; o áudio só dá os tempos.
@@ -60,7 +103,8 @@ app, sem mexer no `.dangai` em disco, sem clicar por coordenada, sem print da te
 | `editar` (lote) | TUDO num pedido: `cenas[]` {cena, clipe, entrada, focoX, efeito, intensidade, zoomFixo, origemDoZoom, camera:"desligar", grid:{clipe,entrada,focoX}\|"desligar"}, `sons.adicionar/remover`, `imagens.adicionar/remover` (seta: x/y em % do quadro, escala, rotacao), `legenda` (campos caption*), `textos` {titulos, descricao, hashtags} |
 | `listar_faixas` | sons e imagens por cima com id (para remover) |
 | `desfazer` | volta o último `editar` |
-| `buscar_na_biblioteca` | clipes de qualquer episódio por texto/personagem/episódio/anime |
+| `buscar_na_biblioteca` | clipes de qualquer episódio por texto/personagem/episódio/anime; `favoritas: true` = só as da estrela; cada clipe traz `favorita` |
+| `presets_de_legenda` (aplicar) | os presets de legenda salvos, qual bate com o projeto (`diferencas`) e `aplicar: "<nome>"` |
 | `abrir_projeto` (caminho) | abre um `.dangai` |
 
 Regras de uso:
