@@ -270,6 +270,10 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
   Conferir na trilha: a 1ª música tem `inicioSec` = (drop do arquivo − saída do gancho), não o
   começo do arquivo. Entre 17/11 (e7e2dfc) e 18/11 (8c42e64) a Edição rápida tirava o drop
   quando a faixa mal cobria o trecho; projeto montado nessa janela precisa de conserto.
+  **O detector de drop (`entradas.ts`) adianta nas músicas com subida antes da pancada**: na
+  Montagem Batchi marcou 16,9 s e o clímax é 19,2 s (o Levi corrigiu à mão: `inicioSec` 13,08 =
+  19,2 − 6,15). Sempre conferir o drop pela onda (RMS de 0,2 s: o salto do grave/batidas) antes
+  de entregar. No Laid-Off ele também tirou a 2ª música (Naruto): uma música só no vídeo todo.
 - **SFX**: os da Edição rápida (pop abre, riser metálico no gancho, riser+impacto na troca de
   música) + no máximo alguns **ligados a uma ação visível**, baixos. Nada de meme (sus, among us,
   "wow") — ele chamou de "aleatórios".
