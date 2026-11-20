@@ -173,6 +173,7 @@ app, sem mexer no `.dangai` em disco, sem clicar por coordenada, sem print da te
 | `desfazer` | volta o último `editar` |
 | `buscar_na_biblioteca` | clipes de qualquer episódio por texto/personagem/episódio/anime; `favoritas: true` = só as da estrela; `episodio` + `perto: "mm:ss"` (+ `raio`) = só as cenas daquele trecho |
 | `presets_de_legenda` (aplicar) | os presets de legenda salvos, qual bate com o projeto (`diferencas`) e `aplicar: "<nome>"` |
+| `ver_varios` (caminhos, momento) | **IMAGEM** do quadro inteiro de até 48 clipes lado a lado, numerados: escolher por expressão/ação (seção 9, "Expressões e ações") |
 | `buscar_fala` (texto, pasta/arquivos, idioma) | acha o momento pelas LEGENDAS dos episódios (`.mkv` ou `.ass/.srt`): episódio + segundo + a fala (curiosidade, seção 3) |
 | `listar_episodios` | os episódios do Gerar recap (`ep_...`, título, passo) |
 | `reconhecer_personagens` (acao, episodio, jobId, decisao) | o **Reconhecer na mão**: `iniciar`/`ver` → folhas dos grupos de rostos + do elenco; `confirmar` com os nomes; `cancelar` (seção 01) |
@@ -658,6 +659,35 @@ são do Fabinho; vale o mesmo para os recaps do Levi. **Exceção: a legenda** (
   close de **reação exagerada**: *Noelle censura* "É sério isso mano?!" = Asta chocado; *Noelle
   SUPERestimada* "Respeito." = Noelle olhando brava pra câmera, "Mano," = Noelle de boca aberta corada,
   "Nem fudeno." = Noelle em close furiosa.
+- **EXPRESSÕES E AÇÕES da frase** (Levi 20/11: "ele odeia" = cara de bravo, "empurrado" = o
+  empurrão). A cena mostra o SENTIMENTO ou o VERBO, no rosto/corpo de quem a frase cita, na
+  palavra dele — nunca um rosto neutro "do personagem":
+
+  | a frase diz | procure |
+  |---|---|
+  | odeia, raiva, furioso, "não aceita", irritado | cara brava: sobrancelha franzida, dente cerrado, grito, punho fechado (chibi vale no tom de zoeira) |
+  | medo, apavorado, "tremeu" | olhos arregalados, recuando, tremendo, suor |
+  | chora, triste, arrasada, sofre | lágrima, cabeça baixa, de costas/sozinha na janela |
+  | choque, "descobre", "do nada", "não acredita" | boca aberta, olhos arregalados, close de reação |
+  | feliz, comemora, "deu certo" | sorriso aberto, braços erguidos, pulando |
+  | promete, decide, "vai conseguir" | olhar firme pra frente, punho, apontando |
+  | vergonha, gosta de alguém | corada, olhando pro lado, mão no rosto |
+  | se acha, humilha, despreza | olhar de cima, sorriso de canto, braços cruzados |
+  | cansou, enjoou, tédio | olhar vazio, suspiro, apoiada na mão |
+  | empurra, expulsa, joga fora | o empurrão / alguém sendo jogado / a porta batendo, no impacto |
+  | bate, soca, apanha | o golpe no quadro do impacto; "apanha" = quem leva |
+  | corre, foge, persegue | corpo inteiro correndo (perseguir = os dois no quadro) |
+  | cai, desmaia | o corpo caindo |
+  | abraça, segura a mão, beija | o gesto, de perto |
+  | come, bebe | o gesto (copo na boca, mordida) |
+  | mata, morre | reação ou o momento antes — sem sangue em destaque (regra da plataforma) |
+
+  **Como achar:** junte as candidatas — `buscar_na_biblioteca {anime, personagem}` (as cenas
+  dele), `{episodio, perto}` (o trecho do momento) ou `buscar_fala` com as palavras da emoção na
+  fala ("odeio", "maldito", "socorro", "obrigado": o momento da fala carrega a cara) — e passe
+  tudo no **`ver_varios {caminhos}`** (até 48 quadros inteiros lado a lado, numerados): escolha a
+  expressão MAIS forte e depois `ver_clipe` nela para o melhor momento (o pico da cara, não o
+  começo). No Laid-Off, 12 candidatas de "bravo" saíram numa folha em 0,7 s.
 - **Coisa concreta** → close do objeto: *Maomao Imune a Veneno* "comida envenenada" = frutas e bolinhos,
   "trigo-sarraceno" = campo de grãos, "marcas no braço" = braço enfaixado; *O D* "A trança / é o rabo"
   = a trança da Talia em movimento.
