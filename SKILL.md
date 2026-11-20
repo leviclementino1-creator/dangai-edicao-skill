@@ -79,7 +79,9 @@ tipo** (pelo roteiro, ou pergunte):
 - **Curiosidade / vários episódios** ("por que a Maomao…", "o poder da Shion") → **editor normal
   + Biblioteca** (seções 3 "Vídeo de CURIOSIDADE" e 8): basta o **nome do anime**; as cenas saem
   dos episódios já cortados na Biblioteca. Peça episódio só se o que o roteiro cita não estiver
-  cortado lá (`buscar_na_biblioteca {anime}` mostra quais episódios existem).
+  cortado lá (`buscar_na_biblioteca {anime}` mostra quais episódios existem). **Peça também os
+  arquivos dos episódios que o roteiro cita** (para achar o minuto pela legenda) **e as cenas-chave
+  com o minuto**, se a pessoa souber — e monte o MAPA DO ROTEIRO (seção 3) antes de escolher.
 
 1. **O anime** (curiosidade) **ou o anime + episódio** (recap): o arquivo (`.mkv`/`.mp4`) ou o
    nome + episódio. Só o nome? Procure primeiro no PC: Biblioteca (`buscar_na_biblioteca
@@ -169,8 +171,9 @@ app, sem mexer no `.dangai` em disco, sem clicar por coordenada, sem print da te
 | `editar` (lote) | TUDO num pedido: `cenas[]` {cena, clipe, entrada, focoX, efeito, intensidade, zoomFixo, origemDoZoom, camera:"desligar", grid:{clipe,entrada,focoX}\|"desligar"}, `sons.adicionar/remover`, `imagens.adicionar/remover` (seta: x/y em % do quadro, escala, rotacao), `legenda` (campos caption*), `textos` {titulos, descricao, hashtags} |
 | `listar_faixas` | sons e imagens por cima com id (para remover) |
 | `desfazer` | volta o último `editar` |
-| `buscar_na_biblioteca` | clipes de qualquer episódio por texto/personagem/episódio/anime; `favoritas: true` = só as da estrela; cada clipe traz `favorita` |
+| `buscar_na_biblioteca` | clipes de qualquer episódio por texto/personagem/episódio/anime; `favoritas: true` = só as da estrela; `episodio` + `perto: "mm:ss"` (+ `raio`) = só as cenas daquele trecho |
 | `presets_de_legenda` (aplicar) | os presets de legenda salvos, qual bate com o projeto (`diferencas`) e `aplicar: "<nome>"` |
+| `buscar_fala` (texto, pasta/arquivos, idioma) | acha o momento pelas LEGENDAS dos episódios (`.mkv` ou `.ass/.srt`): episódio + segundo + a fala (curiosidade, seção 3) |
 | `listar_episodios` | os episódios do Gerar recap (`ep_...`, título, passo) |
 | `reconhecer_personagens` (acao, episodio, jobId, decisao) | o **Reconhecer na mão**: `iniciar`/`ver` → folhas dos grupos de rostos + do elenco; `confirmar` com os nomes; `cancelar` (seção 01) |
 | `abrir_projeto` (caminho) | abre um `.dangai` |
@@ -279,7 +282,29 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
 ### Vídeo de CURIOSIDADE: cenas de vários episódios (Levi 17/11)
 
 Recap = um episódio. **Curiosidade** ("Por que…?", "Você sabia…?", personagem, poder, história)
-fala de coisas espalhadas pela série: a cena certa pode estar em OUTRO episódio. Então:
+fala de coisas espalhadas pela série: a cena certa pode estar em OUTRO episódio.
+
+**O jeito certo (20/11): MAPA DO ROTEIRO antes de escolher cena.** O erro típico é escolher "uma
+cena com o personagem" em vez de "a cena em que aquilo acontece". Então:
+1. **Peça** (seção 01): o anime, os **episódios que o roteiro cita** (os `.mkv`, ou a pasta deles) e,
+   se a pessoa souber, as **cenas-chave com o minuto** ("ep 49, 12:30, o Grimmjow morde") — é o
+   sinal mais forte que existe.
+2. **Monte o mapa**: para cada frase, de qual episódio e de que minuto ela é. Ferramentas:
+   - `buscar_fala {texto, pasta | arquivos}` — procura nas LEGENDAS dos episódios (portugues
+     primeiro) e devolve episódio + segundo + a fala. Use as palavras-chave da frase ou o que o
+     personagem diz naquele momento ("cinco folhas", "empresto 500 milhões"). ~0,5 s por episódio.
+   - não achou pela fala: o que você sabe da história, ou ofereça pesquisar (wiki/guia de episódios).
+   - frase genérica ("ele é o mais forte"): sem minuto; aí vale personagem + checklist.
+3. **Mostre o mapa à pessoa** (tabela curta: frase → episódio, minuto, o que acontece) e espere o
+   OK ou as correções. Quem escreveu o roteiro sabe de onde tirou cada frase.
+4. **Ache a cena exata**: `buscar_na_biblioteca {anime, episodio, perto: "mm:ss", raio: 15}` →
+   só as cenas daquele trecho, da mais perto para a mais longe → `ver_clipe` nas candidatas e o
+   checklist de sempre (rosto, ação, corpo inteiro, nada borrado). O episódio não está cortado
+   na Biblioteca? Corte (Gerar recap > Analisar, ou o AnCut) antes.
+5. Personagem citado sem minuto: reconhecimento em dia (seção 01) e `buscar_na_biblioteca
+   {anime, personagem}` + favoritas primeiro.
+
+Detalhes:
 - A **Biblioteca** do Dangai (desde a 2.10.1 = a pasta do AnCut, `G:\App Corte Cenas\Output`, +
   a raiz do recap `G:\Dangai Recap\Biblioteca`) tem todos os episódios já cortados da série:
   busque por personagem/episódio (Ctrl+B, filtro de personagem) e use cena de qualquer um.
