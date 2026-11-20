@@ -18,7 +18,7 @@ Você manda o episódio, o roteiro e o áudio; o Claude escolhe as cenas, centra
 
 ## Instalar (uma vez)
 
-**Precisa de:** Dangai **2.11.3+** e o [Claude Code](https://claude.com/claude-code).
+**Precisa de:** Dangai **2.11.4+** e o [Claude Code](https://claude.com/claude-code).
 
 ### 1. Ligue os módulos no Dangai
 
