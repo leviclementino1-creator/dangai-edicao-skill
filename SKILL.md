@@ -108,10 +108,18 @@ o Barrius "Radiant Dragon" — porque os grupos de rostos nunca foram batizados 
 fotos de referência ruins do anime. Nome errado: **não confie neles para escolher/enquadrar**
 (escolha pelas folhas) e conserte, conforme quem cortou:
 - **Cortado pelo motor do Dangai** (Biblioteca do recap): `scripts/reconhecer.mjs iniciar
-  <episodioId> <pasta>` (agrupa, minutos, GPU) → `python scripts/folha-grupos.py <pasta>` (folha
-  dos grupos + folha do elenco) → você dá o nome de cada grupo (nome EXATO do elenco; figurante e
-  grupo misturado: deixe sem nome) → `reconhecer.mjs confirmar <jobId> decisao.json`. As fotos viram
-  referência: o próximo episódio do anime já vem certo.
+  <episodioId> <pasta>` (agrupa; ~20 s com o corte pronto, GPU) → `python scripts/folha-grupos.py
+  <pasta>` (folha dos grupos + folha do elenco) → você dá o nome de cada grupo → `reconhecer.mjs
+  confirmar <jobId> decisao.json`. As fotos viram referência: o próximo episódio do anime já vem
+  certo. Regras dos nomes:
+  - personagem que JÁ TEM NOME (`conhecido`) num grupo: use **esse mesmo texto** nos outros grupos
+    dele (no Nia é "Nia Liston", não o "Liston, Nia" do elenco) — nome diferente vira outro personagem;
+  - personagem novo: o nome **exato** do elenco;
+  - grupo misturado, figurante ou rosto que você não tem certeza: **sem nome** (ignora) e, se for
+    importante, pergunte. Rosto de outra pessoa infiltrado num grupo bom: `removidos {key: [i]}`.
+  - Testado no Nia S01E04 (19/11): 56 grupos, elenco de 22 com foto; cancelado sem gravar.
+  Quando a pessoa faz o projeto inteiro comigo (corte incluído), eu faço isso logo depois do corte,
+  antes de escolher as cenas.
 - **Cortado pelo AnCut** (cenas em `G:\App Corte Cenas\Output\...`; o Dangai responde "Cenas do
   AnCut: o recap so le"): o reconhecimento é **no AnCut** (Modo Descoberta; os grupos ficam em
   `<episódio>/metadata/discovery/descoberta.json`). Mexer no AnCut só com o OK da pessoa: mostre
