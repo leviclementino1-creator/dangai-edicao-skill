@@ -1,6 +1,6 @@
 ---
 name: dangai-edicao
-description: Editar um short de recap de anime no Dangai do começo ao fim, no estilo do Levi e do Fabinho/Faah (o mesmo estilo; só a legenda muda) — pelo Gerar recap (Levi: episódio, roteiro, voz, aba Cenas, Edição rápida) ou pelo editor normal (Fabinho: narração + roteiro .txt, cenas na Biblioteca, timeline). Cobre ritmo, gancho, imagem por palavra, enquadramento 9:16, ponto de entrada, efeito, transição, legenda, som, cor e roteiro; controlar o Dangai por CDP; o formato do .dangai e do rascunho; medidas offline e armadilhas. Use em QUALQUER pedido de "edita no Dangai", "faz o processo todo", "edita do meu jeito", "compara com a sugestão do app", "ajusta enquadramento/legenda/cenas do projeto", ou para entender por que a Edição rápida errou.
+description: Editar um short de recap de anime no Dangai do começo ao fim, no estilo do Levi e do Fabinho/Faah (o mesmo estilo; só a legenda muda) — pelo Gerar recap (Levi: episódio, roteiro, voz, aba Cenas, Edição rápida) ou pelo editor normal (Fabinho e Ajk: narração + roteiro .txt, cenas na Biblioteca, timeline; o gosto do Ajk na seção 11). Cobre ritmo, gancho, imagem por palavra, enquadramento 9:16, ponto de entrada, efeito, transição, legenda, som, cor e roteiro; controlar o Dangai por CDP; o formato do .dangai e do rascunho; medidas offline e armadilhas. Use em QUALQUER pedido de "edita no Dangai", "faz o processo todo", "edita do meu jeito", "compara com a sugestão do app", "ajusta enquadramento/legenda/cenas do projeto", ou para entender por que a Edição rápida errou.
 ---
 
 # Editar no Dangai (o fluxo do Levi e o do Fabinho)
@@ -14,11 +14,15 @@ amarelo `#FFDD00`, seção 9). O que muda também é o **caminho** dentro do app
 |---|---|---|
 | **Levi** (leviclementino1-creator) | *Gerar recap*: episódio → roteiro com IA → voz → aba Cenas → *Abrir no editor* com a Edição rápida | 2, 3, 4 (e 5, 6) |
 | **Fabinho** (Faah, dono do núcleo) | **editor normal**: solta a narração, o roteiro `.txt`, marca as cenas na Biblioteca e acerta na timeline | **8 e 9** |
+| **Ajk** | **editor normal** (NÃO usa o Gerar recap): narração + roteiro `.txt` + cenas marcadas na Biblioteca, ajusta na timeline. Gosto próprio (legenda, som, transição, gancho) | **10 e 11** (+ 9 para o que é igual) |
 
 Na dúvida de quem é o projeto (para a legenda e o fluxo): `modulos.recap` no `.dangai` = Gerar recap (Levi).
+Sem `modulos.recap`, clipes em `E:\work\avatar cuts\...` e narração em `Downloads\Focus HUB\...` ou
+`E:\AniPoison\Audios\...` = projeto do Ajk (seção 11).
 
 Dangai = Electron + Remotion, repo `faahpla/dangai` (clone em `G:\ClaudeEditor\dangai` *só no PC do
-Levi*; no PC do Fabinho, `E:\Projetos\dangai`).
+Levi*; no PC do Fabinho, `E:\Projetos\dangai`; no PC do Ajk não tem clone — script que pede
+`DANGAI_REPO` precisa de um `git clone --depth 1` numa pasta temporária).
 `modulos/recap` e `modulos/thumb` são do Levi; o resto (núcleo) é do Faah — mudança no
 núcleo entra pequena, um assunto por commit, e o Levi avisa o Faah. Responder ao Levi em
 português, curto e simples.
@@ -59,6 +63,11 @@ Formato do `perfil.local.md` (curto, uma linha por item):
 ```
 quem: Levi | fluxo: gerar-recap | legenda: Kiumaz v1 | favoritas: primeiro
 musica: edicao-rapida | seta: <caminho> + Ping | cena-ruim: trocar-direto | textos: eu
+```
+Exemplo do Ajk (editor normal; a legenda depende do canal, ver seção 11):
+```
+quem: Ajk | fluxo: editor-normal | legenda: pelo canal (rosa / amarelo / LuckiestGuy) | favoritas: ?
+musica: pelo canal (Pensando / GONE TOO FAR / CLIMA LINDO) | seta: E:\work\edits for faah\SETA.mov + Ping -3 | cena-ruim: ? | textos: ?
 ```
 Fixo, sem perguntar: nada pago sem confirmar (Gemini, ElevenLabs, Fish), nunca imprimir chave.
 
@@ -106,7 +115,8 @@ cada um:
 Pode começar a **analisar o episódio** assim que ele chegar (o corte leva ~3–4 min, por trás)
 enquanto espera o roteiro e o áudio. Deixe **"Reconhecer personagens" marcado**.
 
-**Confira o reconhecimento de personagens depois do corte** (os nomes por cena no `episodio.json`:
+**Confira o reconhecimento de personagens depois do corte** *(só para quem corta o episódio pelo
+Gerar recap ou pelo AnCut; o Ajk usa episódios já cortados em `E:\work\avatar cuts`)* (os nomes por cena no `episodio.json`:
 `planos[].personagens`). Ele é o que faz a Edição rápida enquadrar o personagem que a frase cita, a
 sugestão de cenas e a busca por personagem na Biblioteca. Monte a folha de keyframes e compare: o
 nome bate com o rosto? No Laid-Off S01E07 (17/11) estava errado — a Lily saía "Ells, Margaret",
@@ -128,7 +138,7 @@ fotos de referência ruins do anime. Nome errado: **não confie neles para escol
   - Testado no Nia S01E04 (19/11): 56 grupos, elenco de 22 com foto; cancelado sem gravar.
   Quando a pessoa faz o projeto inteiro comigo (corte incluído), eu faço isso logo depois do corte,
   antes de escolher as cenas.
-- **Cortado pelo AnCut** (cenas em `G:\App Corte Cenas\Output\...`; o Dangai responde "Cenas do
+- **Cortado pelo AnCut** (cenas em `G:\App Corte Cenas\Output\...` *só no PC do Levi*; no do Ajk os shots ficam em `E:\work\avatar cuts\<anime>\SxxEyy\shots`; o Dangai responde "Cenas do
   AnCut: o recap so le"): o reconhecimento é **no AnCut** (Modo Descoberta; os grupos ficam em
   `<episódio>/metadata/discovery/descoberta.json`). Mexer no AnCut só com o OK da pessoa: mostre
   os grupos (`g000_*.jpg`) com o nome que você daria a cada um e peça para ela batizar lá (ou
@@ -187,7 +197,7 @@ Regras de uso:
 - **Seta + Ping juntos** no mesmo lote (seta do Levi + Ping −10 dB, ver seção 3).
 - **Título, descrição e hashtags: escreva você** no `textos` do `editar` ao terminar (não precisa do
   Gemini). A thumbnail ainda é pelo módulo Thumbnail.
-- O MCP **não** cobre o Gerar recap (roteiro/voz/aba Cenas): esses passos continuam pela ponte
+- *(só para quem usa o Gerar recap)* O MCP **não** cobre o Gerar recap (roteiro/voz/aba Cenas): esses passos continuam pela ponte
   `window.dangai.modulos.recap` por CDP (abaixo). O MCP entra depois do *Abrir no editor*.
 - Sem o MCP conectado (módulo desligado, versão < 2.10.4): use o caminho antigo abaixo.
 - Conectou o MCP no meio da conversa? As ferramentas só aparecem numa conversa nova. Até lá:
@@ -211,7 +221,7 @@ O empacotado **não** deixa importar o store; use DOM, eventos de entrada e a po
 no do Fabinho: `npm run dev` com `DANGAI_DADOS`): o store importa
 por `await import('/store/project.ts')` (NÃO `/@fs/...`, que cria outra instância). Para ver a
 Biblioteca no perfil de teste: `window.dangai.saveSettings({ libraryDir: 'G:/Dangai Recap/Biblioteca' })`
-+ reload. Matar: processos com `tmp-thumbui` na linha de comando.
+(*só no PC do Levi*; no do Ajk: `C:/Users/ajk/Documents/Dangai/Recap/Biblioteca` ou `E:/work/avatar cuts`) + reload. Matar: processos com `tmp-thumbui` na linha de comando.
 
 Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
 - `cdp.mjs js <arquivo.js>` / `cdp.mjs foto <png>` — avaliar JS (async, `return ...`) e tirar print.
@@ -251,6 +261,10 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
 ## 3. Escolher cenas (o que o Levi espera)
 
 ### O que o Levi corrigiu à mão no Nia S01E07 (diff 17/11 — aprender com isso)
+
+*Os caminhos `I:\Meu Drive\...` (biblioteca Eagle: seta Pngtree, Ping, OPPAI, MONEY) são **só no PC do
+Levi**. No PC do Ajk a seta é `E:\work\edits for faah\SETA.mov` e os SFX ficam em
+`C:\Users\ajk\Documents\sound effects` (Ping, Camera Shutter, Stinger, riser — ver seção 11).*
 
 - **SFX ligado ao que se vê/ouve na fala**, tirando os genéricos: removeu os 2 whooshes de troca
   de parte; pôs `MONEY SOUND EFFECT` (−5 dB) em "ganhar uma FORTUNA" (0:01), `Ping` (−10 dB)
@@ -306,14 +320,15 @@ cena com o personagem" em vez de "a cena em que aquilo acontece". Então:
 
 Detalhes:
 - A **Biblioteca** do Dangai (desde a 2.10.1 = a pasta do AnCut, `G:\App Corte Cenas\Output`, +
-  a raiz do recap `G:\Dangai Recap\Biblioteca`) tem todos os episódios já cortados da série:
+  a raiz do recap `G:\Dangai Recap\Biblioteca` — *só no PC do Levi*; no do Ajk: `E:\work\avatar cuts`
+  + `C:\Users\ajk\Documents\Dangai\Recap\Biblioteca`) tem todos os episódios já cortados da série:
   busque por personagem/episódio (Ctrl+B, filtro de personagem) e use cena de qualquer um.
 - No `.dangai`, uma cena de outro episódio é só o `path` do shot dele em `images[]`
   (`<saida do AnCut>\<anime>\SxxEyy\shots\<numero>.mp4`); os planos de cada episódio estão no
   `metadata/shots.json` do AnCut (personagem, tempo) ou no `episodio.json` do recap.
 - Faltou o episódio que tem o momento? Corte ele (Gerar recap > Analisar, ou o AnCut) — ele entra
   na Biblioteca — e pegue a cena de lá.
-- O Gerar recap trabalha com UM episódio por rascunho: para curiosidade com vários, monte pelo
+- *(só para quem usa o Gerar recap)* O Gerar recap trabalha com UM episódio por rascunho: para curiosidade com vários, monte pelo
   recap do principal e troque/insira as cenas dos outros no editor (*Trocar cena* abre a
   Biblioteca inteira) ou direto no `.dangai`.
 
@@ -394,13 +409,16 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
   arrozal em "arroz"). Preferir rosto expressivo, plano médio/close, impacto.
 - **Clipe precisa durar o trecho** (senão congela no último quadro): conferir a duração do
   plano ≥ tempo que a cena fica na tela; se não, escolha outro ou mova o corte pra outra palavra.
-- Método: folha por frase com as sugestões (fita) + todos os planos no intervalo do evento e
+- *(só para quem usa o Gerar recap)* Método: folha por frase com as sugestões (fita) + todos os planos no intervalo do evento e
   ±8 s do momento (`scripts/folhas.py`, rosa = escolha do app, azul = fita). Das 60 cenas que
   escolhi no S03E07, 27 vieram de fora da sugestão.
-- Gravar as escolhas pela ponte (`salvarCenas`, origem `usuario`, `travada: true`) e recarregar
+- *(só para quem usa o Gerar recap)* Gravar as escolhas pela ponte (`salvarCenas`, origem `usuario`, `travada: true`) e recarregar
   a tela (`location.reload()` → Gerar recap → Continuar).
 
-## 4. Depois de abrir no editor (gosto do Levi, com a Edição rápida)
+## 4. Depois de abrir no editor (gosto do Levi, com a Edição rápida) *(só para quem usa o Gerar recap)*
+
+*A Edição rápida é do Gerar recap. Quem edita no editor normal (Fabinho, Ajk) monta pela Biblioteca:
+ver seções 8–11. As regras de enquadramento, entrada e câmera daqui valem para qualquer um.*
 
 - **Música**: a da Edição rápida é melhor que a minha (feedback dele 13/11) — não trocar por gosto.
   O que ele cobra: **o clímax (drop) da música entra junto com o fim do riser** da saída do gancho.
@@ -434,8 +452,9 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
 - **Escolha da imagem no 9:16** (Levi 17/11, Nia S01E07): **corpo inteiro > plano médio > close**
   ("quanto mais perto, piorzinhas"); close extremo vira só olho/nariz. **Movimento do personagem**
   (andar, virar, gesto, golpe) é melhor que cena parada, desde que fique dentro do recorte.
-  Medir: `_capturas/e2e-nia/movimento.py <projeto>` (diferença entre quadros dentro do recorte,
-  < 1 = parada) e `mov-todos.py` (movimento de todo plano do episódio + melhor janela).
+  Medir: `scripts/movimento.py <projeto>` (diferença entre quadros dentro do recorte,
+  < 1 = parada; roda no PC do Ajk) e `mov-todos.py` (movimento de todo plano do episódio + melhor
+  janela; em `_capturas/e2e-nia/`, *só no PC do Levi*).
   Personagem vistoso de corpo inteiro (a atendente coelhinha) "dá view": pôr onde a fala cita.
 - **Seguir o movimento** (Levi 17/11): personagem que anda/vira pela tela sai do centro com zoom
   OU com deslize fixo. Use a **Câmera livre > "Seguir o rosto"** do bloco
@@ -513,18 +532,18 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
   `images` pode ser **dividida por duas cenas** (o 0192 do gancho e do fim) — duplique antes de
   mexer. No fim tire as entradas sem uso e renumere `imageIndex`: a faixa "Cenas N" do topo
   conta `images`, não blocos. Guarde backup em `G:/tmp-medida\` (*só no PC do Levi*; em outro PC, uma pasta temporária) antes de cada rodada.
-- Mantenha a aba Cenas do recap igual ao projeto: `salvarCenas` pela ponte (app aberto) com a
+- *(só para quem usa o Gerar recap)* Mantenha a aba Cenas do recap igual ao projeto: `salvarCenas` pela ponte (app aberto) com a
   troca (`inSec` = início do plano + `sourceStart`). Não gravar o rascunho em disco pelo Claude:
   o `%APPDATA%` dele (MSIX) é virtual e o Dangai não vê.
 - `Start-Process` do Dangai às vezes não sobe (porta recusada): confira
   `http://127.0.0.1:9354/json/version` e abra de novo. O Levi pode fechar o app entre os pedidos.
 - A escala da régua muda entre aberturas: depois de clicar na agulha, **leia o tempo** na tela
   antes de afirmar qual cena está no preview.
-- Refazer com áudio novo e quase o mesmo roteiro: *Meu roteiro* → importar voz → levar as
+- *(só para quem usa o Gerar recap)* Refazer com áudio novo e quase o mesmo roteiro: *Meu roteiro* → importar voz → levar as
   escolhas antigas por LCS das palavras da frase (`G:\ClaudeEditor\_capturas\e2e-apo\levar-escolhas.js`, *só no PC do Levi*,
   com sinônimos tava/estava) → `salvarCenas` → *Abrir no editor*.
 
-- **Biblioteca sem o episódio**: com "Enviar sempre para o AnCut" o episódio é cortado na pasta do
+- **Biblioteca sem o episódio** (*os caminhos `G:\` abaixo são só no PC do Levi*): com "Enviar sempre para o AnCut" o episódio é cortado na pasta do
   AnCut (`G:\App Corte Cenas\Output`); a Biblioteca só lê a `libraryDir` + a raiz do recap
   (`G:\Dangai Recap\Biblioteca`). No PC do Levi a `libraryDir` estava vazia → E07 sumia. Corrigido
   apontando pra pasta do AnCut (17/11) e no núcleo: vazia = pasta do AnCut (commit local, a publicar).
@@ -532,7 +551,7 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
   enviado por CDP sempre com `/`.
 - `window.dangai.getSettings()/saveSettings()` devolvem `{ok, value}`.
 - **Antes de reabrir um `.dangai` editado à mão, valide** (`projectFileSchema.safeParse`, ver
-  `_capturas/e2e-nia/rodada3.js`): um `focusX` undefined fez o Dangai dizer "está corrompido".
+  `_capturas/e2e-nia/rodada3.js`, *só no PC do Levi*): um `focusX` undefined fez o Dangai dizer "está corrompido".
 - **Corrigido na 2.10.2** (17/11): a Edição rápida usa zoom (2 zoom-in, 1 zoom-out) em vez do
   rodízio com pan, corte seco na virada de parte, e a música respeita o fim que some
   (`fimUtilDaMusica`, 9 LU abaixo do integrado) e recomeça no começo do som. Projetos montados
@@ -544,7 +563,7 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
 - **Música que some**: a Edição rápida pode começar a faixa tarde e o trecho cair no fim que
   some (S01E07: 57,8 s → fim em 90 s, vazio de 0:20 a 0:32). Medir o RMS por segundo da música
   e mover `inicioSec` pra o trecho não passar do fade.
-- **Recortar o episódio** deixa as escolhas antigas do rascunho apontando pra outras cenas
+- *(só para quem usa o Gerar recap)* **Recortar o episódio** deixa as escolhas antigas do rascunho apontando pra outras cenas
   (guardadas por número). Destravar e sugerir de novo.
 - A Edição rápida errava o rosto quando o reconhecimento troca nomes (Maomao como "Fuyou") e
   quando o nome de quem fala não liga ao elenco ("Dono da terra"/"proprietário" ≠ "Guen"):
@@ -745,11 +764,175 @@ brancos +0,1, pretos −0,1, saturação +0,2, vibrance +0,2, curva mestre em S 
 - **Tom**: falado, com gíria ("mano", "caraio", "tanso", "foi de arrasta", "estressadinha", "nem
   fudeno") e conversa com quem assiste ("lembra?", "repara", "pensa nisso", "antes de me tacarem pedra").
 
+## 10. Editor normal (sem Gerar recap) — o fluxo do Ajk
+
+O Ajk **não usa o Gerar recap** (nem roteiro com IA, voz, aba Cenas, rascunho ou Edição rápida). Medido
+em 20 projetos dele (07–19/11/2026, `recentes` + `C:\Users\ajk\Documents\Dangai\Projetos`), só leitura,
+com `fabinho/medir-projetos.cjs` e `ajk/comparar-com-a-biblioteca.ts`. O único projeto do Gerar recap
+(`Firefly Wedding S01E07`, 20/11, em `Documents\Dangai\Recap\Biblioteca\_projetos`) ficou fora das contas.
+
+**Caminhos no PC do Ajk**
+
+| o quê | onde |
+|---|---|
+| projetos `.dangai` | `C:\Users\ajk\Documents\Dangai\Projetos` |
+| clipes (shots já cortados) | `E:\work\avatar cuts\<anime>\SxxEyy\shots\NNNN.mp4` (filme: `...\Black Clover\Filme (2023)\shots`; trailer: `...\CAPRI OFFICIAL TRAILER h264\...\shots`) |
+| mangá / prints | `E:\work\edits for faah\Mangás\<anime>\` |
+| seta | `E:\work\edits for faah\SETA.mov` (vídeo, ~2,5 s) |
+| narração | `C:\Users\ajk\Downloads\Focus HUB\<título>\` e `E:\AniPoison\Audios\` |
+| SFX | `C:\Users\ajk\Documents\sound effects` (+ `E:\AniPoison\bg songs\sfx\SFX`, `C:\Users\ajk\Media Hub\Library\raw`) |
+| músicas | `C:\Users\ajk\Documents\music`, `E:\AniPoison\bg songs` |
+| Biblioteca do recap | `C:\Users\ajk\Documents\Dangai\Recap\Biblioteca` |
+| backup antes de mexer num `.dangai` | uma pasta em `%TEMP%` (nunca grave por cima do original) |
+
+**Passo a passo**
+
+1. **Narração**: soltar o `.mp3` na tela inicial → Etapa de Áudio com isolar voz, nivelar, EQ, compressor
+   e normalizar **ligados em todos os 20**. Velocidade: 100% nos de 07–12/11, **120%** nos de 09–19/11
+   (AniPoison, Rebecca, Shisui), **110%** nos mais novos (Jinshi 19/11). Pergunte se não souber.
+2. **Roteiro `.txt`**: uma frase por linha (Focus HUB: 7–19 linhas; AniPoison: 16–34 linhas curtas,
+   às vezes a frase quebrada em duas linhas).
+3. **Biblioteca**: marca **1 ou 2 cenas por trecho** (mediana 1 nos curtos e no AniPoison, 2 nos
+   Cyberpunk; até 4–6 num trecho longo). Peso às vezes (6 trechos na Capri/Lucy), tela dividida raro
+   (9 em 20 projetos), puxar a fronteira quase nunca (1 vez). *Aplicar* monta a timeline.
+4. **Timeline: o que ele corrige à mão** (o que a Biblioteca montou × o que ficou):
+   - **Cortes: quase nada.** 97% ficam onde a Biblioteca pôs (847 de 875); 22 andam (~0,2–0,3 s,
+     mais para antes), 3 novos, 3 tirados. **O ritmo sai das marcas na Biblioteca.**
+   - **Troca de cena** na timeline em 5 de 20 projetos (a ordem final difere das marcas).
+   - **Enquadramento**: arrasta o `focusX` em **42%** das cenas (374 de 892), deixa o rosto automático
+     em 24% e o centro em 34%. Vai de 0 a 1: puxa até o rosto quando o personagem está no canto.
+   - **Ponto de entrada** (`sourceStart`) em **18%** das cenas, mediana ~1,9 s (curtos da Apotecária
+     2,3 s; AniPoison 1,9 s; Cyberpunk 1,0 s): pula o começo morto e pega o melhor momento.
+   - **Efeito**: mantém o rodízio em 92% (troca 67 de 806). Trocas mais comuns: tirar o movimento
+     (`nenhum`, ~17), `zoom-in` → `zoom-out` (~16), `pan-up` → `pan-down` (~7), `pan-left` ↔
+     `pan-right`. Intensidade **sempre 0,1**, curva linear (ease-in-out em ~3%).
+   - Câmera livre em ~3% das cenas; giro 0–5 por vídeo; tela dividida 0–4.
+   - **Transição**: ver seção 11 (um `light` quando a história começa; o resto corte seco).
+5. **Som** nas faixas A1–A4, **camada de ajuste** de cor no vídeo todo, `SETA.mov` quando o gancho
+   precisa apontar alguém, legenda pelo preset do canal (tudo na seção 11), thumb e render.
+6. **Conferir** antes de entregar (rodam no PC dele): `scripts/fabinho/folhas-do-projeto.cjs` (tabela
+   frase a frase + folha 9:16) e `scripts/folha-final.py` (como o Dangai mostra, 1º e último quadro).
+
+```powershell
+# medir/comparar (só leitura). lista.txt = um .dangai por linha (use cópias numa pasta do %TEMP%)
+node scripts\fabinho\medir-projetos.cjs lista.txt med.json
+$env:DANGAI_REPO = "<clone do Dangai>"; node scripts\ajk\comparar-com-a-biblioteca.ts lista.txt cmp.json
+node scripts\fabinho\folhas-do-projeto.cjs lista.txt folhas
+```
+
+## 11. Gosto do Ajk
+
+Igual à seção 9 em: ritmo ~1,1–1,4 s por cena, ~4–5 palavras por cena, corte na vírgula e na palavra de
+peso, rodízio de efeito com intensidade 0,1, rosto no recorte 9:16, cena de reação em gíria/emoção.
+**Diferente** em: legenda (3 presets, pelo canal), cor, a transição `light` quando a história começa, música
+mais alta na introdução, riser + stinger antes desse corte, e quase não repete cena nem volta ao gancho no fim.
+
+### Os 3 tipos de vídeo dele (o tipo decide legenda, música e tamanho)
+
+| tipo | projetos | tamanho | cenas | legenda | música | som no 0 s |
+|---|---|---|---|---|---|---|
+| **Curiosidade curta — Apotecária** (narração em `Focus HUB`) | Lakan, Lihua, Jinshi, Ah-Duo, Shisui, gatinha, venenos, Maomao casamento (8) | 29–38 s, 104–129 palavras, 7–12 linhas | 20–28; **1,36 s**/cena (~44/min); clipes de 3–9 episódios | **A rosa** | `Pensando.mp3` −20 dB, o vídeo todo | `Monologo.mp3` 0 dB |
+| **Curiosidade longa — Cyberpunk / Black Clover** (`Focus HUB`) | Capri, Lucy, Rebecca, Yami (4) | 67–72 s, 239–258 palavras | 50–63; **1,18 s** (~49/min); 4–10 episódios + trailer, filme, mangá | **B amarelo** | `GONE TOO FAR` −15 na introdução → −20/−22 depois; às vezes troca na metade (OST de Edgerunners, type beat) | `cartoon-pop-up-2` 0 dB |
+| **Recap de episódio — romance/shoujo** (narração em `E:\AniPoison`) | Ela descobriu, Ela mal conseguia, Essa princesa, Harij, Lorna, Minato, ELE TERMINOU (7) | 45–82 s, 197–344 palavras, 16–34 linhas | 41–75; **1,08 s** (~52/min); 1 episódio (no máx. 2), shots quase na ordem | **C LuckiestGuy** | `CLIMA LINDO.m4a` (ou `no signal (slowed)`) −22 dB | `thud-sound-effect` −7 dB (+ `RIZZ` 0 dB se abre com o galã) |
+
+Exceção: `kiumaz seaven heavens` (12/11) usa Bangers `#FFF700`, escala 2,2, y 0,45, contorno 7 (perto do
+Kiumaz v1 do Levi) e gancho de 1 cena ("Mano!"): é um vídeo no estilo do Levi, não o padrão do Ajk.
+
+### Gancho
+
+- **Curiosidade: 2–3 cenas de ~1,3 s** (gancho de 2,5–4,5 s). **Recap AniPoison: 4–7 cenas mais
+  rápidas (~0,9 s)**: o gancho dele é uma frase longa com reticências ("Ela bebeu uma poção do amor e
+  confessou tudo… mas depois foi ele que não conseguiu mais parar de pensar nela.").
+- Sempre clipe do anime. A 1ª cena é **quem a frase cita** (Lihua, Jinshi, Rebecca, Yami); a última
+  mostra **a coisa literal**: *Capri* "no seu computador?!" = o trailer real da Capri; *Rebecca* "um
+  garoto chamado Kyle?" = a imagem da versão masculina no mangá.
+- No recap, o gancho é **o clímax do episódio em shots seguidos** (*Harij*: 0351 → 0352 → 0353;
+  *Lorna*: 0271 → 0272 → 0293 → 0313 → 0314).
+- Entrada no gancho: costuma pular o começo do clipe (*Lihua* 6,2 s, *Shisui* 12,9 s, *Minato* 4,0 s).
+- Efeito: o do rodízio (zoom-in, zoom-out, pan-left…); às vezes a 1ª vira `zoom-out`. *Lucy*: o mesmo
+  clipe em duas cenas, sem efeito.
+- `SETA.mov` em 5 de 19 (fora o kiumaz), ~1–1,2 s, **uma vez, no começo do vídeo** (0,6 s no gancho da
+  *Ela descobriu*; 6,5–6,8 s, logo depois do gancho, em *Yami*, *Harij*, *Minato*; 2,5 s e 20,9 s na
+  *Rebecca*), apontando o personagem que a fala cita. **O `Ping` (−3 dB) entra 0,28 s antes da seta**, sempre.
+- Texto: "Você sabia que …?", "Por que …?" ou afirmação com "!" (Focus HUB); "Ela/Ele … … mas …"
+  (AniPoison). Dois recaps recentes com o gancho **TODO EM CAIXA ALTA** (*Minato*, *ELE TERMINOU*).
+
+### Transição (assinatura dele)
+
+- **Um `light` onde a introdução acaba e a história começa** em **11 de 11** projetos longos
+  (Cyberpunk/BC + AniPoison): quase sempre a 2ª ou 3ª frase, logo depois do gancho ("Depois de tanto
+  trabalho,", "Durante uma viagem para a praia,", "Quando Lorna chega…"); na *Capri* e na *Lucy*, depois
+  de 2–4 linhas de introdução ("Um fã chamado Overyx…", "David conhece Lucy…"). Às vezes um 2º `light`
+  na virada da história ou na troca de música (*Lucy* 39,4 s, *Rebecca* 37,5 s, *Essa princesa* "Harij
+  nega." 64,3 s). O resto é **corte seco**. Nunca `zoom-in`, whip ou crossfade.
+- Curiosidade curta da Apotecária: **nenhuma** transição.
+
+### Som
+
+- **Riser + stinger levando ao corte**: `sharp-riser-327342` (1,9 s, 0 dB) começa ~1,9 s antes do
+  corte, `StingerCameraShut SDT012601` (0 dB) entra ~0,25 s antes; no corte entra o `light` (e a música
+  nova, quando troca). *Rebecca*: riser 1,78 → stinger 3,41 → light 3,66. *Essa princesa*: 1,98 →
+  3,61 → 3,86. *Lucy*: 37,49 → 39,13 → 39,37 (troca de música). Nos curtos da Apotecária não tem.
+- **Riser no fim**: `sharp-riser` terminando junto com o vídeo, nos 20.
+- **Música** sem ducking e sem fade: Apotecária `Pensando` −20; Cyberpunk/BC `GONE TOO FAR` −15 na
+  introdução e a mesma faixa em −20/−22 a partir do `light` (duas peças na trilha), às vezes outra faixa
+  −20 na metade; AniPoison `CLIMA LINDO` −20/−22 o vídeo todo (*Harij* troca para `no signal (slowed)` com stinger).
+- **Poucos SFX de reação** (0–3 por vídeo): `ES_Camera Shutter 7` (0 dB) num corte forte, `RIZZ`
+  (0 dB) no galã/charme, `Suspense 3` (−7) em revelação, `Click` (0), `awkward-moment` (0) no
+  constrangimento, `Ping` (−3, 0,28 s antes da seta). Nada de meme aleatório.
+- Faixas: música numa (A1, às vezes A3), SFX nas outras; não tem A fixo.
+
+### Legenda — 3 presets, pelo tipo de vídeo
+
+| preset | fonte | cor | escala | y | animação | curva | marca | contorno | sombra (dist/desf/opac/âng) |
+|---|---|---|---|---|---|---|---|---|---|
+| **A rosa** (Apotecária) | padrão (`captionFont` vazio) | `rosa` | 1,4 | 0,385 | elástica 8 quadros | 8 pontos: 0,6 → 1,048 (t 0,4) → 1 | palavra | 5 | 2 / 0 / 1 / 90° |
+| **B amarelo** (Cyberpunk/BC) | padrão | `amarelo` | 1,3 | 0,385 | elástica 8 quadros | 0,584 → 0,97 (t 0,157) → 1 | palavra | 5 | 3 / 0 / 1 / 90° |
+| **C LuckiestGuy** (AniPoison) | `LuckiestGuy-Regular.ttf` | `#FCFF00` | 1,4 | 0,47 | elástica 8 quadros | 0,519 → 1,006 (t 0,157) → 1 | tudo | 12 | 2 / 4 / 1 / 90° |
+
+Pontuação `limpar` (onde o campo existe), ~1,4 palavras por bloco, nunca edita o texto da legenda à mão.
+Não é o do Fabinho (6 quadros, contorno 7, ângulo 71) nem o do Levi (Kiumaz v1, Bangers 2,1).
+
+### Cor
+
+Uma **camada de ajuste** no vídeo todo, a mesma nos 20 (no Dangai: "Cor: Anime vivo"): exposição +0,25,
+brilho +0,23, contraste +0,05, temperatura +0,14, saturação +0,3, vibrance +0,5, nitidez +0,26.
+
+### Enquadramento, entrada e efeito (fazer por ele)
+
+- Rosto no recorte 9:16: arraste o `focusX` até o rosto/ação; não aceite o centro quando o personagem
+  está no canto (ele mexe em 42% das cenas).
+- `sourceStart` no melhor momento do clipe, pulando o começo parado/borrado.
+- Rodízio com intensidade 0,1, mas troque `zoom-in` por `zoom-out` e `pan-up` por `pan-down` quando
+  cortaria o rosto, e deixe `nenhum` em cena que já tem muito movimento (motivo provável, pelas trocas
+  que ele faz; não confirmado com ele).
+
+### Fechamento e repetição
+
+- **Não volta à cena do gancho** no fim (só 1 de 20) e repete pouco (0–4 clipes por vídeo; *Capri* 21
+  por causa do trailer). Diferente do Fabinho.
+- Apotecária: CTA "Me segue…" (*Lihua*, *Jinshi*, *Shisui*) ou a revelação final ("Jinshi é filho dos
+  dois."). AniPoison: acaba no último acontecimento do episódio, sem CTA. Cyberpunk/BC: o fato mais curioso.
+
+### Confirmar com o Ajk (não dá para medir no `.dangai`)
+
+- se os presets A/B/C estão salvos com nome no Dangai (`presets_de_legenda`);
+- a velocidade padrão da narração hoje (110% ou 120%);
+- se o `Firefly Wedding S01E07` (Gerar recap, 20/11) foi só um teste.
+
 ## Scripts desta skill (`scripts/`)
 
 Os `.py` (`folhas.py`, `recortes.py`, `janela*.py`) precisam de Python com `numpy` e `pillow` e o
 `janela-cena.py` lê `G:/ClaudeEditor/...` por padrão: **só no PC do Levi** (ou instale `numpy pillow`).
 Os `.mjs`/`.js` de CDP rodam em qualquer PC com o Dangai aberto na porta.
+
+**No PC do Ajk** (testado 20/11/2026: Python 3.14 + numpy 2.4 + pillow 12, ffmpeg 8.1, Node 24 no PATH):
+rodam direto `folha-final.py`, `recortes.py`, `nitidez.py`, `movimento.py`, `fabinho/folhas-do-projeto.cjs`,
+`fabinho/medir-projetos.cjs` e `ajk/comparar-com-a-biblioteca.ts`. `janela-cena.py` precisa do 4º
+argumento (o `planos.json`; sem ele lê `G:/...`). `rostos-cenas.py` precisa de `DANGAI_MOTOR` = a pasta
+`modulos/recap/motor` de um clone do Dangai + o python do `%LOCALAPPDATA%\Dangai\recap\motor-runtime`
+(não testado no PC do Ajk). `dados-das-folhas.js`/`folhas.py` e `reconhecer.mjs` são do Gerar recap: o
+Ajk não usa.
 
 | script | o que faz |
 |---|---|
@@ -758,7 +941,7 @@ Os `.mjs`/`.js` de CDP rodam em qualquer PC com o Dangai aberto na porta.
 | `clicarxy.mjs x y`, `tecla.mjs <tecla> [n]` | clique e teclas |
 | `c.sh "<texto>"` (+ `clicar.js`) | clica no botão com o texto |
 | `dados-das-folhas.js <rascunho> <episodio> [take]` → `folhas.py` | folhas de candidatas por frase (*Gerar recap; só no PC do Levi*) |
-| `recortes.py <projeto.dangai> <saida>` | recorte 9:16 no começo/fim de cada cena (*só no PC do Levi*) |
+| `recortes.py <projeto.dangai> <saida>` | recorte 9:16 no começo/fim de cada cena (Levi; roda também no PC do Ajk) |
 | `janela.py <projeto.dangai> <saida>` | quadro inteiro com a janela 9:16 desenhada (*só no PC do Levi*) |
 | `folha-final.py <projeto.dangai> <saida>` | **conferência final**: todas as cenas como o Dangai mostra (focusX/câmera + zoom do efeito), 1º e último quadro |
 | `rostos-cenas.py <projeto.dangai> <pasta>` | **rosto no centro**: detector do motor em 3 instantes por cena → `faces.json` + folhas `fc_N.jpg` (rostos verdes, janela rosa). Rodar com o python do `motor-runtime`, de dentro de `modulos/recap/motor` (*só no PC do Levi*) |
@@ -770,6 +953,7 @@ Os `.mjs`/`.js` de CDP rodam em qualquer PC com o Dangai aberto na porta.
 | `fabinho/folhas-do-projeto.cjs <lista.txt> <saida>` | **qualquer PC (Node + ffmpeg)**: tabela frase a frase (fala, clipe, foco, entrada, efeito, transição) + folha com 1 quadro de cada cena no recorte 9:16 |
 | `fabinho/medir-projetos.cjs <lista.txt> <saida.json>` | números de cada projeto: ritmo, gancho, foco, entrada, efeitos, legenda, faixas de som, cor |
 | `fabinho/comparar-com-a-biblioteca.mts <lista.txt>` | o que a Biblioteca montaria (contas do `shared/trecho.ts`) × o que ficou: cortes iguais/movidos, efeitos trocados (`npx tsx`, `DANGAI_REPO` = clone do Dangai) |
+| `ajk/comparar-com-a-biblioteca.ts <lista.txt> <saida.json>` | **qualquer PC com Node 22.6+ (sem tsx, sem npm)**: o mesmo, por projeto, + foco auto/centro/mão, entrada, transições com a fala e o gancho cena a cena. `DANGAI_REPO` = clone do Dangai (só lê o `shared/trecho.ts`) |
 
 `lista.txt` = um caminho de `.dangai` por linha. Tudo só **lê** os projetos.
 
