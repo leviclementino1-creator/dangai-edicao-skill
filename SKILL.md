@@ -34,6 +34,10 @@ Antes das perguntas, colete o que dá para MOSTRAR como opção (nada de pedir p
 o Dangai já sabe):
 - `estado` do MCP (se não conectar: o módulo **Claude (MCP)** em Configurações > Módulos e o
   comando da seção dele — seção 1a);
+- **o módulo "Gerar recap" ligado** (Configurações > Módulos): sem ele não há corte do episódio,
+  reconhecimento de personagens (`reconhecer_personagens`/`listar_episodios` respondem "O modulo
+  Gerar recap esta desligado"), Edição rápida nem o fluxo de recap. Desligado? Peça para ligar
+  antes de começar (o editor normal + Biblioteca funciona sem ele, mas sem o corte);
 - `presets_de_legenda` → os nomes dos presets que a pessoa já salvou no Dangai;
 - `buscar_na_biblioteca {favoritas: true}` → quantas cenas favoritas ela tem;
 - `recentes` do settings (SÓ esse campo) → se os projetos têm `modulos.recap` (usa o Gerar recap).

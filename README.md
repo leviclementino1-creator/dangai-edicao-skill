@@ -20,9 +20,12 @@ Você manda o episódio, o roteiro e o áudio; o Claude escolhe as cenas, centra
 
 **Precisa de:** Dangai **2.11.2+** e o [Claude Code](https://claude.com/claude-code).
 
-### 1. Ligue o módulo no Dangai
+### 1. Ligue os módulos no Dangai
 
-**Configurações › Módulos ›** marque **Claude (MCP)**.
+**Configurações › Módulos ›** marque os dois:
+
+- **Gerar recap** — obrigatório: é por ele que o Claude corta o episódio, reconhece os personagens e monta o recap.
+- **Claude (MCP)** — é o que liga o Claude ao Dangai.
 
 <img src="docs/modulos.png" width="440" alt="Configurações > Módulos com o Claude (MCP) ligado">
 
