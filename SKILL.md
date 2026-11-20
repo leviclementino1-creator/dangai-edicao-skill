@@ -721,7 +721,7 @@ Os `.mjs`/`.js` de CDP rodam em qualquer PC com o Dangai aberto na porta.
 | `janela.py <projeto.dangai> <saida>` | quadro inteiro com a janela 9:16 desenhada (*só no PC do Levi*) |
 | `folha-final.py <projeto.dangai> <saida>` | **conferência final**: todas as cenas como o Dangai mostra (focusX/câmera + zoom do efeito), 1º e último quadro |
 | `rostos-cenas.py <projeto.dangai> <pasta>` | **rosto no centro**: detector do motor em 3 instantes por cena → `faces.json` + folhas `fc_N.jpg` (rostos verdes, janela rosa). Rodar com o python do `motor-runtime`, de dentro de `modulos/recap/motor` (*só no PC do Levi*) |
-| `reconhecer.mjs iniciar|ver|confirmar|cancelar` + `folha-grupos.py <pasta>` | **Reconhecer na mão** pelo Claude (episódio cortado pelo motor do Dangai): agrupa os rostos, folhas dos grupos e do elenco, grava os nomes |
+| `reconhecer.mjs <iniciar/ver/confirmar/cancelar>` + `folha-grupos.py <pasta>` | **Reconhecer na mão** pelo Claude (episódio cortado pelo motor do Dangai): agrupa os rostos, folhas dos grupos e do elenco, grava os nomes |
 | `nitidez.py <projeto.dangai>` | **borrão**: cenas com trecho < 45% da nitidez do clipe (foco mudando, fade) |
 | `mcp.py <ferramenta> '<json>' [prefixo]` | chama o MCP do Dangai direto (senha em `DANGAI_MCP_SENHA`); salva as imagens do `ver_cenas`/`ver_clipe` |
 | `seguir-rostos.mjs <lista>` / `ctrlz.mjs` | Seguir o rosto em lote (clica embaixo do bloco) / desfazer |
