@@ -107,10 +107,12 @@ nome bate com o rosto? No Laid-Off S01E07 (17/11) estava errado — a Lily saía
 o Barrius "Radiant Dragon" — porque os grupos de rostos nunca foram batizados e o automático usou
 fotos de referência ruins do anime. Nome errado: **não confie neles para escolher/enquadrar**
 (escolha pelas folhas) e conserte, conforme quem cortou:
-- **Cortado pelo motor do Dangai** (Biblioteca do recap): `scripts/reconhecer.mjs iniciar
-  <episodioId> <pasta>` (agrupa; ~20 s com o corte pronto, GPU) → `python scripts/folha-grupos.py
-  <pasta>` (folha dos grupos + folha do elenco) → você dá o nome de cada grupo → `reconhecer.mjs
-  confirmar <jobId> decisao.json`. As fotos viram referência: o próximo episódio do anime já vem
+- **Cortado pelo motor do Dangai** (Biblioteca do recap): **pelo MCP (2.11.2+)**
+  `reconhecer_personagens {acao:"iniciar", episodio:"ep_..."}` (o id vem de `listar_episodios`;
+  agrupa em ~20 s–2 min, GPU) → ele devolve as folhas: uma linha por grupo com até 8 rostos e,
+  por último, o elenco com foto → você dá o nome de cada grupo → `{acao:"confirmar", jobId,
+  decisao:{nomes:{"0":"Nia Liston"}, ignorados:[], juntar:[], removidos:{}}}` (`cancelar` = nada
+  muda). Sem MCP: `scripts/reconhecer.mjs` + `folha-grupos.py` pelo CDP, igual. As fotos viram referência: o próximo episódio do anime já vem
   certo. Regras dos nomes:
   - personagem que JÁ TEM NOME (`conhecido`) num grupo: use **esse mesmo texto** nos outros grupos
     dele (no Nia é "Nia Liston", não o "Liston, Nia" do elenco) — nome diferente vira outro personagem;
@@ -165,6 +167,8 @@ app, sem mexer no `.dangai` em disco, sem clicar por coordenada, sem print da te
 | `desfazer` | volta o último `editar` |
 | `buscar_na_biblioteca` | clipes de qualquer episódio por texto/personagem/episódio/anime; `favoritas: true` = só as da estrela; cada clipe traz `favorita` |
 | `presets_de_legenda` (aplicar) | os presets de legenda salvos, qual bate com o projeto (`diferencas`) e `aplicar: "<nome>"` |
+| `listar_episodios` | os episódios do Gerar recap (`ep_...`, título, passo) |
+| `reconhecer_personagens` (acao, episodio, jobId, decisao) | o **Reconhecer na mão**: `iniciar`/`ver` → folhas dos grupos de rostos + do elenco; `confirmar` com os nomes; `cancelar` (seção 01) |
 | `abrir_projeto` (caminho) | abre um `.dangai` |
 
 Regras de uso:

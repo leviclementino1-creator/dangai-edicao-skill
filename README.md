@@ -10,6 +10,7 @@ Você manda o episódio, o roteiro e o áudio; o Claude escolhe as cenas, centra
 - 🎯 **Escolhe uma cena por palavra de peso**: gancho com 2–3 cenas, ~1,3 s por cena, sem repetir clipe
 - 🙂 **Centraliza no rosto** com o detector de rostos do Dangai (close muito perto vira grid)
 - 🔍 **Confere tudo** no recorte 9:16: rosto cortado, borrão, cena errada
+- 🧑‍🤝‍🧑 **Reconhece os personagens** do episódio (agrupa os rostos, compara com o elenco e dá os nomes)
 - 🎵 **Música com o drop no riser**, legenda no **seu preset**, suas **cenas favoritas** primeiro
 - ✍️ **Título, descrição e hashtags** prontos no fim
 
@@ -17,7 +18,7 @@ Você manda o episódio, o roteiro e o áudio; o Claude escolhe as cenas, centra
 
 ## Instalar (uma vez)
 
-**Precisa de:** Dangai **2.10.5+** e o [Claude Code](https://claude.com/claude-code).
+**Precisa de:** Dangai **2.11.2+** e o [Claude Code](https://claude.com/claude-code).
 
 ### 1. Ligue o módulo no Dangai
 
