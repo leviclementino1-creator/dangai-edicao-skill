@@ -98,7 +98,25 @@ cada um:
   "expulso da antiga guilda" é o ep 1; usei uma cena do ep 7 e o Levi notou).
 
 Pode começar a **analisar o episódio** assim que ele chegar (o corte leva ~3–4 min, por trás)
-enquanto espera o roteiro e o áudio.
+enquanto espera o roteiro e o áudio. Deixe **"Reconhecer personagens" marcado**.
+
+**Confira o reconhecimento de personagens depois do corte** (os nomes por cena no `episodio.json`:
+`planos[].personagens`). Ele é o que faz a Edição rápida enquadrar o personagem que a frase cita, a
+sugestão de cenas e a busca por personagem na Biblioteca. Monte a folha de keyframes e compare: o
+nome bate com o rosto? No Laid-Off S01E07 (17/11) estava errado — a Lily saía "Ells, Margaret",
+o Barrius "Radiant Dragon" — porque os grupos de rostos nunca foram batizados e o automático usou
+fotos de referência ruins do anime. Nome errado: **não confie neles para escolher/enquadrar**
+(escolha pelas folhas) e conserte, conforme quem cortou:
+- **Cortado pelo motor do Dangai** (Biblioteca do recap): `scripts/reconhecer.mjs iniciar
+  <episodioId> <pasta>` (agrupa, minutos, GPU) → `python scripts/folha-grupos.py <pasta>` (folha
+  dos grupos + folha do elenco) → você dá o nome de cada grupo (nome EXATO do elenco; figurante e
+  grupo misturado: deixe sem nome) → `reconhecer.mjs confirmar <jobId> decisao.json`. As fotos viram
+  referência: o próximo episódio do anime já vem certo.
+- **Cortado pelo AnCut** (cenas em `G:\App Corte Cenas\Output\...`; o Dangai responde "Cenas do
+  AnCut: o recap so le"): o reconhecimento é **no AnCut** (Modo Descoberta; os grupos ficam em
+  `<episódio>/metadata/discovery/descoberta.json`). Mexer no AnCut só com o OK da pessoa: mostre
+  os grupos (`g000_*.jpg`) com o nome que você daria a cada um e peça para ela batizar lá (ou
+  peça o OK para você fazer).
 
 ## 0. Regras antes de tudo
 
@@ -703,6 +721,7 @@ Os `.mjs`/`.js` de CDP rodam em qualquer PC com o Dangai aberto na porta.
 | `janela.py <projeto.dangai> <saida>` | quadro inteiro com a janela 9:16 desenhada (*só no PC do Levi*) |
 | `folha-final.py <projeto.dangai> <saida>` | **conferência final**: todas as cenas como o Dangai mostra (focusX/câmera + zoom do efeito), 1º e último quadro |
 | `rostos-cenas.py <projeto.dangai> <pasta>` | **rosto no centro**: detector do motor em 3 instantes por cena → `faces.json` + folhas `fc_N.jpg` (rostos verdes, janela rosa). Rodar com o python do `motor-runtime`, de dentro de `modulos/recap/motor` (*só no PC do Levi*) |
+| `reconhecer.mjs iniciar|ver|confirmar|cancelar` + `folha-grupos.py <pasta>` | **Reconhecer na mão** pelo Claude (episódio cortado pelo motor do Dangai): agrupa os rostos, folhas dos grupos e do elenco, grava os nomes |
 | `nitidez.py <projeto.dangai>` | **borrão**: cenas com trecho < 45% da nitidez do clipe (foco mudando, fade) |
 | `mcp.py <ferramenta> '<json>' [prefixo]` | chama o MCP do Dangai direto (senha em `DANGAI_MCP_SENHA`); salva as imagens do `ver_cenas`/`ver_clipe` |
 | `seguir-rostos.mjs <lista>` / `ctrlz.mjs` | Seguir o rosto em lote (clica embaixo do bloco) / desfazer |
