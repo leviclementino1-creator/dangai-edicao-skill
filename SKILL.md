@@ -526,7 +526,10 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
   "Quadro do projeto" + clicar na régua no tempo da cena + "Usar este quadro"; "Enquadrar sozinho"
   tira o rosto das faixas proibidas do TikTok; aba Texto: Linha 1/2 + estilo **Kiumaz**; "Salvar PNG"
   abre a janela "Salvar a thumbnail" (WScript.Shell `AppActivate` + `SendKeys` %n, ^a, caminho,
-  ENTER). Fórmula que o Levi gostou: **vilão em cima × quem ele perdeu embaixo** (Zenon com o rosto
+  ENTER). **Nunca esquecer o CORTE NO MEIO** (aba **Divisor**: o rasgo entre as duas imagens; no
+  estilo Kiumaz, o "Brilho dentro") — a do Zenon saiu sem e o Levi cobrou. E **escolha quadros
+  BONITOS** para a thumb, não só legíveis: rosto no melhor desenho do episódio, cor forte, luz,
+  expressão marcante (ver_varios nas candidatas antes de escolher). Fórmula que o Levi gostou: **vilão em cima × quem ele perdeu embaixo** (Zenon com o rosto
   de osso / Allen criança sorrindo) + "MATOU O / MELHOR AMIGO?!" + a seta.
 - **Frase que cita outro episódio** ("depois de ser expulso da antiga guilda" = a expulsão do
   ep 1): a cena certa é a DAQUELE episódio. Procure com `buscar_na_biblioteca` (anime/episódio);
