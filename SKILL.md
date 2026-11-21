@@ -541,6 +541,12 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
   BONITOS** para a thumb, não só legíveis: rosto no melhor desenho do episódio, cor forte, luz,
   expressão marcante (ver_varios nas candidatas antes de escolher). Fórmula que o Levi gostou: **vilão em cima × quem ele perdeu embaixo** (Zenon com o rosto
   de osso / Allen criança sorrindo) + "MATOU O / MELHOR AMIGO?!" + a seta.
+  **Padrão medido na thumb que o Levi arrumou (21/11):** divisor **Rasgo com brilho, cor Original
+  (rasgo escuro), brilho mínimo** (o branco sumiu nas nuvens); rostos GRANDES: zoom 144% em cima
+  (cabeça + chifres enchendo o painel; o aviso da faixa de cima do TikTok ele ignora) e 128% embaixo;
+  seta pequena da esquerda apontando o rosto do vilão. Imagem de fora: soltar SÓ com a thumb no modo
+  **"De um projeto"** — no painel "Vídeo pronto" (pós-render) o soltar cai na TIMELINE como cenas novas
+  (desfazer com Ctrl+Z depois de clicar num lugar neutro e conferir `estado`).
 - **Frase que cita outro episódio** ("depois de ser expulso da antiga guilda" = a expulsão do
   ep 1): a cena certa é a DAQUELE episódio. Procure com `buscar_na_biblioteca` (anime/episódio);
   se o episódio não está cortado, **peça o arquivo ao Levi** antes de improvisar com o que o ep
