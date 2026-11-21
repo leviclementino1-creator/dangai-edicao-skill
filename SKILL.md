@@ -502,6 +502,32 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
   elástica 7 quadros, marcar tudo, pontuação `limpar` ("Só ? ! %"), contorno 11, sombra 3 px.
   Ele cobra se parecer diferente: mostre que bate, e reaplique clicando no chip "Kiumaz v1".
 - Mediu e ficou ruim? Ele quer a cena trocada **na hora**, sem perguntar ("sim ué").
+
+**Black Clover S02E08 (21/11) — o que ficou de regra:**
+- **Legenda**: a Edição rápida põe o "estilo salvo", que NÃO é o Kiumaz v1. Logo depois de abrir no
+  editor: `presets_de_legenda {aplicar:"Kiumaz v1"}` e conferir `igualAoProjeto: true` (Levi cobrou).
+- **Cena boa mas curta**: em vez de trocar, emende o plano seguinte — o candidato aceita
+  `planoIds` CONSECUTIVOS (`["0298","0299"]`, `inSec` do 1º, `outSec` do último) e vira uma cena
+  só, mais longa (Levi: "pôr a cena seguinte e aumentar o número de cenas, se aquela era boa").
+- **Faixa preta (letterbox) nas memórias/flashback**: muitas cenas de memória vêm com ~15% de faixa
+  em cima e embaixo. Meça (linhas pretas no quadro) e ponha `zoomFixo: 1/(1-2×faixa)` (15% → 1,45)
+  com `origemDoZoom {0,5; 0,5}`: o efeito (zoom-in/out) continua animando por cima do zoom fixo.
+  Com o zoom, rosto que já era close fica perto demais → troque essas, e re-meça o centro do rosto
+  (`rostos-cenas.py`), porque a janela fica mais estreita.
+- **Drop da música**: o detector ainda erra em música com PAUSA antes da pancada (ATLXS – Passo Bem
+  Solto: silêncio 60,0–60,6 s, pancada 60,75 s; o detector marcou 62,05 s, 1,3 s atrasado).
+  Conferir SEMPRE pela onda do grave e, se precisar, mexer na trilha direto no `.dangai`
+  (`inicioSec` = pancada − saída do gancho; a volta da música no começo de uma parte) e
+  `abrir_projeto` para recarregar (o MCP ainda não edita trilha).
+- **Porta do MCP**: se a 47321 estiver ocupada, o Dangai sobe na 47322 (veja
+  `window.dangai.modulos.claude.estado()` → `url`); o `claude mcp add` registrado aponta para a 47321,
+  então use `mcp.py` com `DANGAI_MCP_PORTA`.
+- **Thumbnail (módulo Thumbnail, por CDP)**: botão "Thumbnail" no editor → 2 imagens (cima/baixo):
+  "Quadro do projeto" + clicar na régua no tempo da cena + "Usar este quadro"; "Enquadrar sozinho"
+  tira o rosto das faixas proibidas do TikTok; aba Texto: Linha 1/2 + estilo **Kiumaz**; "Salvar PNG"
+  abre a janela "Salvar a thumbnail" (WScript.Shell `AppActivate` + `SendKeys` %n, ^a, caminho,
+  ENTER). Fórmula que o Levi gostou: **vilão em cima × quem ele perdeu embaixo** (Zenon com o rosto
+  de osso / Allen criança sorrindo) + "MATOU O / MELHOR AMIGO?!" + a seta.
 - **Frase que cita outro episódio** ("depois de ser expulso da antiga guilda" = a expulsão do
   ep 1): a cena certa é a DAQUELE episódio. Procure com `buscar_na_biblioteca` (anime/episódio);
   se o episódio não está cortado, **peça o arquivo ao Levi** antes de improvisar com o que o ep
