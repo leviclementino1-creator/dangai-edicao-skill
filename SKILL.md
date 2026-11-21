@@ -518,6 +518,12 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
   1,25 + zoom-out (fio de faixa no fim) ou deixar a faixa (flashback).
   Com o zoom, rosto que já era close fica perto demais → troque essas, e re-meça o centro do rosto
   (`rostos-cenas.py`), porque a janela fica mais estreita.
+- **"Muito zoom" = plano de OLHO** (Levi 21/11: "olho do Yuno, olho do Zenon"): o detector NÃO acha
+  rosto em plano só de olho/meio rosto (sai vazio, não "grande"), então `rostos-cenas.py` sozinho
+  deixa passar. Olhe a folha do `ver_cenas` procurando olho/boca enchendo a tela (também no ÚLTIMO
+  quadro: clipe que começa médio e fecha no olho, ex. 0239) e troque por plano médio/corpo inteiro.
+  Clipe novo mais curto que a cena mostra o quadro seguinte (saiu um quadro branco): `ffprobe` a
+  duração e use clipe ≥ cena.
 - **Drop da música**: o detector ainda erra em música com PAUSA antes da pancada (ATLXS – Passo Bem
   Solto: silêncio 60,0–60,6 s, pancada 60,75 s; o detector marcou 62,05 s, 1,3 s atrasado).
   Conferir SEMPRE pela onda do grave e, se precisar, mexer na trilha direto no `.dangai`
