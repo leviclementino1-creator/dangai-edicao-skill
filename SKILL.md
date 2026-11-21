@@ -512,6 +512,10 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
 - **Faixa preta (letterbox) nas memórias/flashback**: muitas cenas de memória vêm com ~15% de faixa
   em cima e embaixo. Meça (linhas pretas no quadro) e ponha `zoomFixo: 1/(1-2×faixa)` (15% → 1,45)
   com `origemDoZoom {0,5; 0,5}`: o efeito (zoom-in/out) continua animando por cima do zoom fixo.
+  **MAS o zoom total = fixo × efeito**: 1,45 com zoom-in 1,1 chega a 1,6x e o Levi reclamou ("tem
+  cena com muito zoom!", 21/11). Com zoom fixo, o efeito é **zoom-out** (ou nenhum), nunca zoom-in,
+  e meça o zoom TOTAL de cada cena. Opções a oferecer: 1,43 + zoom-out (sem faixa, máx. 1,43x),
+  1,25 + zoom-out (fio de faixa no fim) ou deixar a faixa (flashback).
   Com o zoom, rosto que já era close fica perto demais → troque essas, e re-meça o centro do rosto
   (`rostos-cenas.py`), porque a janela fica mais estreita.
 - **Drop da música**: o detector ainda erra em música com PAUSA antes da pancada (ATLXS – Passo Bem
