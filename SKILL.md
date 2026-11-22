@@ -382,6 +382,9 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
   Frase longa = 2 a 4 cenas, cortando nas **palavras de peso** (nome, número, verbo forte,
   CAIXA ALTA). Flash de 0,35–0,5 s numa palavra é ok.
 - **Gancho**: sempre 2 ou 3 cenas; a 1ª mostra quem a frase cita, a mais forte possível.
+  **Conte pelo TEMPO** (Levi 22/11, Overgeared: gancho de 5,6 s em 3 cenas de 2,2/1,1/2,3 s = "muito tempo
+  parado"): cada cena do gancho ~0,7–1,2 s, a 1ª no máximo ~1 s; gancho longo vira 4–5 cenas. No gancho,
+  ação/movimento; plano parado (grupo posando, rosto quieto) não passa de ~1 s.
   Cada cena do gancho tem que ser **bonita, fácil de entender sozinha e bater com a palavra**;
   pode vir de qualquer ponto do episódio (não precisa ser sequência). Julgar **no recorte 9:16**,
   nunca pela miniatura 16:9: close extremo vira só olho, perfil vira meia cara, plano aberto vira
