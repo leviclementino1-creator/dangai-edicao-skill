@@ -420,6 +420,9 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
   embaixo da narração. Conserto no `.dangai`: dividir a 1ª trilha em duas — o pedaço do gancho (`usarSec` =
   saída do gancho) a −15 dB, `ducking: null`, `fadeInSec` 0,05; o resto a partir do drop
   (`at` = saída do gancho, `inicioSec` = segundo do drop no arquivo). Fica contínuo e o drop cai no riser.
+- **Volume da música** (22/11): a Edição rápida deixa cada faixa ~−30 LUFS no mix (≈20 dB abaixo da voz) e
+  acharam "muito baixa". Meça (ebur128 no trecho usado) e deixe ~−26 LUFS efetivos (gainDb = −26 − LUFS do trecho).
+  Tire o **"som do sino"** que ela põe como impacto: troque por `impact.mp3` no instante da troca de música.
 - **SFX**: os da Edição rápida (pop abre, riser metálico no gancho, riser+impacto na troca de
   música) + no máximo alguns **ligados a uma ação visível**, baixos. Nada de meme (sus, among us,
   "wow") — ele chamou de "aleatórios".
