@@ -415,6 +415,11 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
   Montagem Batchi marcou 16,9 s e o clímax é 19,2 s (o Levi corrigiu à mão: `inicioSec` 13,08 =
   19,2 − 6,15). Sempre conferir o drop pela onda (RMS de 0,2 s: o salto do grave/batidas) antes
   de entregar. No Laid-Off ele também tirou a 2ª música (Naruto): uma música só no vídeo todo.
+- **Música no GANCHO** (Levi 22/11: "parece que começa sem música"): a Edição rápida põe a 1ª música a
+  −18 dB, com fade-in de 1,2 s e ducking −6 dB sob a voz, num trecho antes do drop que é só batida → some
+  embaixo da narração. Conserto no `.dangai`: dividir a 1ª trilha em duas — o pedaço do gancho (`usarSec` =
+  saída do gancho) a −15 dB, `ducking: null`, `fadeInSec` 0,05; o resto a partir do drop
+  (`at` = saída do gancho, `inicioSec` = segundo do drop no arquivo). Fica contínuo e o drop cai no riser.
 - **SFX**: os da Edição rápida (pop abre, riser metálico no gancho, riser+impacto na troca de
   música) + no máximo alguns **ligados a uma ação visível**, baixos. Nada de meme (sus, among us,
   "wow") — ele chamou de "aleatórios".
