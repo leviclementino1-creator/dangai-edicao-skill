@@ -557,6 +557,12 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
   ep 1): a cena certa é a DAQUELE episódio. Procure com `buscar_na_biblioteca` (anime/episódio);
   se o episódio não está cortado, **peça o arquivo ao Levi** antes de improvisar com o que o ep
   atual tem (no Laid-Off S01E07 usei o Rein gritando "você me expulsou?!" do ep 7 e ele notou).
+- **Tela de status/sistema** (Levi 22/11, Overgeared): só fica se mostra algo claro e ligado à fala
+  ("Lv:95" no "nível 95", "Lv:251" no "acima do nível 200"). Só texto japonês sem número que importe
+  ("derrotou o Malaxus", ficha de item, entrar na guilda): **tira** ou põe em **grid** com um personagem.
+- **Entrega**: vídeo + thumb também no Google Drive dele = copiar pra `I:\Meu Drive\Dangai\<anime SxxEyy>\`
+  (Google Drive para desktop sincroniza). Thumb: ele melhora os 2 quadros — mande o de CIMA e o de BAIXO
+  separados (quadro 1920x1080 do .mkv), espere ele devolver e cole nos slots.
 - Cena que não mostra QUEM a frase cita é cena errada, mesmo bonita ("a própria mestre tava
   tentando acabar com ela" com a Lily chocada → errado; é a Elsie sorrindo no "Essa guilda acabou!").
 
