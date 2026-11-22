@@ -1,0 +1,15 @@
+// node arrastar.mjs x1 y1 x2 y2 : arrasta com o mouse (aperta em x1,y1, anda em passos e solta em x2,y2).
+// Serve pra mexer nas bolinhas da seta da thumbnail (modo Livre) e em outros arrastos da tela.
+const alvos = await (await fetch(`http://127.0.0.1:${process.env.PORTA || 9354}/json/list`)).json()
+const ws = new WebSocket(alvos.find((t) => t.type === 'page').webSocketDebuggerUrl)
+await new Promise((r) => ws.addEventListener('open', r, { once: true }))
+let seq = 0; const pend = new Map()
+ws.addEventListener('message', (e) => { const m = JSON.parse(e.data); const p = pend.get(m.id); if (p) { pend.delete(m.id); p(m) } })
+const enviar = (method, params = {}) => new Promise((res) => { const id = ++seq; pend.set(id, res); ws.send(JSON.stringify({ id, method, params })) })
+const [x1, y1, x2, y2] = process.argv.slice(2).map(Number)
+const mouse = (type, x, y, buttons) => enviar('Input.dispatchMouseEvent', { type, x, y, button: 'left', buttons, clickCount: 1 })
+await mouse('mouseMoved', x1, y1, 0)
+await mouse('mousePressed', x1, y1, 1)
+for (let i = 1; i <= 12; i++) await mouse('mouseMoved', x1 + ((x2 - x1) * i) / 12, y1 + ((y2 - y1) * i) / 12, 1)
+await mouse('mouseReleased', x2, y2, 0)
+console.log('ok'); setTimeout(() => process.exit(0), 100)

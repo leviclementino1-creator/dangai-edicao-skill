@@ -547,6 +547,12 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
   seta pequena da esquerda apontando o rosto do vilão. Imagem de fora: soltar SÓ com a thumb no modo
   **"De um projeto"** — no painel "Vídeo pronto" (pós-render) o soltar cai na TIMELINE como cenas novas
   (desfazer com Ctrl+Z depois de clicar num lugar neutro e conferir `estado`).
+  **Imagem de fora no painel "Vídeo pronto"** (22/11, Overgeared): aba Imagens > slot > "Do computador"
+  > **Colar (Ctrl+V)** com a imagem na área de transferência (PowerShell:
+  `[System.Windows.Forms.Clipboard]::SetImage([System.Drawing.Image]::FromFile(...))`). Quadro em
+  resolução cheia: `ffmpeg -ss <t> -i <episodio.mkv> -frames:v 1`. Texto: os campos "PODER/SUPREMO"
+  são PLACEHOLDER (valor vazio): preencha pelo `placeholder`. Seta escondida atrás do texto: Seta >
+  **Livre** e arraste com `scripts/arrastar.mjs x1 y1 x2 y2`. Salvar de novo pede "Substituir".
 - **Frase que cita outro episódio** ("depois de ser expulso da antiga guilda" = a expulsão do
   ep 1): a cena certa é a DAQUELE episódio. Procure com `buscar_na_biblioteca` (anime/episódio);
   se o episódio não está cortado, **peça o arquivo ao Levi** antes de improvisar com o que o ep
