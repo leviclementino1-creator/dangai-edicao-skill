@@ -560,7 +560,7 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
 - **Tela de status/sistema** (Levi 22/11, Overgeared): só fica se mostra algo claro e ligado à fala
   ("Lv:95" no "nível 95", "Lv:251" no "acima do nível 200"). Só texto japonês sem número que importe
   ("derrotou o Malaxus", ficha de item, entrar na guilda): **tira** ou põe em **grid** com um personagem.
-- **Entrega**: vídeo + thumb também no Google Drive dele = copiar pra `I:\Meu Drive\Dangai\<anime SxxEyy>\`
+- **Entrega**: vídeo + thumb também no Google Drive dele (conta leviclementino1, montada no K: desde 22/11) = copiar pra `K:\Meu Drive\Dangai\<anime SxxEyy>\`, esperar sincronizar (id da nuvem no `metadata_sqlite_db` do DriveFS) e compartilhar a PASTA com `share_file {permissionId:"anyoneWithLink"}`
   (Google Drive para desktop sincroniza). Thumb: ele melhora os 2 quadros — mande o de CIMA e o de BAIXO
   separados (quadro 1920x1080 do .mkv), espere ele devolver e cole nos slots.
 - Cena que não mostra QUEM a frase cita é cena errada, mesmo bonita ("a própria mestre tava
