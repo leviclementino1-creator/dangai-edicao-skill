@@ -422,7 +422,24 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
   (`at` = saída do gancho, `inicioSec` = segundo do drop no arquivo). Fica contínuo e o drop cai no riser.
 - **Volume da música** (22/11): a Edição rápida deixa cada faixa ~−30 LUFS no mix (≈20 dB abaixo da voz) e
   acharam "muito baixa". Meça (ebur128 no trecho usado) e deixe ~−26 LUFS efetivos (gainDb = −26 − LUFS do trecho).
-  Tire o **"som do sino"** que ela põe como impacto: troque por `impact.mp3` no instante da troca de música.
+  **NUNCA o "som do sino" como impacto** (Levi 22/11: "nunca mais faz isso!"): a Edição rápida põe; troque
+  por `impact.mp3` no instante da troca de música.
+- **Qual música para qual clima (guia do Levi, 22/11)**, pastas `G:\App Resumo\music\` e
+  `D:\Downloads\Kiumaz\2. assets\music\`:
+  - **Ação / progressão** — a preferida dele é **Montagem Batchi**:
+    - gancho na *MONTAGEM BATCHI (Super Slowed + Reverb)* (D:);
+    - na virada gancho→contexto troca para *MXZI, Rushex - Montagem Batchi (Instrumental HQ)* (G:), cortando em ~0:25 da slowed e emendando em ~0:19 da instrumental;
+    - meio do vídeo: *SPECIALZ* (JJK, muitos altos e baixos), *Where Our Blue Is* (entra em 0:46 "com tudo", épico/aventura) ou *Kaikai Kitan* (situacional);
+    - *X-GALACTICO*: início de vídeo de ação, se pegar a parte certa (mais da Kizuni). Nunca em romance.
+  - **Black Clover**: *Haruka Mirai* no gancho e no pós-gancho (refrão em ~0:14, com o contexto).
+  - **Pós-gancho genérico**: *ATLXS - PASSO BEM SOLTO* (cabe em quase tudo, até no vídeo todo), *MENTE MÁ* (animada, entra em 0:07) ou *NO BATIDÃO* (aura, entra em 0:15).
+  - **Emocional / história de personagem**:
+    - *MY HERO IS OUR HERO* (começo, ou 1:44 para épico/emocionante no meio);
+    - *River's End* (triste e baixa: entrar em ~1:20);
+    - *We Don't Talk Anymore* (também serve para romance).
+  - **Curiosidade / romance neutro**: *no signal (slowed)* ou *CLIMA LINDO* (entrar em ~0:10; slice of life e comédia, nada emocional/épico).
+  - **Muito específicas**: *ELSE PARIS* só em suspense longo; *Naruto Afternoon of Konoha* só em comédia slice of life. A Edição rápida pôs as duas no Overgeared (ação), o que está errado para esse tipo de vídeo.
+  - Lista completa com caminhos na memória `musicas-kiumaz`.
 - **SFX**: os da Edição rápida (pop abre, riser metálico no gancho, riser+impacto na troca de
   música) + no máximo alguns **ligados a uma ação visível**, baixos. Nada de meme (sus, among us,
   "wow") — ele chamou de "aleatórios".
