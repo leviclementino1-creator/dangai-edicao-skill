@@ -234,7 +234,7 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
 2. **Roteiro**: *Meu roteiro* cola o texto dele (linha em branco = parte; agrupe pelas seções dele).
    Depois de colar, o app chama o Gemini pra "Ler" o episódio e "Ligar" as frases (5+ min no
    Laid-Off S01E07, 17/11). Quando EU escolho as cenas, **Cancelar** na hora: o texto já está
-   gravado, *Aprovar roteiro* funciona e a sugestão de cenas é local. O gancho "vira 2 ou 3 cenas no passo Cenas".
+   gravado, *Aprovar roteiro* funciona e a sugestão de cenas é local. O app ainda escreve que o gancho "vira 2 ou 3 cenas no passo Cenas", mas a regra é a da seção 9: 5 a 7 cortes pelo tempo.
    A imagem de cada frase é só o MOMENTO, não a cena final.
 3. **Voz**: *Importar áudio* (pode soltar 2: gancho + resto, emenda pela ordem do nome).
    **Quando EU edito para o Levi: Acelerar = 1,10x** antes de soltar o áudio (pedido dele 17/11:
@@ -377,8 +377,9 @@ com 1,9 mil views contra 45 mil do Black Clover. Só entrega com os três itens 
   - abertura = pop, gancho→contexto = riser, troca de música = sharp riser + impact.mp3.
 
 **Conferência final obrigatória**: `scripts/folha-final.py <projeto.dangai> <saida>` (ou o
-`ver_cenas` do MCP) — as cenas como o Dangai mostra (recorte do focusX ou da câmera + zoom do
-efeito, 1º e último quadro). Olhe TODAS antes de entregar; o Levi não pode ser quem acha.
+`ver_cenas` do MCP) — o recorte do focusX, 1º e último quadro. Olhe TODAS antes de entregar; o Levi
+não pode ser quem acha. **Ela não mostra a câmera livre, o zoom fixo nem o movimento dentro da cena**:
+essas cenas se conferem em quadros do MP4 renderizado (item 7).
 
 **E as 3 medidas, com número, não a olho** (Laid-Off S01E07, 17/11: o Levi achou olho gigante,
 Nina no canto, boca sem olhos, rosto no copo e um começo borrado — tudo que a folha pequena
@@ -405,10 +406,13 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
 - **Ritmo**: ~1,5 s por cena (ele fez 55 cenas em 89 s; o app sugere ~32 = lento demais).
   Frase longa = 2 a 4 cenas, cortando nas **palavras de peso** (nome, número, verbo forte,
   CAIXA ALTA). Flash de 0,35–0,5 s numa palavra é ok.
-- **Gancho**: sempre 2 ou 3 cenas; a 1ª mostra quem a frase cita, a mais forte possível.
-  **Conte pelo TEMPO** (Levi 22/11, Overgeared: gancho de 5,6 s em 3 cenas de 2,2/1,1/2,3 s = "muito tempo
-  parado"): cada cena do gancho ~0,7–1,2 s, a 1ª no máximo ~1 s; gancho longo vira 4–5 cenas. No gancho,
-  ação/movimento; plano parado (grupo posando, rosto quieto) não passa de ~1 s.
+- **Gancho**: conte pelo TEMPO, não pelo número (Levi 22/11, Overgeared: 3 cenas em 5,6 s = "muito tempo
+  parado"):
+  - cada cena ~0,6–1,2 s, a 1ª no máximo ~1 s;
+  - um gancho de ~4–6 s tem **5 a 7 cortes**;
+  - a 1ª cena mostra quem a frase cita;
+  - ação e movimento; nada de plano parado (grupo posando, rosto quieto);
+  - **variedade**: em "cada vez mais fortes", mostre a PROGRESSÃO (Goblin 23/11: três cenas do mesmo dragão = "é o mesmo dragão").
   Cada cena do gancho tem que ser **bonita, fácil de entender sozinha e bater com a palavra**;
   pode vir de qualquer ponto do episódio (não precisa ser sequência). Julgar **no recorte 9:16**,
   nunca pela miniatura 16:9: close extremo vira só olho, perfil vira meia cara, plano aberto vira
@@ -594,8 +598,11 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
   expressão marcante (ver_varios nas candidatas antes de escolher). Fórmula que o Levi gostou: **vilão em cima × quem ele perdeu embaixo** (Zenon com o rosto
   de osso / Allen criança sorrindo) + "MATOU O / MELHOR AMIGO?!" + a seta.
   **Padrão medido na thumb que o Levi arrumou (21/11):** divisor **Rasgo com brilho, cor Original
-  (rasgo escuro), brilho mínimo** (o branco sumiu nas nuvens); rostos GRANDES: zoom 144% em cima
-  (cabeça + chifres enchendo o painel; o aviso da faixa de cima do TikTok ele ignora) e 128% embaixo;
+  (rasgo escuro), brilho mínimo** (o branco sumiu nas nuvens); zoom **pelo quadro, sem exagero**: no Black Clover,
+  144% em cima e 128% embaixo; no Overgeared, 112% (com a imagem dele já recortada); no Goblin (23/11:
+  "vc dá muito zoom!"), 144% em cima e **101% embaixo**. Com as imagens que ele melhora (já em pé),
+  comece perto de 100% e mostre o personagem inteiro; só aproxime se ficar pequeno. O aviso de rosto
+  nas faixas do TikTok ele ignora. Seta: modo **"Apontando o rosto"**.
   seta pequena da esquerda apontando o rosto do vilão. Imagem de fora: soltar SÓ com a thumb no modo
   **"De um projeto"** — no painel "Vídeo pronto" (pós-render) o soltar cai na TIMELINE como cenas novas
   (desfazer com Ctrl+Z depois de clicar num lugar neutro e conferir `estado`).
