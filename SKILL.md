@@ -339,6 +339,11 @@ seleção de cenas". Não deixe para corrigir depois.
    o borrão/transição do fim do clipe; sem tela vazia (janela, manga, nuca, costas).
 7. **Enquadramento** `focusX` no rosto/ação (motor de rostos, fx=(cx−0,158)/0,684). Se o
    personagem anda: Câmera livre > Seguir o rosto — e confira (seção 4).
+   **(23/11, Goblin S01E08) CÂMERA LIVRE É PADRÃO, não exceção:**
+   - Use câmera livre em toda cena em que o assunto se mexe, ou que tem vários personagens e dura mais de ~1,5 s.
+   - Como se escreve: no `.dangai`, `camera:{from:{scale:1,x,y:0},to:{...},source:true,keys:[]}`. O `x` é em % da imagem a partir do centro, e x positivo mostra o que está à esquerda. O MCP `editar` não grava câmera.
+   - Pra o que não é rosto (dragão, monstro, objeto), o detector não ajuda: meça a posição no quadro.
+   - **Confira SEMPRE no MP4 renderizado**, com uma linha no meio, no começo, no meio e no fim da cena. O `ver_cenas` ignora a câmera e o movimento dentro da cena; eu errei a cena 5 três vezes confiando nele.
 8. **Efeito pelo conteúdo**: zoom em rosto/objeto; deslize só em plano aberto; nunca o rodízio da
    Edição rápida.
 9. **Sem repetir** clipe (só o do gancho volta); nada de duas cenas parecidas seguidas
