@@ -352,6 +352,25 @@ seleção de cenas". Não deixe para corrigir depois.
 14. **Sem sangue/violência gráfica em destaque** (corpo ensanguentado no chão) e nada que fira a
     regra da plataforma.
 
+**TRAVA ANTES DE ENTREGAR: gancho, música e SFX** (Levi 22/11, Overgeared S01E09: "errou colocando pouca
+cena no hook, errou na música e nos efeitos sonoros, isso nunca mais pode acontecer"). O vídeo saiu
+com 1,9 mil views contra 45 mil do Black Clover. Só entrega com os três itens conferidos com número:
+- **Gancho**:
+  - conte as cenas até a saída do gancho (~5–6 s): no mínimo **5–7 cortes**;
+  - cada cena ≤ 1,2 s e a 1ª ≤ 1 s;
+  - só plano com movimento/ação (nada de grupo posando ou rosto parado);
+  - 3 cenas em 5,6 s foi o erro.
+- **Música**:
+  - **nunca aceitar a música da Edição rápida sem conferir**: troque pela do guia do Levi (lista acima, "Qual música para qual clima"), conforme o clima de cada parte;
+  - ação/progressão = Montagem Batchi no gancho → instrumental na virada;
+  - ELSE PARIS e Afternoon of Konoha num vídeo de ação foi o erro;
+  - nível ~−26 LUFS efetivo (medido), gancho com música audível (sem ducking, sem fade longo), drop no riser.
+- **SFX**:
+  - liste com `listar_faixas` e passe **um por um**;
+  - zero "som do sino", zero meme;
+  - cada efeito ligado a uma ação visível (dinheiro = MONEY, seta = Ping);
+  - abertura = pop, gancho→contexto = riser, troca de música = sharp riser + impact.mp3.
+
 **Conferência final obrigatória**: `scripts/folha-final.py <projeto.dangai> <saida>` (ou o
 `ver_cenas` do MCP) — as cenas como o Dangai mostra (recorte do focusX ou da câmera + zoom do
 efeito, 1º e último quadro). Olhe TODAS antes de entregar; o Levi não pode ser quem acha.
