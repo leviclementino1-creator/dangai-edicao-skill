@@ -186,6 +186,10 @@ Regras de uso:
 - O checklist da seção 3 continua valendo: `ver_clipe` para achar o melhor momento, `ver_cenas`
   para conferir rosto/centro, `buscar_na_biblioteca` para curiosidade (cenas de outros episódios).
 - **Seta + Ping juntos** no mesmo lote (seta do Levi + Ping −10 dB, ver seção 3).
+  - **x/y da imagem por cima = deslocamento a partir do CENTRO, em %** (−50…50; o Levi usa x 25, y −12). x 68 joga a seta pra fora da tela, e foi assim que ela sumiu no Nia E08 (24/11).
+  - A seta aponta pra direita em 0°, e a rotação é no sentido horário.
+  - Caminho com "—" (o da seta): mande o JSON com `—` (ensure_ascii). Pelo bash ele vira "�" e a imagem some do render sem aviso.
+  - Confira a seta num quadro do MP4.
 - **Título, descrição e hashtags: escreva você** no `textos` do `editar` ao terminar (não precisa do
   Gemini). A thumbnail ainda é pelo módulo Thumbnail.
 - O MCP **não** cobre o Gerar recap (roteiro/voz/aba Cenas): esses passos continuam pela ponte
