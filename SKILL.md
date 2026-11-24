@@ -609,6 +609,13 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
   "vc dá muito zoom!"), 144% em cima e **101% embaixo**. Com as imagens que ele melhora (já em pé),
   comece perto de 100% e mostre o personagem inteiro; só aproxime se ficar pequeno. O aviso de rosto
   nas faixas do TikTok ele ignora. Seta: modo **"Apontando o rosto"**.
+  **Nia S01E08 (24/11), o que o Levi arrumou na minha:** os DOIS rostos encostados no texto (o
+  texto fica entre os rostos, não entre chapéu/cenário): em cima 100% mas descido (cy 0,58) até a
+  boca ficar logo acima do texto; embaixo **146%** (eu tinha posto 122%: Nia pequena) com o rosto
+  logo abaixo do texto, sorriso no meio e a garrafa ainda no quadro. Seta GRANDE e visível: base na
+  borda esquerda na altura do texto, curva subindo até o rosto de cima (base ~(40,920), ponta
+  ~(315,640) em 1080x1920), nunca escondida atrás do texto. Regra: medir o ROSTO — rosto pequeno
+  no painel = aproxime; corpo inteiro só quando o rosto ainda fica grande.
   seta pequena da esquerda apontando o rosto do vilão. Imagem de fora: soltar SÓ com a thumb no modo
   **"De um projeto"** — no painel "Vídeo pronto" (pós-render) o soltar cai na TIMELINE como cenas novas
   (desfazer com Ctrl+Z depois de clicar num lugar neutro e conferir `estado`).
