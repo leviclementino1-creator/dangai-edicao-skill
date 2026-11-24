@@ -350,6 +350,19 @@ seleção de cenas". Não deixe para corrigir depois.
    - **Como o Levi faz o pan** (Nia E08 24/11, cena do ataque): começa no assunto mais longe (x −25), termina no centro (x 0), com `curvePoints: [0,0,0.052,0.964]`: chega rápido e assenta (ease-out). Copie essa curva.
    - **Cenas seguidas com o mesmo plano/ângulo do mesmo personagem = "são iguais"** (Nia E08: 0116 e 0102). Troque uma por outra ação (ajoelhada, de lado, com outro personagem).
    - **Confira SEMPRE no MP4 renderizado**, com uma linha no meio, no começo, no meio e no fim da cena. O `ver_cenas` ignora a câmera e o movimento dentro da cena; eu errei a cena 5 três vezes confiando nele.
+   - **POR QUE EU DESCENTRALIZAVA (medido 24/11, Nia E08, 59 cenas):** o app e a conta estão
+     CERTOS — o rosto previsto pelo focusX bate com o render com 1–4% de erro. O erro era MEU:
+     ajustei o focoX "no olho" e na direção errada (cenas 5, 7, 18, 57: certos 0,27/0,34/0,19/0,60,
+     eu pus 0,18/0,42/0,08/0,45; na 5 e na 57 o valor automático já estava certo e eu estraguei),
+     e disse que tinha conferido sem medir. Câmera livre com ponta chutada também (cena 53 termina
+     com a Nia em 0,71). **Regras:** (1) nunca empurrar focoX no olho: CALCULE do rosto medido na
+     fonte no meio da cena — `scripts/foco-certo.py <.dangai> <pasta>` dá o "fx certo" de cada cena;
+     lembre: focoX MENOR leva o rosto para a DIREITA da tela; (2) depois de todo render, rode
+     `scripts/centro-render.py <.dangai> <mp4> <pasta>` (python do motor, de dentro de
+     `modulos/recap/motor`): mede o rosto em 3 instantes de cada cena e faz folhas com a linha do
+     meio; tudo fora de 0,42–0,58 é refeito; (3) as cenas sem rosto detectado (perfil, costas,
+     close extremo, objeto) eu olho nas folhas, uma por uma; (4) antes de renderizar, dá para
+     conferir no preview da Edição (mesmo recorte do render — dica do Levi).
 8. **Efeito pelo conteúdo**: zoom em rosto/objeto; deslize só em plano aberto; nunca o rodízio da
    Edição rápida.
 9. **Sem repetir** clipe (só o do gancho volta); nada de duas cenas parecidas seguidas
