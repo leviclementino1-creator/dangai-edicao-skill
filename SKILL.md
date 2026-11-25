@@ -242,7 +242,7 @@ Scripts (em `scripts/`, porta como 1º argumento ou constante no topo):
 2. **Roteiro**: *Meu roteiro* cola o texto dele (linha em branco = parte; agrupe pelas seções dele).
    Depois de colar, o app chama o Gemini pra "Ler" o episódio e "Ligar" as frases (5+ min no
    Laid-Off S01E07, 17/11). Quando EU escolho as cenas, **Cancelar** na hora: o texto já está
-   gravado, *Aprovar roteiro* funciona e a sugestão de cenas é local. O app ainda escreve que o gancho "vira 2 ou 3 cenas no passo Cenas", mas a regra é a da seção 9: 5 a 7 cortes pelo tempo.
+   gravado, *Aprovar roteiro* funciona e a sugestão de cenas é local. O app ainda escreve que o gancho "vira 2 ou 3 cenas no passo Cenas", mas a regra é a da seção 9: ~1 corte por segundo de gancho (4 s = 4 cortes).
    A imagem de cada frase é só o MOMENTO, não a cena final.
 3. **Voz**: *Importar áudio* (pode soltar 2: gancho + resto, emenda pela ordem do nome).
    **Quando EU edito para o Levi: Acelerar = 1,10x** antes de soltar o áudio (pedido dele 17/11:
@@ -432,7 +432,7 @@ seleção de cenas". Não deixe para corrigir depois.
 cena no hook, errou na música e nos efeitos sonoros, isso nunca mais pode acontecer"). O vídeo saiu
 com 1,9 mil views contra 45 mil do Black Clover. Só entrega com os três itens conferidos com número:
 - **Gancho**:
-  - conte as cenas até a saída do gancho (~5–6 s): no mínimo **5–7 cortes**;
+  - conte as cenas até a saída do gancho: **~1 corte por segundo** (4 s = 4 cortes, 6 s = 5–6), cada um ~0,7–1,5 s e equilibrado. Mais que isso vira picotado: Kikansha E20 (25/11) tinha 6 cortes em 4 s (0,5–1 s) e o Levi pediu "pega as melhores, balanceia mais". Menos que isso vira parado (Overgeared: 3 em 5,6 s);
   - cada cena ≤ 1,2 s e a 1ª ≤ 1 s;
   - só plano com movimento/ação (nada de grupo posando ou rosto parado);
   - 3 cenas em 5,6 s foi o erro;
@@ -486,7 +486,7 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
 - **Gancho**: conte pelo TEMPO, não pelo número (Levi 22/11, Overgeared: 3 cenas em 5,6 s = "muito tempo
   parado"):
   - cada cena ~0,6–1,2 s, a 1ª no máximo ~1 s;
-  - um gancho de ~4–6 s tem **5 a 7 cortes**;
+  - um gancho de ~4–6 s tem **4 a 6 cortes** (~1 por segundo, só os MELHORES planos);
   - a 1ª cena mostra quem a frase cita;
   - ação e movimento; nada de plano parado (grupo posando, rosto quieto);
   - **variedade**: em "cada vez mais fortes", mostre a PROGRESSÃO (Goblin 23/11: três cenas do mesmo dragão = "é o mesmo dragão").
