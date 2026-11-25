@@ -531,7 +531,7 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
   música com voz cantada brigando com a narração (prefira instrumental); nada de silêncio — o vídeo
   inteiro tem música.
 
-  **Guia de músicas do Levi** (pastas no PC dele: G: = `G:\App Resumo\music\`, D: = `D:\Downloads\Kiumaz. assets\music\`):
+  **Guia de músicas do Levi** (pastas no PC dele: G: = `G:\App Resumo\music\`, D: = `D:\Downloads\Kiumaz\2. assets\music\`):
 
   | música (arquivo) | pasta | quando usar | onde entrar |
   |---|---|---|---|
