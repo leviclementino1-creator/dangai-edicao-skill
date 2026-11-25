@@ -356,6 +356,13 @@ seleção de cenas". Não deixe para corrigir depois.
    com o ataque da Rinokis); (6) perder a cena LITERAL da palavra ("espada mágica" tinha a espada
    roxa brilhando 0143; "pega uma garrafa" tinha a mão pegando 0131; "entre os dois" tinha os dois
    no quadro 0163). Confira cada cena contra esses 6 antes de gravar.
+   **E toda candidata passa pelo recorte 9:16 ANTES de ser proposta** (`scripts/vertical.py <saida.jpg>
+   <lista.json>`: 3 quadros de cada clipe já recortados pelo rosto). Das 23 que propus no Nia E08
+   olhando o 16:9, só ~12 ficaram boas no vertical. Caem no 9:16: espada/golpe na HORIZONTAL (0143,
+   0147), dois personagens afastados (0163 "entre os dois", 0119 Nia + lâmina, 0115 Nia + espadachim
+   — só com câmera livre), mão/ombro sem rosto (0014), vermelho borrado (0113). Ficam bons:
+   um assunto só, composição em pé (lâmina na vertical 0118, olho pelo rasgo 0146, olhos com aura
+   0278), plano médio. Clipe que só fica bom no fim pede `entrada` perto do fim (0167, 0164).
 7. **Enquadramento** `focusX` no rosto/ação (motor de rostos, fx=(cx−0,158)/0,684). Se o
    personagem anda: Câmera livre > Seguir o rosto — e confira (seção 4).
    **(23/11, Goblin S01E08) CÂMERA LIVRE É PADRÃO, não exceção:**
