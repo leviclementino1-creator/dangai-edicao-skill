@@ -1,15 +1,15 @@
-import json, glob, os
+# uso: folhas-ep.py <pasta do episodio cortado (com metadata/shots.json)> <saida> [projeto.dangai]
+import json, os, sys
 from PIL import Image, ImageDraw, ImageFont
 
-B = 'G:/App Corte Cenas/Output/Nia Liston The Merciless Maiden/S01E08'
-S = r'C:\Users\levic\AppData\Local\Temp\claude\f78c88a91d52f2f5\e6c6941a-74d2-41c1-9f4c-718121aa3fe8\scratchpad\nia\ep'
+B, S = sys.argv[1], sys.argv[2]
 os.makedirs(S, exist_ok=True)
 shots = json.load(open(B + '/metadata/shots.json', encoding='utf-8'))
-proj = glob.glob('G:/Dangai Recap/Biblioteca/_projetos/Nia Liston The Merciless S01E08 - 2026-11-24 13h15/*.dangai')[0]
-p = json.load(open(proj, encoding='utf-8'))
 usados = {}
-for n, s in enumerate(p['plan']['scenes'], 1):
-    usados.setdefault(p['images'][s['imageIndex']]['fileName'][:4], []).append(n)
+if len(sys.argv) > 3:
+    p = json.load(open(sys.argv[3], encoding='utf-8'))
+    for n, s in enumerate(p['plan']['scenes'], 1):
+        usados.setdefault(p['images'][s['imageIndex']]['fileName'][:4], []).append(n)
 f = ImageFont.truetype('arialbd.ttf', 15)
 TW, TH, COLS, ROWS = 256, 144, 8, 7
 per = COLS * ROWS

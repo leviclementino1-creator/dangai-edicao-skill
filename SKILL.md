@@ -172,7 +172,7 @@ app, sem mexer no `.dangai` em disco, sem clicar por coordenada, sem print da te
 | `listar_cenas` (de, ate) | cena n (1 = a 1ª): início/fim, clipe, entrada, focoX, efeito, câmera, grid, zoom fixo |
 | `ver_cenas` (cenas[]) | **IMAGEM** do 1º e do último quadro de cada cena no recorte 9:16 (o folha-final, em ~1 s) |
 | `ver_clipe` (caminho, focoX) | 8 quadros do clipe inteiro no 9:16 → escolher o **melhor momento** (entrada) |
-| `editar` (lote) | TUDO num pedido: `cenas[]` {cena, clipe, entrada, focoX, efeito, intensidade, zoomFixo, origemDoZoom, camera:"desligar", grid:{clipe,entrada,focoX}\|"desligar"}, `sons.adicionar/remover`, `imagens.adicionar/remover` (seta: x/y em % do quadro, escala, rotacao), `legenda` (campos caption*), `textos` {titulos, descricao, hashtags} |
+| `editar` (lote) | TUDO num pedido: `cenas[]` {cena, clipe, entrada, focoX, efeito, intensidade, zoomFixo, origemDoZoom, **camera:{pontos:[{t,cx,cy,zoom}]}**\|"desligar", **curva** (constante/suave/acelera/freia/chega-rapido), **curvaPontos**, grid:{clipe,entrada,focoX}\|"desligar"}, `sons.adicionar/remover`, `imagens.adicionar/remover` (seta: x/y em % do quadro, escala, rotacao), `legenda` (campos caption*), `textos` {titulos, descricao, hashtags} |
 | `listar_faixas` | sons e imagens por cima com id (para remover) |
 | `desfazer` | volta o último `editar` |
 | `buscar_na_biblioteca` | clipes de qualquer episódio por texto/personagem/episódio/anime; `favoritas: true` = só as da estrela; `episodio` + `perto: "mm:ss"` (+ `raio`) = só as cenas daquele trecho |
@@ -374,15 +374,34 @@ seleção de cenas". Não deixe para corrigir depois.
    `scripts/camera-previa.py <saida.jpg> <lista.json>` ([cena, clipe, entrada, duração, cxDe, cxAté,
    nota], cx = posição na largura da fonte; no .dangai x = (0,5 − cx) × 100). Só não salva quando
    os dois estão embolados/de costas no meio do movimento (0163).
-7. **Enquadramento** `focusX` no rosto/ação (motor de rostos, fx=(cx−0,158)/0,684). Se o
+7. **Enquadramento** `focusX` no rosto/ação (motor de rostos, fx=(cx−0,158)/0,684).
+   **No GRID a conta é outra** (cada metade 1080x960 pega 0,633 da largura do 16:9):
+   **fx = (cx − 0,316) / 0,367**. A Edição rápida já calcula certo nas duas metades; não "corrija"
+   com a fórmula da tela cheia (Kikansha E08, 25/11: errei 4 grids assim e voltei). O
+   `foco-certo.py` marca `GRID(cima)` nessas cenas: ali o "fx certo" dele NÃO vale. Se o
    personagem anda: Câmera livre > Seguir o rosto — e confira (seção 4).
    **(23/11, Goblin S01E08) CÂMERA LIVRE É PADRÃO, não exceção:**
    - Use câmera livre em toda cena em que o assunto se mexe (personagem andando, dragão virando, golpe, voo), **de qualquer duração, até as curtas do gancho** (Levi: "tem cenas menores que as vezes precisam também de movimento"). Também nas cenas com vários personagens, indo de um pro outro. O tempo da cena não é critério; o que vale é ter movimento pra acompanhar ou mais de um assunto.
-   - Como se escreve: no `.dangai`, `camera:{from:{scale:1,x,y:0},to:{...},source:true,keys:[]}`. O `x` é em % da imagem a partir do centro, e x positivo mostra o que está à esquerda. O MCP `editar` não grava câmera.
+   - **Como se escreve (MCP, 2.13.2+):** `editar {cenas:[{cena, camera:{pontos:[{t:0, cx:0.25}, {t:1, cx:0.6}]}, curva:"chega-rapido"}]}`.
+     Você diz ONDE O ASSUNTO ESTÁ no quadro 16:9 original (`cx` 0 = esquerda, 1 = direita; `cy` 0 = topo,
+     1 = base; `zoom` 1–3) em cada momento `t` da cena (0 = começo, 1 = fim). Pontos no meio (0<t<1)
+     seguem quem anda (ex.: `[{t:0,cx:.3},{t:.5,cx:.55},{t:1,cx:.4}]`). O MCP converte para o `x/y` do
+     núcleo (x = (0,5 − cx) × 100) e **prende na borda** — "ponto parado na borda" no retorno = o
+     assunto está fora do alcance naquele zoom (aumente o zoom ou aceite). `listar_cenas` devolve a
+     câmera na mesma língua (`camera.pontos` com cx/cy/zoom) e a `curva`. Sem MCP: o `.dangai`
+     (`camera:{from,to,source:true,keys:[]}`, x positivo mostra o que está à esquerda) + `abrir_projeto`.
+   - **O gráfico (ritmo) da cena** = `curva`: `constante` (linear: pan contínuo, bom em quem anda),
+     `suave` (acelera e freia — o padrão), `acelera`, `freia`, **`chega-rapido`** (o pan do Levi:
+     `[0,0,0.052,0.964]`, chega rápido e assenta — use no pan de um personagem pro outro) ou
+     `curvaPontos: [x1,y1,x2,y2]` para desenhar. A curva vale para a câmera livre E para o efeito.
    - Pra o que não é rosto (dragão, monstro, objeto), o detector não ajuda: meça a posição no quadro.
    - **Como o Levi faz o pan** (Nia E08 24/11, cena do ataque): começa no assunto mais longe (x −25), termina no centro (x 0), com `curvePoints: [0,0,0.052,0.964]`: chega rápido e assenta (ease-out). Copie essa curva.
    - **Cenas seguidas com o mesmo plano/ângulo do mesmo personagem = "são iguais"** (Nia E08: 0116 e 0102). Troque uma por outra ação (ajoelhada, de lado, com outro personagem).
-   - **Confira SEMPRE no MP4 renderizado**, com uma linha no meio, no começo, no meio e no fim da cena. O `ver_cenas` ignora a câmera e o movimento dentro da cena; eu errei a cena 5 três vezes confiando nele.
+   - **Confira a câmera no `ver_cenas`** (2.13.2+): cena com câmera livre sai com **3 quadros** (começo,
+     meio e fim do caminho, com o ritmo da curva, o x E o y e o zoom). Medido contra o preview real no
+     Laid-Off (25/11): mesmo enquadramento, ~2–3% de diferença na altura. Antes (até a 2.13.1) ele
+     mostrava só as pontas e sem o y — foi assim que errei a cena 5 três vezes. Depois do render,
+     ainda vale o `centro-render.py` (abaixo) para o rosto no meio.
    - **POR QUE EU DESCENTRALIZAVA (medido 24/11, Nia E08, 59 cenas):** o app e a conta estão
      CERTOS — o rosto previsto pelo focusX bate com o render com 1–4% de erro. O erro era MEU:
      ajustei o focoX "no olho" e na direção errada (cenas 5, 7, 18, 57: certos 0,27/0,34/0,19/0,60,
@@ -434,9 +453,9 @@ com 1,9 mil views contra 45 mil do Black Clover. Só entrega com os três itens 
   - abertura = pop, gancho→contexto = riser, troca de música = sharp riser + impact.mp3.
 
 **Conferência final obrigatória**: `scripts/folha-final.py <projeto.dangai> <saida>` (ou o
-`ver_cenas` do MCP) — o recorte do focusX, 1º e último quadro. Olhe TODAS antes de entregar; o Levi
-não pode ser quem acha. **Ela não mostra a câmera livre, o zoom fixo nem o movimento dentro da cena**:
-essas cenas se conferem em quadros do MP4 renderizado (item 7).
+`ver_cenas` do MCP) — o recorte do focusX (1º e último quadro) ou da câmera livre (começo, meio e
+fim, desde a 2.13.2). Olhe TODAS antes de entregar; o Levi não pode ser quem acha. O `folha-final.py`
+NÃO mostra a câmera livre: para ela, o `ver_cenas` ou quadros do MP4 renderizado (item 7).
 
 **E as 3 medidas, com número, não a olho** (Laid-Off S01E07, 17/11: o Levi achou olho gigante,
 Nina no canto, boca sem olhos, rosto no copo e um começo borrado — tudo que a folha pequena

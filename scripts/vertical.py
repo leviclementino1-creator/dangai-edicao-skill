@@ -4,7 +4,8 @@ sys.path.insert(0, r'G:\ClaudeEditor\dangai\modulos\recap\motor')
 from app.matching.face_detector import AnimeFaceDetector
 from PIL import Image, ImageDraw, ImageFont
 
-B = 'G:/App Corte Cenas/Output/Nia Liston The Merciless Maiden/S01E08'
+# uso: vertical.py <saida.jpg> <lista.json> [pasta do episodio cortado]
+B = sys.argv[3] if len(sys.argv) > 3 else 'G:/App Corte Cenas/Output/Nia Liston The Merciless Maiden/S01E08'
 OUT = sys.argv[1]
 T = json.loads(open(sys.argv[2], encoding='utf-8').read())  # [[cena, shot, nota, fx_manual|null], ...]
 det = AnimeFaceDetector()

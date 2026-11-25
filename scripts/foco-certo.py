@@ -3,9 +3,11 @@ import numpy as np
 sys.path.insert(0, r'G:\ClaudeEditor\dangai\modulos\recap\motor')
 from app.matching.face_detector import AnimeFaceDetector
 
+# uso: foco-certo.py <projeto.dangai> <pasta>  (a pasta pode ter o render.json do centro-render.py; sem ele, so a fonte)
+import os
 proj, S = sys.argv[1], sys.argv[2]
 p = json.load(open(proj, encoding='utf8'))
-rend = {r['cena']: r for r in json.load(open(S + '/render.json'))}
+rend = {r['cena']: r for r in json.load(open(S + '/render.json'))} if os.path.exists(S + '/render.json') else {}
 det = AnimeFaceDetector()
 W, H = 640, 360
 
@@ -19,10 +21,11 @@ def quadro(path, t):
 
 
 for k, s in enumerate(p['plan']['scenes']):
-    r = rend[k + 1]
+    r = rend.get(k + 1, {'camera': bool(s.get('camera')), 'cx_render': [None, '-', None]})
     if r['camera'] or r['cx_render'][1] is None:
         continue
     im = p['images'][s['imageIndex']]
+    grid = ' GRID(cima)' if s.get('imageIndexB') is not None else ''
     ss = s.get('sourceStart') or 0
     d = s['end'] - s['start']
     t = ss + d / 2
@@ -38,4 +41,4 @@ for k, s in enumerate(p['plan']['scenes']):
         certo = round(min(1, max(0, (c - 0.158) / 0.684)), 3)
     else:
         certo = None
-    print(f"cena {k+1:2d} {im['fileName'][:4]} entrada {ss:5.2f} fx {fx:.3f} | rosto fonte {caras} -> previsto no 9:16 {prev} | medido no render {r['cx_render'][1]} | fx certo {certo}")
+    print(f"cena {k+1:2d} {im['fileName'][:4]} entrada {ss:5.2f} fx {fx:.3f} | rosto fonte {caras} -> previsto no 9:16 {prev} | medido no render {r['cx_render'][1]} | fx certo {certo}{grid}")
