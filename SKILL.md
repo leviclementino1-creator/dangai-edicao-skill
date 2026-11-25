@@ -444,6 +444,7 @@ com 1,9 mil views contra 45 mil do Black Clover. Só entrega com os três itens 
 - **Música**:
   - **nunca aceitar a música da Edição rápida sem conferir**: troque pela do guia (seção 4, "MÚSICA — como escolher": a tabela do Levi ou o `guia-de-musicas.local.md` da pessoa), conforme o clima de cada parte;
   - ação/progressão = Montagem Batchi no gancho → instrumental na virada;
+  - **uma música só depois do gancho**, sem trocar a cada parte (Levi 25/11, Kikansha: a Edição rápida pôs 3 músicas, uma por parte, e ele achou "estranhas, em momentos errados"). Se a faixa não cobre o vídeo, **recomece a mesma faixa no drop** numa virada de parte, onde já tem o riser e o impacto.
   - ELSE PARIS e Afternoon of Konoha num vídeo de ação foi o erro;
   - nível ~−26 LUFS efetivo (medido), gancho com música audível (sem ducking, sem fade longo), drop no riser.
 - **SFX**:
