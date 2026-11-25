@@ -348,6 +348,14 @@ seleção de cenas". Não deixe para corrigir depois.
    `scripts/categorias.py <pasta> <cats.json>` (ex.: personagem principal / arma / luta). Escolha
    pelas folhas de assunto, e cena de outro momento do ep vale se bate com a palavra (fora de
    ordem ok). Ação com movimento > close parado.
+   **Os 6 erros que achei revendo o Nia E08 inteiro (25/11, 23 de 59 cenas trocáveis):**
+   (1) close parado onde havia ação (c21 "habilidades" = rosto; havia o golpe 0147);
+   (2) a frase cita um e mostrei outro (c35 "a Nia não era normal" com o espadachim; c34 "o
+   espadachim percebe" com mãos sem rosto); (3) cena escura/estilizada ilegível no 9:16 (c15 vermelho
+   borrado); (4) plano aberto com gente minúscula (c10, c41); (5) repetir o mesmo plano (c14 e c26
+   com o ataque da Rinokis); (6) perder a cena LITERAL da palavra ("espada mágica" tinha a espada
+   roxa brilhando 0143; "pega uma garrafa" tinha a mão pegando 0131; "entre os dois" tinha os dois
+   no quadro 0163). Confira cada cena contra esses 6 antes de gravar.
 7. **Enquadramento** `focusX` no rosto/ação (motor de rostos, fx=(cx−0,158)/0,684). Se o
    personagem anda: Câmera livre > Seguir o rosto — e confira (seção 4).
    **(23/11, Goblin S01E08) CÂMERA LIVRE É PADRÃO, não exceção:**
