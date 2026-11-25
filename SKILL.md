@@ -341,6 +341,13 @@ seleção de cenas". Não deixe para corrigir depois.
 6. **Nada cortado nem borrado**: cabeça/olhos não colados na borda (lembre do zoom-in: ele aperta
    mais no fim — com rosto no topo, use zoom-out); sem borrão de alguém passando no começo; sem
    o borrão/transição do fim do clipe; sem tela vazia (janela, manga, nuca, costas).
+6b. **ANTES de escolher, veja o episódio INTEIRO por assunto** (Levi 25/11, Nia E08: "tinha MUITAS
+   CENAS MELHORES do espadachim, da luta, da espada"). Eu escolhia frase por frase perto do momento
+   e perdia os melhores planos (olhos sob o chapéu, golpes com rastro, corpo a corpo, salto).
+   Faça `scripts/folhas-ep.py` (todas as cenas, marcando as usadas) e separe por assunto com
+   `scripts/categorias.py <pasta> <cats.json>` (ex.: personagem principal / arma / luta). Escolha
+   pelas folhas de assunto, e cena de outro momento do ep vale se bate com a palavra (fora de
+   ordem ok). Ação com movimento > close parado.
 7. **Enquadramento** `focusX` no rosto/ação (motor de rostos, fx=(cx−0,158)/0,684). Se o
    personagem anda: Câmera livre > Seguir o rosto — e confira (seção 4).
    **(23/11, Goblin S01E08) CÂMERA LIVRE É PADRÃO, não exceção:**
