@@ -511,6 +511,26 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
      (gainDb = −26 − LUFS do trecho). A Edição rápida antiga deixava ~−30 ("muito baixa").
   7. **Confira ouvindo** o começo (gancho → riser → drop) e cada troca antes de entregar.
 
+  **O BÁSICO (vale para qualquer pessoa, com ou sem guia):** classifique as músicas da pasta dela
+  ouvindo a onda (energia, batida, subida → drop) e use esta tabela. O guia pessoal só afina (qual
+  arquivo, que segundo).
+
+  | clima da parte | que música | como entrar |
+  |---|---|---|
+  | **gancho** (os 5 s que decidem o alcance) | a mais forte do vídeo: batida marcada, phonk/trap/rock, ou a OP do anime instrumental | audível desde o 0 s; o drop/refrão bate no fim do riser |
+  | **ação, luta, progressão, "aura"** | phonk, trap, rock/OP de anime de ação: grave forte, altos e baixos | entrar no drop ou na parte mais cheia |
+  | **épico, virada, "tudo dando certo do nada"** | orquestral/OST épica ou OP crescendo | entrar já no pico ("com tudo"), não na intro |
+  | **emocional, história triste, passado do personagem** | piano/cordas, OST lenta, instrumental de balada | pular a intro vazia; entrar onde a melodia começa |
+  | **romance** | instrumental de pop/balada, lo-fi suave | trecho melódico, sem batida pesada |
+  | **suspense, mistério** | drone, batida lenta, pad grave | só se o suspense durar (15 s+); senão não troca |
+  | **comédia, slice of life** | leve, ukulele/piano saltitante, lo-fi animado | qualquer trecho alegre; evitar em vídeo de ação |
+  | **curiosidade / explicação neutra** | lo-fi, instrumental neutra, sem drama | pular silêncio do começo; volume constante |
+
+  Regras de bolso: **uma música por clima, não por frase** (trocar demais cansa); a do **gancho é a
+  melhor** do vídeo; música muito específica (tema de um anime, meme) só no anime/clima dela; nunca
+  música com voz cantada brigando com a narração (prefira instrumental); nada de silêncio — o vídeo
+  inteiro tem música.
+
   **Guia de músicas do Levi** (pastas no PC dele: G: = `G:\App Resumo\music\`, D: = `D:\Downloads\Kiumaz. assets\music\`):
 
   | música (arquivo) | pasta | quando usar | onde entrar |
