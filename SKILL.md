@@ -50,7 +50,11 @@ Perguntas (AskUserQuestion, no máximo 4 por vez, a recomendada primeiro):
    (fontNome diferente = a fonte do preset não está instalada neste PC: avise).
 3. **Cenas favoritas** (a estrela da Biblioteca — tem N): usar primeiro quando servirem / só no
    gancho / não usar.
-4. **Música e efeitos:** os da Edição rápida (padrão) / uma pasta sua / sem música.
+4. **Música e efeitos:** onde estão as músicas da pessoa e **o guia dela** (qual música para qual
+   clima e onde entrar). É o Levi: o guia dele já está na seção 4. Outra pessoa sem guia: monte com ela
+   o `guia-de-musicas.local.md` (nesta pasta, fora do git) seguindo `prompts/guia-de-musicas.md` —
+   liste a pasta de músicas, ouça a onda de cada uma (o drop/entrada) e pergunte o clima. Sem guia, a
+   Edição rápida escolhe sozinha, mas aí CONFIRA cada música com a pessoa antes de entregar.
 5. **Seta e outros overlays:** arquivo da seta + o som dela (o Levi: seta Pngtree + Ping), ou não usar.
 6. **Cena ruim que eu achar na conferência:** troco direto (padrão do Levi: "sim ué") ou pergunto antes.
 7. **Título, descrição e hashtags:** eu escrevo no fim (`editar.textos`) ou você faz.
@@ -419,7 +423,7 @@ com 1,9 mil views contra 45 mil do Black Clover. Só entrega com os três itens 
     e olhos vermelhos da luta de noite, 0278/0301/0280/0287). Close parado e plano calmo ficam
     pro meio do vídeo.
 - **Música**:
-  - **nunca aceitar a música da Edição rápida sem conferir**: troque pela do guia do Levi (lista acima, "Qual música para qual clima"), conforme o clima de cada parte;
+  - **nunca aceitar a música da Edição rápida sem conferir**: troque pela do guia (seção 4, "MÚSICA — como escolher": a tabela do Levi ou o `guia-de-musicas.local.md` da pessoa), conforme o clima de cada parte;
   - ação/progressão = Montagem Batchi no gancho → instrumental na virada;
   - ELSE PARIS e Afternoon of Konoha num vídeo de ação foi o erro;
   - nível ~−26 LUFS efetivo (medido), gancho com música audível (sem ducking, sem fade longo), drop no riser.
@@ -487,40 +491,51 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
 
 ## 4. Depois de abrir no editor (gosto do Levi, com a Edição rápida)
 
-- **Música**: a da Edição rápida é melhor que a minha (feedback dele 13/11) — não trocar por gosto.
-  O que ele cobra: **o clímax (drop) da música entra junto com o fim do riser** da saída do gancho.
-  Conferir na trilha: a 1ª música tem `inicioSec` = (drop do arquivo − saída do gancho), não o
-  começo do arquivo. Entre 17/11 (e7e2dfc) e 18/11 (8c42e64) a Edição rápida tirava o drop
-  quando a faixa mal cobria o trecho; projeto montado nessa janela precisa de conserto.
-  **O detector de drop (`entradas.ts`) adianta nas músicas com subida antes da pancada**: na
-  Montagem Batchi marcou 16,9 s e o clímax é 19,2 s (o Levi corrigiu à mão: `inicioSec` 13,08 =
-  19,2 − 6,15). Sempre conferir o drop pela onda (RMS de 0,2 s: o salto do grave/batidas) antes
-  de entregar. No Laid-Off ele também tirou a 2ª música (Naruto): uma música só no vídeo todo.
-- **Música no GANCHO** (Levi 22/11: "parece que começa sem música"): a Edição rápida põe a 1ª música a
-  −18 dB, com fade-in de 1,2 s e ducking −6 dB sob a voz, num trecho antes do drop que é só batida → some
-  embaixo da narração. Conserto no `.dangai`: dividir a 1ª trilha em duas — o pedaço do gancho (`usarSec` =
-  saída do gancho) a −15 dB, `ducking: null`, `fadeInSec` 0,05; o resto a partir do drop
-  (`at` = saída do gancho, `inicioSec` = segundo do drop no arquivo). Fica contínuo e o drop cai no riser.
-- **Volume da música** (22/11): a Edição rápida deixa cada faixa ~−30 LUFS no mix (≈20 dB abaixo da voz) e
-  acharam "muito baixa". Meça (ebur128 no trecho usado) e deixe ~−26 LUFS efetivos (gainDb = −26 − LUFS do trecho).
-  **NUNCA o "som do sino" como impacto** (Levi 22/11: "nunca mais faz isso!"): a Edição rápida põe; troque
-  por `impact.mp3` no instante da troca de música.
-- **Qual música para qual clima (guia do Levi, 22/11)**, pastas `G:\App Resumo\music\` e
-  `D:\Downloads\Kiumaz\2. assets\music\`:
-  - **Ação / progressão** — a preferida dele é **Montagem Batchi**:
-    - gancho na *MONTAGEM BATCHI (Super Slowed + Reverb)* (D:);
-    - na virada gancho→contexto troca para *MXZI, Rushex - Montagem Batchi (Instrumental HQ)* (G:), cortando em ~0:25 da slowed e emendando em ~0:19 da instrumental;
-    - meio do vídeo: *SPECIALZ* (JJK, muitos altos e baixos), *Where Our Blue Is* (entra em 0:46 "com tudo", épico/aventura) ou *Kaikai Kitan* (situacional);
-    - *X-GALACTICO*: início de vídeo de ação, se pegar a parte certa (mais da Kizuni). Nunca em romance.
-  - **Black Clover**: *Haruka Mirai* no gancho e no pós-gancho (refrão em ~0:14, com o contexto).
-  - **Pós-gancho genérico**: *ATLXS - PASSO BEM SOLTO* (cabe em quase tudo, até no vídeo todo), *MENTE MÁ* (animada, entra em 0:07) ou *NO BATIDÃO* (aura, entra em 0:15).
-  - **Emocional / história de personagem**:
-    - *MY HERO IS OUR HERO* (começo, ou 1:44 para épico/emocionante no meio);
-    - *River's End* (triste e baixa: entrar em ~1:20);
-    - *We Don't Talk Anymore* (também serve para romance).
-  - **Curiosidade / romance neutro**: *no signal (slowed)* ou *CLIMA LINDO* (entrar em ~0:10; slice of life e comédia, nada emocional/épico).
-  - **Muito específicas**: *ELSE PARIS* só em suspense longo; *Naruto Afternoon of Konoha* só em comédia slice of life. A Edição rápida pôs as duas no Overgeared (ação), o que está errado para esse tipo de vídeo.
-  - Lista completa com caminhos na memória `musicas-kiumaz`.
+- **MÚSICA — como escolher (o jeito do Levi, 22–25/11; ele: "depois que eu expliquei você está aplicando bem")**.
+  A Edição rápida já tenta seguir isto, mas **nunca aceite a música dela sem conferir** (no Overgeared
+  ela pôs ELSE PARIS e Afternoon of Konoha num vídeo de ação, baixas, e o vídeo flopou). Passo a passo:
+  1. **Leia o clima de cada parte do roteiro** (gancho, contexto, virada, clímax, fechamento): ação /
+     progressão, épico ("tudo dando certo do nada"), emocional / história triste, romance, suspense,
+     comédia / slice of life, curiosidade neutra.
+  2. **Escolha pela tabela do guia** (abaixo, ou o `guia-de-musicas.local.md` da pessoa — seção 00).
+     Música específica (ELSE PARIS, Naruto) só no clima EXATO e num trecho de 15 s ou mais.
+  3. **Gancho**: a música já entra **audível** desde o 0 s — sem ducking, sem fade-in longo
+     (`fadeInSec` 0,05), um pouco mais alta que o resto. Em ação/progressão, o combo da Batchi.
+  4. **O drop cai no fim do riser** (a saída do gancho): `inicioSec` = segundo do drop no arquivo −
+     saída do gancho. Ache o drop OUVINDO A ONDA (RMS de 0,2 s: o primeiro bumbo/grave forte depois
+     da subida), não confie cego no detector (`entradas.ts` adiantava na Batchi: 16,9 s × 19,2 s).
+  5. **Troque de música quando o clima mudar** (ex.: a história fica triste no meio): a nova entra
+     no ponto bom dela (a coluna "onde entrar"), com **sharp riser + impact.mp3** no corte da troca.
+     Não troque sem mudança de clima — **uma música só no vídeo todo é ok** (o Levi tirou a 2ª no Laid-Off).
+  6. **Volume**: ~−26 LUFS efetivos no mix (≈12 LU abaixo da voz). Meça com ebur128 no trecho usado
+     (gainDb = −26 − LUFS do trecho). A Edição rápida antiga deixava ~−30 ("muito baixa").
+  7. **Confira ouvindo** o começo (gancho → riser → drop) e cada troca antes de entregar.
+
+  **Guia de músicas do Levi** (pastas no PC dele: G: = `G:\App Resumo\music\`, D: = `D:\Downloads\Kiumaz. assets\music\`):
+
+  | música (arquivo) | pasta | quando usar | onde entrar |
+  |---|---|---|---|
+  | **MONTAGEM BATCHI (Super Slowed + Reverb) [BRAZILIAN PHONK].m4a** → **MXZI, Rushex - Montagem Batchi (Instrumental HQ).m4a** | D: → G: | a preferida dele, ação/progressão: o gancho na slowed e, na virada gancho→contexto, troca para a instrumental | corta em ~0:25 da slowed e emenda em ~0:19 da instrumental |
+  | ATLXS - PASSO BEM SOLTO instrumental.mp3 | G: | pós-gancho genérico; cabe em quase tudo, até no vídeo todo | — |
+  | Black Clover - Haruka Mirai (OP1 - Filtered Instrumental).mp3 | G: | gancho e pós-gancho, **só em Black Clover** | o refrão em ~0:14, junto com o contexto |
+  | Boku No Hero Academia Movie OST - MY HERO IS OUR HERO - Futari No Hero.mp3 | G:/D: | emocional, história de personagem de shounen | o começo; ~1:44 para épico/emocionante no meio |
+  | CLIMA LINDO.m4a | G: | curiosidade, slice of life, comédia (neutra: nada emocional/épico) | ~0:10 |
+  | ELSE PARIS (MUSICA DE SUSPENSE DO TIKTOK).mp3 | G: | só suspense que dure o bastante (raro) | — |
+  | GLICHERY, MXCCREE, DJ GLICHEKY - X-GALACTICO (SLOWED) (1).m4a | G: | começo de vídeo de ação, se pegar a parte certa (mais da Kizuni); nunca romance | — |
+  | Jujutsu Kaisen Season 2 Opening 2 King Gnu - SPECIALZ (Instrumental).mp3 | G: | ação, muitos altos e baixos; boa entrada no meio do vídeo | — |
+  | Naruto - Afternoon of Konoha.mp3 | G: | MUITO específica: só comédia bem slice of life (raro) | — |
+  | no signal (slowed).m4a | G: | curiosidade e romance (neutra) | — |
+  | We Don't Talk Anymore Instrumental - Mighty Seven (youtube).mp3 | G: | romance e partes emocionais | — |
+  | Where Our Blue Is (Instrumental).mp3 | G: | épico, ação, aventura, "tudo dando certo do nada" | ~0:46 (já entra com tudo) |
+  | Echoes of the Eye Soundtrack - River’s End.mp3 | D: | histórias tristes e emocionais (é mais baixa) | ~1:20 |
+  | Kaikai Kitan - Eve (Instrumental).mp3 | D: | ação, mas situacional | — |
+  | MENTE MÁ (Instrumental).mp3 | D: | genérica, historinha mais animada; também no meio | ~0:07 |
+  | NO BATIDÃO - ZXKAI Instrumental.mp3 | D: | animadíssima, "aura" | ~0:15 |
+
+  Resumo por clima: **ação/progressão** = Batchi no gancho → SPECIALZ, Where Our Blue Is (0:46) ou
+  Kaikai Kitan nas partes épicas; **emocional** = MY HERO IS OUR HERO, River's End (1:20) ou We Don't
+  Talk Anymore; **curiosidade/romance neutro** = no signal ou CLIMA LINDO (0:10); **Black Clover** =
+  Haruka Mirai. Outra pessoa: o guia dela (seção 00), nunca o do Levi com arquivos que ela não tem.
 - **SFX**: os da Edição rápida (pop abre, riser metálico no gancho, riser+impacto na troca de
   música) + no máximo alguns **ligados a uma ação visível**, baixos. Nada de meme (sus, among us,
   "wow") — ele chamou de "aleatórios".
