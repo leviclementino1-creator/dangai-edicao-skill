@@ -428,6 +428,36 @@ seleção de cenas". Não deixe para corrigir depois.
 14. **Sem sangue/violência gráfica em destaque** (corpo ensanguentado no chão) e nada que fira a
     regra da plataforma.
 
+**AS 12 CORREÇÕES DO KIKANSHA S02E20 (25/11) — conferir TODAS antes da 1ª entrega.** O Levi pediu
+"analisa e anota pra nunca mais errar". Cada uma ele teve que pedir:
+1. **Episódio em baixa resolução**: baixei 480p e só ele notou. Antes de cortar, `ffprobe` a resolução;
+   < 720p → avise e peça o 1080p. O corte novo sai igual: reaproveite as escolhas pelo TEMPO (`start` do
+   plano), não pelo número (a numeração anda).
+2. **Música que troca a cada parte** ("estranhas, em momentos errados"): uma música depois do gancho.
+3. **Música entrando DEPOIS da batida principal**: medi RMS em janela de 0,25 s e entrei 0,5 s atrasado.
+   Ache a pancada pela **onda** (`showwavespic` do trecho + RMS de 40 ms) e ponha `inicioSec` = pancada − 0,02.
+4. **Clima errado na virada**: a parte sentimental/épica (corpo no limite, lembranças, magia final) pedia
+   MY HERO IS OUR HERO. Entrada boa em **1:45,4** (volta com tudo depois da pausa), na virada com riser +
+   impacto. Não voltar pra música do começo no fechamento ("não combina"): a mesma segue até o fim.
+5. **Gancho com cena demais**: 6 cortes em 4 s. ~1 corte por segundo, só os melhores.
+6. **Close extremo no gancho** (rosto gritando enchendo a tela + zoom-in): plano médio, zoom-out.
+7. **Cena abstrata sozinha** (dragão de luz em "magia humana": "n entendo nada"): troque por REAÇÃO de
+   personagem (grid Zod sorrindo × Priscilla surpresa).
+8. **Cena feia no grid** (só os olhos da Priscilla: "mt grande", "tem q ser cenas bonitas"): a metade do
+   grid também é plano médio bonito (luz, cabelo ao vento).
+9. **Metade de baixo do grid descentralizada**: o `ver_cenas` não desenha a de baixo e a minha simulação
+   com ffmpeg não bateu com o app. Confira a de baixo **num quadro do MP4** (ou no preview) e corrija.
+10. **Último quadro do clipe é a cena seguinte** (apareceu céu no fim do grid): `entrada + duração ≤
+    clipe − 0,1 s`; olhe o último quadro de cada cena no MP4.
+11. **Sem seta e sem SFX** ("n tem seta pra colocar? efeito sonoro?"): a 1ª entrega já vai com a seta
+    dele + Ping num detalhe que a fala cita e SFX nas ações visíveis (magia, impacto). Biblioteca Eagle
+    Kiumaz/efeitos sonoros (Sparkling Spell, Telekinesis Blast, Ping, Explosion...). SFX longo (>3 s) não
+    entra pelo MCP sem cortar.
+12. **SFX baixo demais**: os risers/impactos da Edição rápida ficaram ~14 dB abaixo da voz (sumiam).
+    Meça o LUFS de cada arquivo e ponha o efeito ~6–8 dB abaixo da voz (`gainDb` = alvo − LUFS do arquivo).
+Também: no 2.13 o corte do "Analisar" vai para `G:\Dangai Recap\Biblioteca\<anime>\SxxEyy` (não a pasta
+do AnCut), e o painel "Vídeo pronto" aberto engole o clique em Renderizar: feche (Fechar) antes.
+
 **TRAVA ANTES DE ENTREGAR: gancho, música e SFX** (Levi 22/11, Overgeared S01E09: "errou colocando pouca
 cena no hook, errou na música e nos efeitos sonoros, isso nunca mais pode acontecer"). O vídeo saiu
 com 1,9 mil views contra 45 mil do Black Clover. Só entrega com os três itens conferidos com número:
