@@ -363,6 +363,13 @@ seleção de cenas". Não deixe para corrigir depois.
    — só com câmera livre), mão/ombro sem rosto (0014), vermelho borrado (0113). Ficam bons:
    um assunto só, composição em pé (lâmina na vertical 0118, olho pelo rasgo 0146, olhos com aura
    0278), plano médio. Clipe que só fica bom no fim pede `entrada` perto do fim (0167, 0164).
+   **Mas dois personagens lado a lado NÃO é descarte: anima a câmera** (Levi 25/11: "se tiverem 2
+   personagens um do lado do outro, dá pra animar a câmera na vertical"). Câmera livre de um pro
+   outro (Nia com a garrafa → espadachim 0115; Nia → lâmina descendo 0119; cara a cara 0129) e
+   espada deitada = câmera correndo pela lâmina (0143). Prévia no 9:16 antes de gravar:
+   `scripts/camera-previa.py <saida.jpg> <lista.json>` ([cena, clipe, entrada, duração, cxDe, cxAté,
+   nota], cx = posição na largura da fonte; no .dangai x = (0,5 − cx) × 100). Só não salva quando
+   os dois estão embolados/de costas no meio do movimento (0163).
 7. **Enquadramento** `focusX` no rosto/ação (motor de rostos, fx=(cx−0,158)/0,684). Se o
    personagem anda: Câmera livre > Seguir o rosto — e confira (seção 4).
    **(23/11, Goblin S01E08) CÂMERA LIVRE É PADRÃO, não exceção:**
