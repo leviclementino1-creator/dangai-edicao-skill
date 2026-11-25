@@ -390,7 +390,12 @@ com 1,9 mil views contra 45 mil do Black Clover. Só entrega com os três itens 
   - conte as cenas até a saída do gancho (~5–6 s): no mínimo **5–7 cortes**;
   - cada cena ≤ 1,2 s e a 1ª ≤ 1 s;
   - só plano com movimento/ação (nada de grupo posando ou rosto parado);
-  - 3 cenas em 5,6 s foi o erro.
+  - 3 cenas em 5,6 s foi o erro;
+  - **FORTE: cenas impactantes e bem animadas** (Levi 25/11, Nia E08): golpe com rastro, aura, olhos
+    brilhando, espada acesa, salto, impacto, corpo a corpo. Procure nas folhas por assunto o
+    momento MAIS animado do episódio, mesmo de outro trecho (no Nia E08: o espadachim com aura roxa
+    e olhos vermelhos da luta de noite, 0278/0301/0280/0287). Close parado e plano calmo ficam
+    pro meio do vídeo.
 - **Música**:
   - **nunca aceitar a música da Edição rápida sem conferir**: troque pela do guia do Levi (lista acima, "Qual música para qual clima"), conforme o clima de cada parte;
   - ação/progressão = Montagem Batchi no gancho → instrumental na virada;
