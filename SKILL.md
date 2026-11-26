@@ -458,6 +458,64 @@ seleção de cenas". Não deixe para corrigir depois.
 Também: no 2.13 o corte do "Analisar" vai para `G:\Dangai Recap\Biblioteca\<anime>\SxxEyy` (não a pasta
 do AnCut), e o painel "Vídeo pronto" aberto engole o clique em Renderizar: feche (Fechar) antes.
 
+**AS CORREÇÕES DO FOOL NIGHT S01E01 (26/11) — também antes da 1ª entrega.** Levi: "com base em todas
+as mudanças que fizemos nesse vídeo anota". Cada uma ele teve que pedir:
+1. **Gancho impactante desde o 1º quadro** ("lembra de melhorar o hook! deixar impactante!"). A 1ª cena é
+   o protagonista com **EXPRESSÃO forte em PLANO MÉDIO** (choque, grito, choro), nunca close de rosto ("a
+   primeira cena tá mt perto, frame ruim"). Ficou o Toshiro chocado de boca aberta, do peito pra cima.
+2. **Cada cena do gancho conta a frase sozinha e é a imagem MAIS FORTE do assunto.** "Flor no peito" foi
+   recusada ("não gostei, bota uma cena impactante de um esqueleto planta"). Símbolo pequeno < a coisa
+   inteira e bizarra (o esqueleto virando planta dentro da cápsula).
+3. **Olhe o ÚLTIMO quadro de cada cena do gancho**: o clipe do corpo brotando terminava na mão ("no final,
+   trocar pra um outro frame"). Corte antes, ou divida a cena e emende outro plano.
+4. **Use a ABERTURA (e outros episódios) quando ela tem o plano mais forte** (o Levi liberou: "se tiver
+   cenas melhores nos outros eps, na opening pode usar"). O episódio 1 costuma não ter abertura; a do 2
+   tinha o corpo explodindo em plantas. Como fazer:
+   - corte o outro episódio em *Cortar episódios* > "Só cortar". No 2.13 ele vai para `G:\App Corte Cenas\Output`;
+   - o rascunho do Gerar recap só aceita cenas do PRÓPRIO episódio. Grave um clipe longo do episódio como
+     substituto e, depois do *Abrir no editor*, troque pelo MCP: `editar {cena, clipe: <shots/NNNN.mp4 do outro ep>}`;
+   - confira o recorte: a abertura tem créditos em japonês por cima de muitos planos. Escolha um trecho limpo
+     ou desloque o focoX para tirar o texto.
+5. **A imagem LITERAL da frase existe no episódio: procure.** O próprio Levi achou:
+   - "transformar pessoas em plantas": o homem na TV com a árvore crescendo da cabeça (`entrada` no trecho
+     em que a árvore cresce, zoom fixo 1,2 para tirar a borda da TV);
+   - "pagar as contas e os medicamentos da mãe": a farmacêutica pegando o dinheiro no balcão, no lugar
+     do Toshiro curvado de perto.
+   Tela de TV, flashback, documento e balcão contam a frase melhor que um rosto qualquer.
+6. **O Levi mexe no projeto entre um pedido e outro** ("arrumei o timming do hook!"). Antes de editar:
+   `estado` (naoSalvo false) e `listar_cenas` para ler o que ele mudou. Edite só as cenas pedidas, pelo MCP
+   ou num `.dangai` relido na hora, e confirme depois que os tempos dele ficaram iguais.
+7. **A Edição rápida pôs 3 músicas de novo** (MENTE MÁ, River's End e ATLXS). Troque. No Fool Night ficou:
+   - gancho com a Batchi slowed;
+   - contexto com a instrumental, entrando na pancada (19,20 s);
+   - River's End a partir da virada para o drama, com a SUBIDA dela (1:20) caindo num momento-chave
+     ("acaba passando pelo procedimento"). Calcule `inicioSec` = 80 − (momento − at).
+8. **Música baixa no começo** ("a segunda música é bem baixa no começo"). Faixa com dinâmica longa, como
+   a River's End (−21 LUFS antes da subida e −17,5 depois): meça o LUFS de cada trecho usado e, se a
+   diferença passar de ~2 dB, **divida a trilha em duas no `.dangai`, com ganhos diferentes**. Piano entra
+   ~1 dB acima do phonk que vinha antes.
+9. **Seta escondida atrás da legenda.** A legenda Kiumaz fica no meio (y 0,45), então a seta vai ACIMA ou
+   ABAIXO da faixa da legenda (y entre −30 e −15, ou entre +15 e +30). Confira num quadro do MP4.
+10. **SFX:**
+    - o `sons.adicionar` do MCP põe o ARQUIVO INTEIRO. Efeito longo (magia de 49 s, relógio de 8 s) entra
+      pelo `.dangai` com `usarSec` e `fadeOutSec`;
+    - dois sons na MESMA `faixa` com tempos que se cruzam se atropelam. Use outra `faixa` (confira a
+      sobreposição por faixa);
+    - o que funcionou: magia de planta no corpo brotando, caixa registradora no dinheiro, relógio em
+      "dois anos" e Ping junto da seta. Os marcadores ficam 6–8 dB abaixo da voz.
+11. **Dividir uma cena** (o MCP não divide): no `.dangai`, copie o objeto da cena, mude `start`/`end`/
+    `sourceStart`, copie a entrada de `images` trocando `path` e `fileName` (e `rel`, se existir), aponte
+    o `imageIndex` para ela e faça `abrir_projeto`. Guarde backup em `G:	mp-medida\` antes.
+12. **Thumbnail com as imagens que o Levi melhora** (já em pé, 1122x1402):
+    - em cima, a figura com as plantas aproximada (135%) e subida até o peito ficar logo acima do texto;
+    - embaixo, o rosto aproximado (170%) até o cabelo encostar no texto;
+    - mantenha o texto, a seta "apontando" e o rasgo com brilho na cor original;
+    - salve e suba no Drive quando ele pedir ("upa tudo no drive").
+Também ficou valendo:
+- nada de corpo ensanguentado caído (o beco com sangue saiu);
+- close extremo só dentro de grid;
+- 2 grids na discussão (Yomiko × Toshiro).
+
 **TRAVA ANTES DE ENTREGAR: gancho, música e SFX** (Levi 22/11, Overgeared S01E09: "errou colocando pouca
 cena no hook, errou na música e nos efeitos sonoros, isso nunca mais pode acontecer"). O vídeo saiu
 com 1,9 mil views contra 45 mil do Black Clover. Só entrega com os três itens conferidos com número:
