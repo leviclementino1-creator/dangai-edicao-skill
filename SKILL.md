@@ -575,6 +575,7 @@ use a lista "Que imagem para cada tipo de palavra" para escolher cada cena. Folh
   parado"):
   - cada cena ~0,6–1,2 s, a 1ª no máximo ~1 s;
   - um gancho de ~4–6 s tem **4 a 6 cortes** (~1 por segundo, só os MELHORES planos);
+  - **"MANO," no começo tem uma cena SÓ PRA ELE** (Levi 26/11): um corte curto, de 0,3 a 0,6 s, só na palavra "Mano" — um rosto/reação forte de impacto — e o resto da frase começa na cena seguinte ("esse cara..."). Não juntar "Mano, esse cara aceitou" num plano só;
   - a 1ª cena mostra quem a frase cita;
   - ação e movimento; nada de plano parado (grupo posando, rosto quieto);
   - **variedade**: em "cada vez mais fortes", mostre a PROGRESSÃO (Goblin 23/11: três cenas do mesmo dragão = "é o mesmo dragão").
