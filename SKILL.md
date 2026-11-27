@@ -790,7 +790,7 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
   tira o rosto das faixas proibidas do TikTok; aba Texto: Linha 1/2 + estilo **Kiumaz**; "Salvar PNG"
   abre a janela "Salvar a thumbnail" (WScript.Shell `AppActivate` + `SendKeys` %n, ^a, caminho,
   ENTER). **Nunca esquecer o CORTE NO MEIO** (aba **Divisor**: o rasgo entre as duas imagens; no
-  estilo Kiumaz, o "Brilho dentro") — a do Zenon saiu sem e o Levi cobrou. E **escolha quadros
+  estilo Kiumaz, o "Brilho dentro", com **"Brilho fora" ~30–40** desde a 2.16.1 — o Levi quer um pouco de halo por fora também; confira a emenda no PNG salvo e suba o brilho se ela sumir em imagens escuras) — a do Zenon saiu sem e o Levi cobrou. E **escolha quadros
   BONITOS** para a thumb, não só legíveis: rosto no melhor desenho do episódio, cor forte, luz,
   expressão marcante (ver_varios nas candidatas antes de escolher). Fórmula que o Levi gostou: **vilão em cima × quem ele perdeu embaixo** (Zenon com o rosto
   de osso / Allen criança sorrindo) + "MATOU O / MELHOR AMIGO?!" + a seta.
