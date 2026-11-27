@@ -18,7 +18,7 @@ Você manda o episódio, o roteiro e o áudio; o Claude escolhe as cenas, centra
 
 ## Instalar (uma vez)
 
-**Precisa de:** Dangai **2.13.2+** e o [Claude Code](https://claude.com/claude-code).
+**Precisa de:** Dangai **2.16.2+** e o [Claude Code](https://claude.com/claude-code).
 
 ### 1. Ligue os módulos no Dangai
 
@@ -64,6 +64,7 @@ Depois **abra uma conversa nova** (com o Dangai aberto). Pronto.
 
 - **Recap de um episódio:** o Claude usa o *Gerar recap* com o episódio que você mandou.
 - **Curiosidade** (vários episódios): só o nome do anime basta. Ele pega as cenas da **Biblioteca** (os episódios que você já cortou) e monta no editor normal.
+- **Recap que cita outro episódio** (flashback, "no ep 1 ele foi expulso"): o Claude põe o outro episódio como **episódio extra** no Gerar recap e tira a cena de lá. Você também pode: aba Cenas > **+ Episódios extras**.
 
 > 💡 Cena de um episódio que não está na Biblioteca ("isso acontece no ep 1")? Avise ou mande o arquivo desse ep. Se o Claude precisar de outro episódio, ele pede.
 

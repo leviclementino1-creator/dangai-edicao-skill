@@ -86,6 +86,8 @@ tipo** (pelo roteiro, ou pergunte):
   cortado lá (`buscar_na_biblioteca {anime}` mostra quais episódios existem). **Peça também os
   arquivos dos episódios que o roteiro cita** (para achar o minuto pela legenda) **e as cenas-chave
   com o minuto**, se a pessoa souber — e monte o MAPA DO ROTEIRO (seção 3) antes de escolher.
+  Quem usa o Gerar recap (2.16.2+) pode fazer a curiosidade nele: um episódio principal (o que mais
+  aparece) + os outros como **episódios extras** (seção 3, "Episódios extras").
 
 1. **O anime** (curiosidade) **ou o anime + episódio** (recap): o arquivo (`.mkv`/`.mp4`) ou o
    nome + episódio. Só o nome? Procure primeiro no PC: Biblioteca (`buscar_na_biblioteca
@@ -101,7 +103,8 @@ tipo** (pelo roteiro, ou pergunte):
 **Antes de escolher as cenas, leia o roteiro procurando o que é de OUTRO episódio** (flashback,
 "depois de ser expulso", "lembra quando…", poder/personagem que não aparece no ep atual). Para
 cada um:
-- já está cortado na Biblioteca? Use (`buscar_na_biblioteca` pelo anime/episódio);
+- já está cortado na Biblioteca? Use (`buscar_na_biblioteca` pelo anime/episódio). No Gerar recap
+  (2.16.2+): ponha como **episódio extra** e escolha a cena lá (seção 3, "Episódios extras");
 - não está: diga qual episódio é (se você sabe a história; se não, ofereça pesquisar — wiki/guia
   de episódios) e **peça o arquivo daquele episódio**, ou pergunte se ela prefere seguir só com o
   episódio atual. Não improvise com uma cena parecida do ep atual sem avisar (Laid-Off S01E07:
@@ -181,6 +184,9 @@ app, sem mexer no `.dangai` em disco, sem clicar por coordenada, sem print da te
 | `buscar_fala` (texto, pasta/arquivos, idioma) | acha o momento pelas LEGENDAS dos episódios (`.mkv` ou `.ass/.srt`): episódio + segundo + a fala (curiosidade, seção 3) |
 | `listar_episodios` | os episódios do Gerar recap (`ep_...`, título, passo) |
 | `reconhecer_personagens` (acao, episodio, jobId, decisao) | o **Reconhecer na mão**: `iniciar`/`ver` → folhas dos grupos de rostos + do elenco; `confirmar` com os nomes; `cancelar` (seção 01) |
+| `episodios_extras` (episodio, definir) | **Gerar recap**: os episódios EXTRAS do recap (2.16.2+). Sem `definir`: principal, extras e os que dá pra adicionar; `definir: [ep_...]` troca a lista |
+| `cenas_do_recap` (episodio, frase, de, perto, personagem, busca) | **Gerar recap**, passo Cenas: sem `frase` = as frases e as cenas escolhidas; com `frase` = sugestões/perto/outras do principal ou do extra `de`, com o `arquivo` (mp4) de cada uma |
+| `escolher_cenas_do_recap` (episodio, frase, cenas) | **Gerar recap**: grava as cenas de UMA frase (travada). `cenas: [{planoIds, episodio, inSec, outSec, palavra}]` copiadas do `cenas_do_recap` |
 | `abrir_projeto` (caminho) | abre um `.dangai` |
 
 Regras de uso:
@@ -322,9 +328,31 @@ Detalhes:
   `metadata/shots.json` do AnCut (personagem, tempo) ou no `episodio.json` do recap.
 - Faltou o episódio que tem o momento? Corte ele (Gerar recap > Analisar, ou o AnCut) — ele entra
   na Biblioteca — e pegue a cena de lá.
-- O Gerar recap trabalha com UM episódio por rascunho: para curiosidade com vários, monte pelo
-  recap do principal e troque/insira as cenas dos outros no editor (*Trocar cena* abre a
-  Biblioteca inteira) ou direto no `.dangai`.
+- **Gerar recap com vários episódios (2.16.2+): EPISÓDIOS EXTRAS.** O rascunho tem um episódio
+  principal (roteiro e voz) e uma lista de extras; a aba Cenas tira cena de qualquer um deles e o
+  *Abrir no editor* monta cada cena do episódio dela. Use em curiosidade e em frase que cita outro
+  episódio. Ver "Episódios extras" abaixo. (Dangai mais velho: monte pelo principal e troque as
+  cenas dos outros no editor com `editar {cena, clipe}`.)
+
+#### Episódios extras no Gerar recap (como fazer)
+
+1. **O extra precisa estar ABERTO no Dangai**: a lista mostra os episódios que este Dangai já abriu
+   (Gerar recap > Novo recap > soltar o `.mkv` e analisar, ou o AnCut + *Reconhecer agora*). Sem
+   cenas cortadas ele aparece apagado.
+2. **Adicionar**: pelo MCP, `episodios_extras {episodio: <principal>}` → `podeAdicionar` →
+   `episodios_extras {episodio, definir: [<extras>]}` (a lista INTEIRA: manda os que já estavam
+   junto). Na tela: aba Cenas, barra "Episódio" > **+ Episódios extras** > marcar.
+3. **Achar a cena**: o mapa do roteiro (acima) diz de que episódio e minuto é cada frase →
+   `cenas_do_recap {episodio, frase, de: <extra>, perto: "mm:ss"}` (a faixa `perto` = as cenas
+   daquele minuto) ou `personagem`/`busca`. Olhe com `ver_varios {caminhos: [<arquivo>...]}` e passe
+   o checklist de sempre. Na tela: seletor "Episódio" + "Perto do minuto" (12:30 + Enter).
+4. **Gravar**: `escolher_cenas_do_recap {episodio, frase, cenas: [{planoIds, episodio, inSec, outSec,
+   palavra}]}` copiando a cena como o `cenas_do_recap` devolveu (o id do extra vem com prefixo,
+   `91831777c5~0075`: não mexa). Várias cenas na frase = `palavra` crescente (a 1ª é 0). Entra
+   travada. Com a aba Cenas aberta, reabra o passo para ver.
+5. **O que NÃO faz**: o *Sugerir* sugere só do principal (frase que cita outro episódio é você quem
+   escolhe); as faixas "Sugestões" da tela continuam as do principal. Tirar um extra da lista faz as
+   frases com cena dele voltarem para o Sugerir.
 
 ### CHECKLIST DA SELEÇÃO — toda cena passa por aqui ANTES de gravar (Levi, 16–17/11)
 
@@ -472,8 +500,9 @@ as mudanças que fizemos nesse vídeo anota". Cada uma ele teve que pedir:
    cenas melhores nos outros eps, na opening pode usar"). O episódio 1 costuma não ter abertura; a do 2
    tinha o corpo explodindo em plantas. Como fazer:
    - corte o outro episódio em *Cortar episódios* > "Só cortar". No 2.13 ele vai para `G:\App Corte Cenas\Output`;
-   - o rascunho do Gerar recap só aceita cenas do PRÓPRIO episódio. Grave um clipe longo do episódio como
-     substituto e, depois do *Abrir no editor*, troque pelo MCP: `editar {cena, clipe: <shots/NNNN.mp4 do outro ep>}`;
+   - desde a 2.16.2 o outro episódio entra como **extra** do recap (seção 3, "Episódios extras") e a cena
+     dele vai direto na frase. Dangai mais velho: grave um clipe do próprio episódio como substituto e, depois
+     do *Abrir no editor*, troque pelo MCP: `editar {cena, clipe: <shots/NNNN.mp4 do outro ep>}`;
    - confira o recorte: a abertura tem créditos em japonês por cima de muitos planos. Escolha um trecho limpo
      ou desloque o focoX para tirar o texto.
 5. **A imagem LITERAL da frase existe no episódio: procure.** O próprio Levi achou:
@@ -817,8 +846,9 @@ Shots em `shots/NNNN.mp4`, keyframes `NNNN_{0,1,2}.jpg`, corte em `metadata/shot
   são PLACEHOLDER (valor vazio): preencha pelo `placeholder`. Seta escondida atrás do texto: Seta >
   **Livre** e arraste com `scripts/arrastar.mjs x1 y1 x2 y2`. Salvar de novo pede "Substituir".
 - **Frase que cita outro episódio** ("depois de ser expulso da antiga guilda" = a expulsão do
-  ep 1): a cena certa é a DAQUELE episódio. Procure com `buscar_na_biblioteca` (anime/episódio);
-  se o episódio não está cortado, **peça o arquivo ao Levi** antes de improvisar com o que o ep
+  ep 1): a cena certa é a DAQUELE episódio. No Gerar recap: ponha o episódio como **extra** e
+  escolha lá (seção 3, "Episódios extras"); fora dele, `buscar_na_biblioteca` (anime/episódio).
+  Se o episódio não está cortado, **peça o arquivo ao Levi** antes de improvisar com o que o ep
   atual tem (no Laid-Off S01E07 usei o Rein gritando "você me expulsou?!" do ep 7 e ele notou).
 - **Tela de status/sistema** (Levi 22/11, Overgeared): só fica se mostra algo claro e ligado à fala
   ("Lv:95" no "nível 95", "Lv:251" no "acima do nível 200"). Só texto japonês sem número que importe
