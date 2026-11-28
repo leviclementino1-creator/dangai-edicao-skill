@@ -173,12 +173,14 @@ app, sem mexer no `.dangai` em disco, sem clicar por coordenada, sem print da te
 |---|---|
 | `estado` | projeto aberto, duração, nº de cenas/sons/imagens, Biblioteca |
 | `listar_cenas` (de, ate) | cena n (1 = a 1ª): início/fim, clipe, entrada, focoX, efeito, câmera, grid, zoom fixo |
-| `ver_cenas` (cenas[]) | **IMAGEM** do 1º e do último quadro de cada cena no recorte 9:16 (o folha-final, em ~1 s) |
+| `conferir` (pular[], detalhes) | **(2.18+) O CHECKLIST desta seção 3 com número, por cena** (~20–30 s, só lê): repetido fora do gancho, congela (entrada + duração > clipe − 0,1, nas duas metades), close em tela cheia sem grid (detector de rosto na janela 9:16), grid com a mesma pessoa (nomes da Biblioteca), vizinhas parecidas (o `vizinhas.py`), cena ≥ 1,4 s parada, gancho (cortes/s, cena > 1,2 s, 1ª > 1 s), seta sem Ping, música trocando > 2 vezes, SFX/música fora do volume. ERRO = regra que o Levi já cobrou; aviso = olhar no `ver_cenas`. `detalhes: true` traz movimento/rosto/vizinha de cada cena e o LUFS de cada trilha |
+| `dividir_cena` (cena, em, ocorrencia, clipe, entrada, focoX) | **(2.18+)** divide UMA cena no segundo (`em: 13.99`) ou na palavra (`em: "continuavam"`); com `clipe` a 2ª parte já entra com outro plano. Imagem própria com `rel`, câmera livre partida no corte, aba Cenas (`biblioteca.blocos`/`porBloco`) junto, valida antes de gravar; entra no `desfazer` |
+| `ver_cenas` (cenas[]) | **IMAGEM** do 1º e do último quadro de cada cena no recorte 9:16 (o folha-final, em ~1 s). **Grid (2.18+): as DUAS metades**, cada uma 1080x960 com a conta dela, linha amarela na emenda (conferido contra o MP4 do Black Clover) |
 | `ver_clipe` (caminho, focoX) | 8 quadros do clipe inteiro no 9:16 → escolher o **melhor momento** (entrada) |
-| `editar` (lote) | TUDO num pedido: `cenas[]` {cena, clipe, entrada, focoX, efeito, intensidade, zoomFixo, origemDoZoom, **camera:{pontos:[{t,cx,cy,zoom}]}**\|"desligar", **curva** (constante/suave/acelera/freia/chega-rapido), **curvaPontos**, grid:{clipe,entrada,focoX}\|"desligar"}, `sons.adicionar/remover`, `imagens.adicionar/remover` (seta: x/y em % do quadro, escala, rotacao), `legenda` (campos caption*), `textos` {titulos, descricao, hashtags} |
+| `editar` (lote) | TUDO num pedido: `cenas[]` {cena, clipe, entrada, focoX, efeito, intensidade, zoomFixo, origemDoZoom, **camera:{pontos:[{t,cx,cy,zoom}]}**\|"desligar", **curva** (constante/suave/acelera/freia/chega-rapido), **curvaPontos**, grid:{clipe,entrada,focoX}\|"desligar"}, `sons.adicionar` {arquivo, em, ganhoDb, faixa, **inicioSec, usarSec, fadeInSec, fadeOutSec, ducking**}, **`sons.editar`** [{id, arquivo (trocar a música no mesmo lugar), em, faixa, inicioSec, usarSec\|null, ganhoDb, fades, ducking: true\|"desligar"\|{abaixoDb...}}], **`sons.dividir`** [{id, em, ganhoDbAntes, ganhoDbDepois}] (2.18+), `sons.remover`, `imagens.adicionar/remover` (seta: x/y em % do quadro, escala, rotacao), `legenda` (campos caption*), `textos` {titulos, descricao, hashtags} |
 | `listar_faixas` | sons e imagens por cima com id (para remover) |
 | `desfazer` | volta o último `editar` |
-| `buscar_na_biblioteca` | clipes de qualquer episódio por texto/personagem/episódio/anime; `favoritas: true` = só as da estrela; `episodio` + `perto: "mm:ss"` (+ `raio`) = só as cenas daquele trecho |
+| `buscar_na_biblioteca` | clipes de qualquer episódio por texto/personagem/episódio/anime; `favoritas: true` = só as da estrela; `episodio` + `perto: "mm:ss"` (+ `raio`) = só as cenas daquele trecho. **(2.18+) cada clipe traz `movimento`** (a conta do `ranking-animacao.py`: > 25 muito animado, < 10 parado); `ordenar: "movimento"` (+ `minDuracao: 0.5`, `minMovimento`) = o ranking do episódio (551 planos em ~22 s a 1ª vez, depois cache) |
 | `presets_de_legenda` (aplicar) | os presets de legenda salvos, qual bate com o projeto (`diferencas`) e `aplicar: "<nome>"` |
 | `ver_varios` (caminhos, momento) | **IMAGEM** do quadro inteiro de até 48 clipes lado a lado, numerados: escolher por expressão/ação (seção 9, "Expressões e ações") |
 | `buscar_fala` (texto, pasta/arquivos, idioma) | acha o momento pelas LEGENDAS dos episódios (`.mkv` ou `.ass/.srt`): episódio + segundo + a fala (curiosidade, seção 3) |
@@ -209,8 +211,16 @@ Regras de uso:
   `scripts/mcp.py <ferramenta> '<json>' [prefixo]` (senha em `DANGAI_MCP_SENHA`). Nunca montar o
   JSON-RPC em bash com `${2:-{}}`: o `}` quebra os argumentos e a ferramenta recebe `{}` CALADA
   (`listar_cenas` devolve tudo, `editar` diz "Nada para mudar").
-- **`ver_cenas` não desenha a metade de baixo do grid** (só a de cima): grid se confere no preview
-  do app.
+- **`conferir` antes de TODA entrega e depois de cada lote grande** (2.18+). Zero ERRO antes de
+  mandar pro Levi; cada aviso olhado no `ver_cenas`. Limites (calibrados no Black Clover v1 × final):
+  - volume: a voz do VÍDEO é −14 LUFS (o render normaliza; o `.wav` cru pode estar em −23). Trilha
+    efetiva = LUFS do trecho + `gainDb`. SFX bom = 9–18 dB abaixo da voz (a final dele: 11–16,6; os risers
+    da v1 a 19–24 = "baixo demais"); música 9–16 abaixo (a final: 11–12). O `conferir` sugere o `ganhoDb`;
+  - viram só aviso (o Levi deixou na final): close ~45–75% sem grid, cena ≥ 1,4 s com movimento < 10,
+    gancho > 1,45 cortes/s, congelar < 0,1 s. Close ≥ 75% e congelar ≥ 0,1 s são erro;
+  - grid com a mesma pessoa só sai quando a Biblioteca tem nome nas duas metades (o resumo diz quantos
+    grids ficaram sem conferir). Episódio do AnCut costuma vir sem nome: confira esses no `ver_cenas`.
+- Grid: o `ver_cenas` (2.18+) desenha as duas metades; antes da 2.18 só a de cima (conferir no preview).
 
 ### 1b. CDP (o caminho antigo, e para o Gerar recap)
 
@@ -473,16 +483,18 @@ seleção de cenas". Não deixe para corrigir depois.
    personagem (grid Zod sorrindo × Priscilla surpresa).
 8. **Cena feia no grid** (só os olhos da Priscilla: "mt grande", "tem q ser cenas bonitas"): a metade do
    grid também é plano médio bonito (luz, cabelo ao vento).
-9. **Metade de baixo do grid descentralizada**: o `ver_cenas` não desenha a de baixo e a minha simulação
-   com ffmpeg não bateu com o app. Confira a de baixo **num quadro do MP4** (ou no preview) e corrija.
+9. **Metade de baixo do grid descentralizada**: até a 2.17 o `ver_cenas` não desenhava a de baixo. Desde a
+   2.18 ele desenha as duas (bate com o MP4): confira as duas metades ali, e no MP4 na dúvida.
 10. **Último quadro do clipe é a cena seguinte** (apareceu céu no fim do grid): `entrada + duração ≤
     clipe − 0,1 s`; olhe o último quadro de cada cena no MP4.
 11. **Sem seta e sem SFX** ("n tem seta pra colocar? efeito sonoro?"): a 1ª entrega já vai com a seta
     dele + Ping num detalhe que a fala cita e SFX nas ações visíveis (magia, impacto). Biblioteca Eagle
-    Kiumaz/efeitos sonoros (Sparkling Spell, Telekinesis Blast, Ping, Explosion...). SFX longo (>3 s) não
-    entra pelo MCP sem cortar.
+    Kiumaz/efeitos sonoros (Sparkling Spell, Telekinesis Blast, Ping, Explosion...). SFX longo (>3 s) entra
+    cortado: `sons.adicionar` com `usarSec` + `fadeOutSec` (2.18+).
 12. **SFX baixo demais**: os risers/impactos da Edição rápida ficaram ~14 dB abaixo da voz (sumiam).
     Meça o LUFS de cada arquivo e ponha o efeito ~6–8 dB abaixo da voz (`gainDb` = alvo − LUFS do arquivo).
+    (Medido de novo no Black Clover, 28/11, contra a voz do VÍDEO, −14 LUFS: a final dele tem os SFX
+    11–16 dB abaixo e a v1 tinha 19–24. O `conferir` usa 9–18 e sugere o `ganhoDb`.)
 Também: no 2.13 o corte do "Analisar" vai para `G:\Dangai Recap\Biblioteca\<anime>\SxxEyy` (não a pasta
 do AnCut), e o painel "Vídeo pronto" aberto engole o clique em Renderizar: feche (Fechar) antes.
 
@@ -526,15 +538,15 @@ as mudanças que fizemos nesse vídeo anota". Cada uma ele teve que pedir:
 9. **Seta escondida atrás da legenda.** A legenda Kiumaz fica no meio (y 0,45), então a seta vai ACIMA ou
    ABAIXO da faixa da legenda (y entre −30 e −15, ou entre +15 e +30). Confira num quadro do MP4.
 10. **SFX:**
-    - o `sons.adicionar` do MCP põe o ARQUIVO INTEIRO. Efeito longo (magia de 49 s, relógio de 8 s) entra
-      pelo `.dangai` com `usarSec` e `fadeOutSec`;
+    - efeito longo (magia de 49 s, relógio de 8 s) entra cortado: `sons.adicionar` com `usarSec` e
+      `fadeOutSec` (2.18+; antes o MCP punha o arquivo inteiro e era pelo `.dangai`);
     - dois sons na MESMA `faixa` com tempos que se cruzam se atropelam. Use outra `faixa` (confira a
       sobreposição por faixa);
     - o que funcionou: magia de planta no corpo brotando, caixa registradora no dinheiro, relógio em
       "dois anos" e Ping junto da seta. Os marcadores ficam 6–8 dB abaixo da voz.
-11. **Dividir uma cena** (o MCP não divide): no `.dangai`, copie o objeto da cena, mude `start`/`end`/
-    `sourceStart`, copie a entrada de `images` trocando `path` e `fileName` (e `rel`, se existir), aponte
-    o `imageIndex` para ela e faça `abrir_projeto`. Guarde backup em `G:	mp-medida\` antes.
+11. **Dividir uma cena**: `dividir_cena {cena, em: "<palavra>"|segundos, clipe?, entrada?}` (2.18+). Antes
+    era à mão no `.dangai` e corrompeu um arquivo (Black Clover, item 10). Dangai mais velho: copie o
+    objeto da cena e a entrada de `images` (com `"rel": null`), valide no schema e faça `abrir_projeto`.
 12. **Thumbnail com as imagens que o Levi melhora** (já em pé, 1122x1402):
     - em cima, a figura com as plantas aproximada (135%) e subida até o peito ficar logo acima do texto;
     - embaixo, o rosto aproximado (170%) até o cabelo encostar no texto;
@@ -551,7 +563,8 @@ skill; o erro foi não aplicar antes da 1ª entrega. Diff medido: `antes-som.dan
 1. **Animação primeiro.** As 3 cenas que ele mesmo achou ("cena boa pra krl q tu n usou": Morris com
    os tentáculos 0419; Yuno com a coroa em 8:10 0191; Morris "SINISTRA" em 14:30 0367) estavam no topo do
    ranking de movimento e eu não usei. Antes de escolher, rode
-   `python scripts/ranking-animacao.py "<pasta do ep>" 0.5` (o python com cv2). Depois faça um `ver_varios`
+   `buscar_na_biblioteca {anime, episodio, ordenar: "movimento", minDuracao: 0.5, limite: 40}` (2.18+, a mesma
+   conta, com cache) ou `python scripts/ranking-animacao.py "<pasta do ep>" 0.5`. Depois faça um `ver_varios`
    dos ~40 primeiros e reserve os melhores para: o gancho, a 1ª vez que um personagem aparece ("quando for
    falar do cara" = o plano mais sinistro dele) e as frases de poder ("magia das estrelas" = o Yuno de coroa,
    não uma estrela abstrata).
@@ -599,9 +612,12 @@ skill; o erro foi não aplicar antes da 1ª entrega. Diff medido: `antes-som.dan
    - o resto das cenas ficou com zoom-in/zoom-out a 0,1 e sem curva. Ele também puxou o focoX à mão em
      7 cenas (6, 21, 22, 27, 46, 48 e 59). A pior era a 48 da v1: com fx 0, o rosto ficava fora da tela.
      Por isso, depois de render, rodar `centro-render.py`.
-10. **Bug meu:** dividir cena à mão sem `"rel": null` na imagem nova corrompeu o `.dangai`. Valide com o
-    schema (`projectFileSchema.safeParse`, via `npx tsx --tsconfig tsconfig.node.json`) antes de abrir, e
-    divida também `biblioteca.blocos`, deslocando as chaves de `porBloco`.
+10. **Bug meu:** dividir cena à mão sem `"rel": null` na imagem nova corrompeu o `.dangai`. Desde a 2.18
+    é o `dividir_cena` (valida no schema e divide `biblioteca.blocos`/`porBloco` junto). À mão só em Dangai
+    velho, validando com `projectFileSchema.safeParse` antes de abrir.
+11. **O que o `conferir` (2.18) acha nesta final** (para calibrar o olho): 5 congelamentos reais (o pior
+    0,46 s na metade de baixo da cena 45), 0505/0404 voltando 2 vezes, grid Grey × Grey (33). Na v1 ele
+    acusa os 4 risers/impactos baixos, a cena 2 do gancho com 1,45 s e os 4 clipes repetidos.
 
 **TRAVA ANTES DE ENTREGAR: gancho, música e SFX** (Levi 22/11, Overgeared S01E09: "errou colocando pouca
 cena no hook, errou na música e nos efeitos sonoros, isso nunca mais pode acontecer"). O vídeo saiu
@@ -628,7 +644,8 @@ com 1,9 mil views contra 45 mil do Black Clover. Só entrega com os três itens 
   - cada efeito ligado a uma ação visível (dinheiro = MONEY, seta = Ping);
   - abertura = pop, gancho→contexto = riser, troca de música = sharp riser + impact.mp3.
 
-**Conferência final obrigatória**: `scripts/folha-final.py <projeto.dangai> <saida>` (ou o
+**Conferência final obrigatória**: primeiro o `conferir` do MCP (2.18+, zero ERRO e cada aviso olhado);
+depois `scripts/folha-final.py <projeto.dangai> <saida>` (ou o
 `ver_cenas` do MCP) — o recorte do focusX (1º e último quadro) ou da câmera livre (começo, meio e
 fim, desde a 2.13.2). Olhe TODAS antes de entregar; o Levi não pode ser quem acha. O `folha-final.py`
 NÃO mostra a câmera livre: para ela, o `ver_cenas` ou quadros do MP4 renderizado (item 7).
