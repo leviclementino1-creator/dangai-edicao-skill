@@ -545,6 +545,64 @@ Também ficou valendo:
 - close extremo só dentro de grid;
 - 2 grids na discussão (Yomiko × Toshiro).
 
+**BLACK CLOVER S02E09 (28/11): a v1 contra a final** (Levi: "compara a v1 com a final e vê como podia ter
+acertado de primeira"). Das 57 cenas da v1, só 15 ficaram iguais. Quase tudo que ele pediu JÁ ESTAVA nesta
+skill; o erro foi não aplicar antes da 1ª entrega. Diff medido: `antes-som.dangai` × o `.dangai` final.
+1. **Animação primeiro.** As 3 cenas que ele mesmo achou ("cena boa pra krl q tu n usou": Morris com
+   os tentáculos 0419; Yuno com a coroa em 8:10 0191; Morris "SINISTRA" em 14:30 0367) estavam no topo do
+   ranking de movimento e eu não usei. Antes de escolher, rode
+   `python scripts/ranking-animacao.py "<pasta do ep>" 0.5` (o python com cv2). Depois faça um `ver_varios`
+   dos ~40 primeiros e reserve os melhores para: o gancho, a 1ª vez que um personagem aparece ("quando for
+   falar do cara" = o plano mais sinistro dele) e as frases de poder ("magia das estrelas" = o Yuno de coroa,
+   não uma estrela abstrata).
+2. **Outros episódios logo na v1** (seção 01). O roteiro citava o Yami preso (ele quase não aparece no
+   ep), o Lucifero (não aparece), a "Tríade derrotada" (a luta foi no E05) e os "magos rejeitados/família".
+   A final usa o E05 (Yami de braços de osso 0212, Magna vencendo 0576+0577, Touros andando pra luz
+   0444/0446/0449, grid 0452+0447), o E04 (a silhueta gigante do Lucifero 0188, zoomFixo 1,35) e o E08
+   (Luck sorrindo × Asta em "nenhum deles se importava"). Na v1 tudo era do E09.
+3. **Frase que cita um fato mostra o fato** (Fool Night item 5, de novo): "Tríade derrotada" = o vilão
+   apanhando (Magna vencendo); "Morris indignado" = o Morris de pé, revoltado, não caído; "aquele
+   esquadrão" = a galera toda, em grid.
+4. **Close só em grid.** A v1 tinha rosto de tela cheia nas cenas 8, 17, 26, 29, 45 e 57. Na final viraram
+   grid (cima e baixo com pessoas DIFERENTES), e ficaram 11 grids no vídeo.
+5. **Cena parada e longa = 2 cenas.** A 2 do gancho (0404 por 1,45 s) e a 50 (1,46 s) ele mandou dividir.
+   Gancho: nenhum clipe em 2 cenas seguidas. Fora do gancho, cena ≥ 1,4 s com movimento < 10 vira duas,
+   cortando numa palavra.
+6. **Seta + Ping na v1**: a final tem 3 setas animadas (gancho no Yami, Vanessa, "o homem que deu uma
+   família"), todas com o Ping.
+7. **Música (o que o Levi deixou na final):**
+   - Black Clover = **Haruka Mirai do 0 até a virada (52,6 s), uma faixa só** (`inicioSec` 9,9, −20 dB,
+     ducking 6). A v1 trocava 4 vezes: Haruka, Haruka, NO BATIDÃO e Kaikai Kitan;
+   - a virada emocional ("todos se reúnem… o homem que deu uma família pra eles") = **MY HERO IS OUR HERO
+     entrando JÁ NA SUBIDA** (`inicioSec` 22,55, onde a faixa explode de −22 para −9 dB RMS), **−17 dB**,
+     até o fim. Eu tinha feito uma introdução baixinha (de 8,6 s, com +7 dB) subindo até a pancada; ele
+     tirou. Música emocional entra com tudo no corte, sem preparar;
+   - ganho: a MY HERO ficou ~2 dB acima da Haruka (orquestra soa mais baixa que a OP no mesmo RMS).
+8. **SFX no volume certo já na v1** (Kikansha item 12, de novo). Final: Riser Metallic −10,5, sharp riser
+   −3, deep sub impact −12, impact −10, Ping −10. Na v1 estavam 5–8 dB mais baixos. Magia visível ganhou
+   som: Sparkling Spell na Grey neutralizando (35,6 s) e Telekinesis Blast na gravidade (44,6 s).
+9. **Câmera livre e ritmo do Levi (o que ele mexeu à mão).** Ele pôs câmera livre em 4 cenas, sempre um
+   **pan horizontal só em x**, sem zoom (`scale` 1), atravessando o quadro 16:9 (±34 = de uma borda à outra):
+   | cena | plano | o que tem | câmera (x de → até) | ritmo (`curvePoints`) |
+   |---|---|---|---|---|
+   | 10 "o Yuno finalmente consegue" (1,24 s) | 0293 | golpe largo, Yuno × Zenon | −34 → +28 | `[0, 0.375, 0.008, 1]` |
+   | 12 "Só que, mesmo com todos os membros da" (1,58 s) | 0338 | plano largo com mais de um | +22 → −12 | `[0.192, 0.594, 0, 0.92]` |
+   | 21 "Só que, nesse momento," (0,95 s) | 0401 | assunto saindo do centro | 0 → +25 | linear |
+   | 54 "Todos aqueles magos que um dia" (1,31 s) | 0348 | vários personagens lado a lado | +34 → −31 | linear |
+   Como repetir:
+   - **onde:** plano largo com ação ou com várias pessoas lado a lado, até em cena de 1 s. Close e
+     rosto centrado ficam no efeito comum;
+   - **câmera:** `editar {cena, camera:{pontos:[{t:0,cx:<início>},{t:1,cx:<fim>}]}}`, varrendo quase o quadro
+     todo (uma borda até perto da outra) e seguindo a direção da ação;
+   - **ritmo:** golpe ou impacto = curva que dispara e assenta, `curvaPontos [0, 0.375, 0.008, 1]` (a dele,
+     igual à "chega rápido" do Nia E08). Plano de grupo ou de passagem = constante (linear);
+   - o resto das cenas ficou com zoom-in/zoom-out a 0,1 e sem curva. Ele também puxou o focoX à mão em
+     7 cenas (6, 21, 22, 27, 46, 48 e 59). A pior era a 48 da v1: com fx 0, o rosto ficava fora da tela.
+     Por isso, depois de render, rodar `centro-render.py`.
+10. **Bug meu:** dividir cena à mão sem `"rel": null` na imagem nova corrompeu o `.dangai`. Valide com o
+    schema (`projectFileSchema.safeParse`, via `npx tsx --tsconfig tsconfig.node.json`) antes de abrir, e
+    divida também `biblioteca.blocos`, deslocando as chaves de `porBloco`.
+
 **TRAVA ANTES DE ENTREGAR: gancho, música e SFX** (Levi 22/11, Overgeared S01E09: "errou colocando pouca
 cena no hook, errou na música e nos efeitos sonoros, isso nunca mais pode acontecer"). O vídeo saiu
 com 1,9 mil views contra 45 mil do Black Clover. Só entrega com os três itens conferidos com número:
